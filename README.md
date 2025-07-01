@@ -1,10 +1,10 @@
-![Timofej.ch Banner](./concept/media/Timofej.ch%20Banner.png)
+![MythosMorph Banner](/concept/media/MythosMorph%20Banner.png)
 
-# timofej.ch
-timofej.ch ist ein Webseiten Portfolio. Es soll eine Modulare Webseite sein. Es soll ein selbst erstellter Webseiten Editor werden.
+# MythosMorph
+MythosMorph ist ein Webseiten Portfolio. Es soll eine Modulare Webseite sein. Es soll ein selbst erstellter Webseiten Editor werden.
 
 ## Inhaltsverzeichnis
-- [timofej.ch](#timofejch)
+- [MythosMorph](#mythosmorph)
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Installation](#installation)
   - [Konzept](#konzept)

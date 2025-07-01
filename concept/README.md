@@ -1,12 +1,12 @@
 ![Site Edior with Nuxt3](./media/Banner%20SiteEditor%20with%20Nuxt3.png)
 
-# Site Editor Konzept
+# MythosMorph Site Editor Konzept
 In diesem Projekt wird ein einfach anwendbarer aber auch komplexer Site Editor gebaut werden, welche neue Seiten erstellen & bearbeiten kann sowie die Inhalte davon jederzeit Live überarbeiten kann. Es soll dynamisch und Modular sein.
 
 Dieses Projekt wird mit einer neuen Programmiersprach geschrieben welche ich noch kaum Kontakt hatte [Nuxt3](https://nuxt.com/). Diese Sprache wird für das Frontend benutzt und für das Backend gehe ich wieder mit [PHP](https://www.php.net/).
 
 ## Inhaltsverzeichnis
-- [Site Editor Konzept](#site-editor-konzept)
+- [MythosMorph Site Editor Konzept](#mythosmorph-site-editor-konzept)
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Ziele](#ziele)
   - [Technologie](#technologie)
