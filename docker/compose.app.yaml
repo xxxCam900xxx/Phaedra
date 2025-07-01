@@ -1,0 +1,6 @@
+name: MythosMorph
+include:
+  - ./compose.frontend.yaml
+  - ./compose.backend.yaml
+  - ./compose.database.yaml
+  - ./compose.reverseproxy.yaml
