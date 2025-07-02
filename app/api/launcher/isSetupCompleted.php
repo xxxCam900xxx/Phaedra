@@ -17,13 +17,12 @@ function checkWebLauncherCompleted()
     if ($hasRow) {
         // Prüfung, ob 'true'
         if ($webLauncherCompleted !== 'true') {
-            header("Location: /index.php");
+            header("Location: /launcher");
             exit;
         }
     } else {
         // Kein Datensatz gefunden => Weiterleitung
-        header("Location: /index.php");
+        header("Location: /launcher");
         exit;
     }
-
 }
