@@ -1,13 +1,12 @@
-version: '3.8'
+name: Database
 services:
-  db:
-    container_name: Database
-    image: postgres:15
-    restart: always
+  database:
+    build: ./database
+    container_name: ${DB_HOST}
+    expose:
+      - "3306"
     environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${DB_PASS}
     volumes:
       - pgdata:/var/lib/postgresql/data
 

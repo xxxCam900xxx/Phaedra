@@ -4,9 +4,12 @@ Docker ist ein echt gutes Tool um ein Projekt immer in der selben Umgebung start
 ### 0 | Anforderungen
 Füge im Ordner `docker` eine Datei namens `.env` hinzu welche folgende Umgebungsvariabeln hat:
 ```
-POSTGRES_DB=exampledb
-POSTGRES_USER=exampleuser
-POSTGRES_PASSWORD=examplepass
+DB_HOST=DB
+DB_USER=root
+DB_PASS=mythosmorph
+DB_NAME=database
+ENCRYPTION_KEY=mythosmorph
+ENCRYPTION_IV=1234567890123456
 ```
 
 ### 1 | Docker starten
