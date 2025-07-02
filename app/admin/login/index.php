@@ -1,12 +1,58 @@
 <?php
 require_once '../../api/launcher/isSetupCompleted.php';
-
-// Nur wenn Launcher abgeschlossen
 checkWebLauncherCompleted();
+
+require_once '../../api/config/database.php';  // Pfad ggf. anpassen
+
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if ($username === '' || $password === '') {
+        $error = "Bitte Benutzername und Passwort eingeben.";
+    } else {
+        // Nutzer aus DB holen
+        $stmt = executeStatement(
+            "SELECT ID, Password FROM Users WHERE Username = ?",
+            [$username],
+            "s"
+        );
+        $stmt->bind_result($id, $passwordHash);
+        $stmt->fetch();
+        $stmt->close();
+
+        if ($id && password_verify($password, $passwordHash)) {
+            // Login erfolgreich - Session-Key generieren
+            $sessionKey = bin2hex(random_bytes(32)); // 64 Zeichen Hex
+            $expire = (new DateTime('+1 hour'))->format('Y-m-d H:i:s');
+
+            // Session-Key und Ablauf speichern
+            $updateStmt = executeStatement(
+                "UPDATE Users SET SessionToken = ?, SessionTokenExpireDate = ? WHERE id = ?",
+                [$sessionKey, $expire, $id],
+                "ssi"
+            );
+            $updateStmt->close();
+
+            // Cookie setzen
+            setcookie('session_key', $sessionKey, strtotime($expire), '/', '', false, true);
+
+            // User-ID in Session speichern
+            $_SESSION['user_id'] = $id;
+
+            header('Location: /admin');
+            exit;
+        } else {
+            $error = "Benutzername oder Passwort falsch.";
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <?php require("../../configs/head.php"); ?>
@@ -24,14 +70,18 @@ checkWebLauncherCompleted();
                 <h2 class="text-3xl">Melden Sie sich ganz gemütlich an</h2>
             </div>
 
-            <form action="" class="space-y-4 w-full max-w-lg mx-auto">
+            <form method="post" action="" class="space-y-4 w-full max-w-lg mx-auto">
                 <!-- Benutzerfeld -->
                 <div class="flex items-center border border-gray-300 rounded-lg px-3 py-2">
                     <i class="fa-solid fa-user text-emerald-400 text-3xl"></i>
                     <input
                         type="text"
+                        name="username"
                         placeholder="Benutzer"
-                        class="ml-2 w-full outline-none text-gray-700 placeholder-gray-400 text-2xl" />
+                        class="ml-2 w-full outline-none text-gray-700 placeholder-gray-400 text-2xl"
+                        required
+                        autocomplete="username"
+                    />
                 </div>
 
                 <!-- Passwortfeld -->
@@ -39,13 +89,22 @@ checkWebLauncherCompleted();
                     <i class="fa-solid fa-lock text-emerald-400 text-3xl"></i>
                     <input
                         type="password"
+                        name="password"
                         placeholder="Passwort"
-                        class="ml-2 w-full outline-none text-gray-700 placeholder-gray-400 text-2xl" />
+                        class="ml-2 w-full outline-none text-gray-700 placeholder-gray-400 text-2xl"
+                        required
+                        autocomplete="current-password"
+                    />
                 </div>
+
+                <?php if (!empty($error)) : ?>
+                    <p class="text-red-600 font-semibold"><?= htmlspecialchars($error) ?></p>
+                <?php endif; ?>
 
                 <button
                     type="submit"
-                    class="w-full bg-emerald-400 cursor-pointer text-white font-semibold py-2 rounded hover:bg-emerald-600 transition">
+                    class="w-full bg-emerald-400 cursor-pointer text-white font-semibold py-2 rounded hover:bg-emerald-600 transition"
+                >
                     Anmelden
                 </button>
             </form>
