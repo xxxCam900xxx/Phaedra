@@ -52,4 +52,21 @@ Hier sind alle Anforderungen und Ziele aufgeführt, die das Projekt erfüllen mu
   - PostgreSQL
 
 ## Datenbank Struktur
-Coming Soon...
+[Database](./media/DatabaseStructure.drawio)
+
+## Abläufe
+
+1. Launcher
+Nachdem alle Fragen beantwortet wurden sind. Führt der Launcher folgendes durch:
+- Die Daten werden auf der Datenbank abgespeichert
+
+2. Editor
+Im Editor sollte man mit einem Iframe durch die Webseite navigieren können. Links davon sind Layoutblöcke welche man in den Container ziehen kann, die werden dann direkt mit einer Abfrage zur Datenbank abgespeichert.
+
+Wenn man eine neue Seite erstellt wird diese Abgespeichert mit PageCOntent und Page
+
+3. Loading Site
+Jede Seite wird von Datenabgefragt und durch die ID werden die richtigen Komponenten mit den richitgen Inhalten erstellt.
+
+4. Navigation
+Die Navigation sollte Dynamisch hergestellt werden. Sie nimmt alle bestehenden Seiten auf der Datenbank und verlinkt diese in die richtigen Ordner?
