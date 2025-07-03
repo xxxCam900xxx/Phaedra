@@ -1,14 +1,10 @@
-SET
-  SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
+SET time_zone = "+00:00";
 
-SET
-  time_zone = "+00:00";
-
-CREATE DATABASE IF NOT EXISTS database_mythosmorph;
-
-USE database_mythosmorph;
+-- Datenbank anlegen
+CREATE DATABASE IF NOT EXISTS `database_mythosmorph`;
+USE `database_mythosmorph`;
 
 -- User Table Structure
 CREATE TABLE IF NOT EXISTS `Users` (
@@ -18,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `SessionToken` TEXT,
   `SessionTokenExpireDate` TEXT,
   PRIMARY KEY (`ID`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3 COLLATE = utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- WebConfig Table Structure
 CREATE TABLE IF NOT EXISTS `WebConfig` (
@@ -29,8 +25,9 @@ CREATE TABLE IF NOT EXISTS `WebConfig` (
   `WebContact` VARCHAR(80) NOT NULL,
   `WebLauncherCompleted` ENUM('true', 'false') NOT NULL DEFAULT 'false',
   PRIMARY KEY (`ID`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3 COLLATE = utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Pages Table
 CREATE TABLE IF NOT EXISTS `Pages` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
   `PageContentID` BIGINT NULL,
@@ -39,8 +36,9 @@ CREATE TABLE IF NOT EXISTS `Pages` (
   `Meta_Title` VARCHAR(255) NULL,
   `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- PageContent Table
 CREATE TABLE IF NOT EXISTS `PageContent` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
   `LayoutID` BIGINT NULL,
@@ -48,20 +46,36 @@ CREATE TABLE IF NOT EXISTS `PageContent` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Layout Table
 CREATE TABLE IF NOT EXISTS `Layout` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
-  `Type` ENUM("NoSplit", "2Split", "3Split")
+  `Type` ENUM('NoSplit', '2Split', '3Split') NOT NULL DEFAULT 'NoSplit',
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 COMMIT;
 
--- Initial Insert
-INSERT INTO
-  `WebConfig` (`ID`)
+-- Initial Insert: WebConfig
+INSERT INTO `WebConfig`
+  (`WebsiteName`, `WebHostName`, `WebLogoURL`, `WebContact`, `WebLauncherCompleted`)
 VALUES
-  (1);
+  ('My Website', 'www.example.com', '', 'contact@example.com', 'false');
 
-INSERT INTO
-  `Users` (`ID`, `Username`)
+-- Initial Insert: Admin User
+INSERT INTO `Users`
+  (`Username`, `Password`)
 VALUES
-  (1, "admin");
+  ('admin', 'admin');
+
+  -- PageContent für Index erstellen
+INSERT INTO `PageContent` (`LayoutID`)
+VALUES (NULL);
+
+-- Letzte PageContent-ID merken
+SET @PageContentID = LAST_INSERT_ID();
+
+-- Index-Page anlegen
+INSERT INTO `Pages`
+  (`PageContentID`, `Titel`, `Meta_Description`, `Meta_Title`)
+VALUES
+  (@PageContentID, 'Index', 'Startseite Ihrer Website', 'Index');
