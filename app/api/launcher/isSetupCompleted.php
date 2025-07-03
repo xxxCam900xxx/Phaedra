@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
 
-function checkWebLauncherCompleted()
+function checkWebLauncherCompleted($isSamePage = false)
 {
     $stmt = executeStatement("SELECT WebLauncherCompleted FROM WebConfig WHERE ID = 1");
 
@@ -17,11 +17,17 @@ function checkWebLauncherCompleted()
     if ($hasRow) {
         // Prüfung, ob 'true'
         if ($webLauncherCompleted !== 'true') {
+            if ($isSamePage) {
+                exit;
+            }
             header("Location: /launcher");
             exit;
         }
     } else {
         // Kein Datensatz gefunden => Weiterleitung
+        if ($isSamePage) {
+            exit;
+        }
         header("Location: /launcher");
         exit;
     }

@@ -1,3 +1,8 @@
+<?php
+require_once "../api/launcher/isSetupCompleted.php";
+checkWebLauncherCompleted(true)
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
