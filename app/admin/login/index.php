@@ -1,8 +1,25 @@
 <?php
 require_once '../../api/launcher/isSetupCompleted.php';
 checkWebLauncherCompleted();
+require_once '../../api/config/database.php';
 
-require_once '../../api/config/database.php';  // Pfad ggf. anpassen
+if (!empty($_COOKIE['session_key'])) {
+    $sessionKey = $_COOKIE['session_key'];
+
+    $stmt = executeStatement(
+        "SELECT ID FROM Users WHERE SessionToken = ? AND SessionTokenExpireDate > NOW()",
+        [$sessionKey],
+        "s"
+    );
+
+    $stmt->bind_result($id);
+    if ($stmt->fetch()) {
+        $stmt->close();
+        header('Location: /admin');
+        exit;
+    }
+    $stmt->close();
+}
 
 session_start();
 
