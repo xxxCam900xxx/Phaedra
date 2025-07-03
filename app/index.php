@@ -7,7 +7,7 @@ checkWebLauncherCompleted();
 <html lang="en">
 
 <head>
-    <?php require("/configs/head.php"); ?>
+    <?php require("configs/head.php"); ?>
     <title>Welcome Site</title>
 </head>
 
