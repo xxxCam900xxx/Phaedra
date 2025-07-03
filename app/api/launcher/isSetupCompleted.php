@@ -17,18 +17,16 @@ function checkWebLauncherCompleted($isSamePage = false)
     if ($hasRow) {
         // Prüfung, ob 'true'
         if ($webLauncherCompleted !== 'true') {
-            if ($isSamePage) {
+            if (!$isSamePage) {
+                header("Location: /launcher");
                 exit;
             }
-            header("Location: /launcher");
-            exit;
         }
     } else {
         // Kein Datensatz gefunden => Weiterleitung
-        if ($isSamePage) {
+        if (!$isSamePage) {
+            header("Location: /launcher");
             exit;
         }
-        header("Location: /launcher");
-        exit;
     }
 }

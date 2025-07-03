@@ -92,7 +92,7 @@ require_once '../../api/login/IsLoggedIn.php';
 
                             <!-- More -->
 
-                            <button class="cursor-pointer bg-sky-500 p-3 rounded-md hover:bg-sky-300">
+                            <button id="newPageBtn" class="cursor-pointer bg-sky-500 p-3 rounded-md hover:bg-sky-300">
                                 Neue Seite erstellen
                             </button>
                             <button class="cursor-pointer bg-sky-500 p-3 rounded-md hover:bg-sky-300">
@@ -112,8 +112,27 @@ require_once '../../api/login/IsLoggedIn.php';
 
         </section>
 
+        <!-- Modal -->
+        <div id="newPageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white rounded-lg p-6 w-96">
+                <h2 class="text-xl mb-4">Neue Seite erstellen</h2>
+                <form id="newPageForm" class="flex flex-col gap-3">
+                    <input type="text" name="title" placeholder="Titel" required class="border p-2 rounded" />
+                    <input type="text" name="meta_title" placeholder="Meta-Titel" class="border p-2 rounded" />
+                    <textarea name="meta_description" placeholder="Meta-Beschreibung" rows="3" class="border p-2 rounded"></textarea>
+
+                    <div class="flex justify-end gap-2 mt-4">
+                        <button type="button" id="cancelBtn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Abbrechen</button>
+                        <button type="submit" class="px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600">Erstellen</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
     </main>
 
+    <script src="/assets/js/createPagePopUp.js"></script>
     <script src="/assets/js/accordion.js"></script>
 
 </body>
