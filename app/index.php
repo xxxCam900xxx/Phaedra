@@ -7,6 +7,18 @@ require_once "./api/editor/getLayouts.php";
 
 // Daten holen
 $layouts = getLayoutsByPageContent(1);
+
+// --- Nach dem Abrufen neue Sortierung schreiben ---
+$newSort = 10;
+$stmtUpdate = $conn->prepare("UPDATE Layout SET Sort = ? WHERE ID = ?");
+
+foreach ($layouts as $layout) {
+    $id = (int)$layout['id'];
+    $stmtUpdate->bind_param("ii", $newSort, $id);
+    $stmtUpdate->execute();
+    $newSort += 10;
+}
+$stmtUpdate->close();
 ?>
 
 <!DOCTYPE html>
