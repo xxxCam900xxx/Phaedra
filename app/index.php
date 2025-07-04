@@ -1,6 +1,12 @@
 <?php
 require_once "./api/launcher/isSetupCompleted.php";
 checkWebLauncherCompleted();
+
+// getLayouts laden
+require_once "./api/editor/getLayouts.php";
+
+// Daten holen
+$layouts = getLayoutsByPageContent(1);
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +27,30 @@ checkWebLauncherCompleted();
     </header>
     <!-- Dynamic Content -->
     <main class="flex flex-col flex-1 p-5">
-        <div id="content-container" class="content flex flex-1">
-            <!-- Inhalt hier -->
+        <!-- Dynamic Layout Creation -->
+        <section class="flex flex-col gap-4">
+
+            <?php foreach ($layouts as $layout): ?>
+                <?php
+                $type = $layout['type'];
+                $data = $layout['data'];
+
+                // Hier includen Sie Ihre Komponenten
+                $file = $_SERVER["DOCUMENT_ROOT"] . '/assets/components/layouts/' . $type . '.php';
+
+                if (file_exists($file)) {
+                    include $file;
+                } else {
+                    echo "<div class='text-red-500'>Unbekanntes Layout: " . htmlspecialchars($type) . "</div>";
+                }
+                ?>
+            <?php endforeach; ?>
+
+        </section>
+
+        <!-- Editor Section -->
+        <div id="content-container" class="hidden flex flex-1 items-center justify-center text-4xl">
+            Drop here
         </div>
     </main>
     <!-- Footer -->
@@ -30,12 +58,25 @@ checkWebLauncherCompleted();
 
     </footer>
 
+    <script src="/assets/js/editor.js"></script>
+
     <script>
-        // Prüfen, ob die Seite in einem iframe läuft
-        if (window !== window.top) {
-            // iframe erkannt, Klasse hinzufügen
-            document.getElementById('content-container').classList.add('border', 'border-dashed', 'border-gray-500');
-        }
+        fetch('/api/editor/getLayouts.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    pageContentId: 1
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Layouts:', data.layouts);
+            })
+            .catch(error => {
+                console.error('Fehler beim Abruf:', error);
+            });
     </script>
 </body>
 

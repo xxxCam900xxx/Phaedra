@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `WebConfig` (
 -- Pages Table
 CREATE TABLE IF NOT EXISTS `Pages` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
-  `PageContentID` BIGINT NULL,
   `Titel` VARCHAR(255) NOT NULL,
   `Meta_Description` TEXT NULL,
   `Meta_Title` VARCHAR(255) NULL,
@@ -41,15 +40,23 @@ CREATE TABLE IF NOT EXISTS `Pages` (
 -- PageContent Table
 CREATE TABLE IF NOT EXISTS `PageContent` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
-  `LayoutID` BIGINT NULL,
+  `PageID` BIGINT NOT NULL,
   `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Layout Table
 CREATE TABLE IF NOT EXISTS `Layout` (
-  `ID` BIGINT NOT NULL AUTO_INCREMENT,
-  `Type` ENUM('NoSplit', '2Split', '3Split') NOT NULL DEFAULT 'NoSplit',
+  `ID` BIGINT NOT NULL AUTO_INCREMENT, /* GET RIGHT LayoutID */
+  `PageContentID` BIGINT NOT NULL,
+  `Type` ENUM('NoSplitLayout', 'TwoSplitLayout', 'ThreeSplitLayout') NULL, /* Filter Tables */
+  `Sort` BIGINT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `NoSplitLayout` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT, /* LayloutID */
+  `No1_WidgetID` BIGINT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -67,15 +74,19 @@ INSERT INTO `Users`
 VALUES
   ('admin', 'admin');
 
-  -- PageContent für Index erstellen
-INSERT INTO `PageContent` (`LayoutID`)
-VALUES (NULL);
+-- Layout anlegen
+INSERT INTO `NoSplitLayout`
+  (`ID`, `No1_WidgetID`)
+VALUES
+  (1, NULL);
 
--- Letzte PageContent-ID merken
-SET @PageContentID = LAST_INSERT_ID();
+INSERT INTO `Layout` 
+  (`ID`, `Type`, `Sort`)
+VALUES
+  (1, 'NoSplitLayout', 1);
 
 -- Index-Page anlegen
 INSERT INTO `Pages`
-  (`PageContentID`, `Titel`, `Meta_Description`, `Meta_Title`)
+  (`Titel`, `Meta_Description`, `Meta_Title`)
 VALUES
-  (@PageContentID, 'Index', 'Startseite Ihrer Website', 'Index');
+  ('Index', 'Startseite Ihrer Website', 'Index');

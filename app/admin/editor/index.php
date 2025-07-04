@@ -68,10 +68,18 @@ require_once '../../api/login/IsLoggedIn.php';
                         </svg>
                     </button>
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 bg-sky-600">
+                        <div class="flex flex-col p-5 gap-2">
+                            <!-- Inhalt -->
+                            <div
+                                id="newPageBtn"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300"
+                                draggable="true"
+                                data-layout-type="NoSplitLayout"
+                                ondragstart="handleDragStart(event)">
+                                Layoutblock
+                            </div>
 
-                        <!-- Inhalt -->
-
-
+                        </div>
                     </div>
                 </div>
 
@@ -134,6 +142,7 @@ require_once '../../api/login/IsLoggedIn.php';
 
     <script src="/assets/js/createPagePopUp.js"></script>
     <script src="/assets/js/accordion.js"></script>
+    <script src="/assets/js/editor.js"></script>
 
 </body>
 
