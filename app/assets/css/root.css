@@ -7,3 +7,35 @@
         opacity: 0;
     }
 }
+
+/* Rahmen beim Hover */
+.Layout:hover {
+    outline: 2px dashed #0ea5e9; /* Tailwind sky-500 */
+    cursor: pointer;
+}
+
+/* Kontextmenü Styling */
+#layoutContextMenu {
+    position: absolute;
+    display: none;
+    background: white;
+    border: 1px solid #ccc;
+    z-index: 9999;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+#layoutContextMenu button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0.25rem 0;
+    cursor: pointer;
+}
+
+#layoutContextMenu button:hover {
+    background: #f1f5f9; /* Tailwind slate-100 */
+}

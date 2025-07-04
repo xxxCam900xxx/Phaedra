@@ -32,6 +32,7 @@ $layouts = getLayoutsByPageContent(1);
 
             <?php foreach ($layouts as $layout): ?>
                 <?php
+                $layoutID = $layout['id'];
                 $type = $layout['type'];
                 $data = $layout['data'];
 
@@ -58,7 +59,12 @@ $layouts = getLayoutsByPageContent(1);
 
     </footer>
 
+    <div id="layoutContextMenu">
+        <button id="deleteLayoutBtn">Layout löschen</button>
+    </div>
+
     <script src="/assets/js/editor.js"></script>
+    <script src="/assets/js/editorContextMenu.js"></script>
 
     <script>
         fetch('/api/editor/getLayouts.php', {
