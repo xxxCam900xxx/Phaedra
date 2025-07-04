@@ -57,23 +57,39 @@ CREATE TABLE IF NOT EXISTS `Layout` (
 CREATE TABLE IF NOT EXISTS `NoSplitLayout` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT, /* LayloutID */
   `No1_WidgetID` BIGINT NULL,
+  `No1_WidgetType` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `TwoSplitLayout` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT, /* LayloutID */
   `No1_WidgetID` BIGINT NULL,
+  `No1_WidgetType` VARCHAR(80) NULL,
   `No2_WidgetID` BIGINT NULL,
+  `No2_WidgetType` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `ThreeSplitLayout` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT, /* LayloutID */
   `No1_WidgetID` BIGINT NULL,
-  `No2_WidgetID` BIGINT NULL,
+  `No1_WidgetType` VARCHAR(80) NULL,
+  `No2_WidgetID` BIGINT NULL, /* WidgetID */
+  `No2_WidgetType` VARCHAR(80) NULL, /* TablePointer */
   `No3_WidgetID` BIGINT NULL,
+  `No3_WidgetType` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/* WIDGETS */
+CREATE TABLE IF NOT EXISTS TextWidget (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `Titel` TEXT NULL,
+  `Content` TEXT NULL,
+  PRIMARY KEY (ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 
 COMMIT;
 
