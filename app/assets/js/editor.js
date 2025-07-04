@@ -76,6 +76,17 @@ function insertLayoutblock(type) {
     });
 }
 
+function searchPopUp(widgetType, widgetId) {
+  // Je nach widgetType kannst du unterschiedliche Popups starten
+  switch (widgetType) {
+    case "TextWidget":
+      openTextWidgetPopup(widgetId);
+      break;
+    default:
+      alert("Kein Popup definiert für Widget-Typ: " + widgetType);
+  }
+}
+
 function insertWidget(layoutId, slot, widgetType, layoutType) {
   fetch("/api/editor/widgets/insertWidget.php", {
     method: "POST",
@@ -90,8 +101,11 @@ function insertWidget(layoutId, slot, widgetType, layoutType) {
     .then((response) => response.json())
     .then((data) => {
       console.log("Widget angelegt:", data);
+      if (data.success && data.widgetId) {
+        // Popup mit widgetType und widgetId öffnen
+        searchPopUp(widgetType, data.widgetId);
+      }
       /* INBETWEEN OPEN EDITOR OF WIDGET AFTERWARDS RELOAD WITH SAVE */
-      window.location.reload();
     })
     .catch((error) => {
       console.error("Fehler beim Widget-Insert:", error);
@@ -125,3 +139,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+function openTextWidgetPopup(widgetId) {
+  // Popup-Element anzeigen (z.B. mit einem Modal)
+  const popup = document.getElementById("textWidgetPopup");
+  popup.style.display = "block";
+
+  // Felder leeren oder vorbefüllen, falls gewünscht
+  document.getElementById("widgetTitle").value = "";
+  document.getElementById("widgetContent").value = "";
+
+  // Save-Button click handler registrieren
+  document.getElementById("saveWidgetBtn").onclick = function () {
+    const title = document.getElementById("widgetTitle").value;
+    const content = document.getElementById("widgetContent").value;
+
+    saveWidgetData(widgetId, "TextWidget", { Titel: title, Content: content });
+  };
+}
+
+function saveWidgetData(widgetId, widgetType, data) {
+  fetch("/api/editor/widgets/saveWidget.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      widgetId: widgetId,
+      widgetType: widgetType,
+      data: data,
+    }),
+  })
+    .then((res) => res.json())
+    .then((resData) => {
+      if (resData.success) {
+        alert("Widget gespeichert!");
+        // Popup schließen
+        document.getElementById("textWidgetPopup").style.display = "none";
+        // Danach Seite neu laden
+        window.location.reload();
+      } else {
+        alert("Fehler beim Speichern: " + (resData.message || "Unbekannter Fehler"));
+      }
+    })
+    .catch((error) => {
+      console.error("Fehler beim Speichern:", error);
+      alert("Netzwerkfehler beim Speichern.");
+    });
+}

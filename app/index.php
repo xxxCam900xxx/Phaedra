@@ -13,7 +13,7 @@ $newSort = 10;
 $stmtUpdate = $conn->prepare("UPDATE Layout SET Sort = ? WHERE ID = ?");
 
 foreach ($layouts as $layout) {
-    $id = (int)$layout['id'];
+    $id = (int) $layout['id'];
     $stmtUpdate->bind_param("ii", $newSort, $id);
     $stmtUpdate->execute();
     $newSort += 10;
@@ -48,8 +48,6 @@ $stmtUpdate->close();
                 $type = $layout['type'];
                 $data = $layout['data'];
 
-                echo $layout['sort'];
-
                 // Hier includen Sie Ihre Komponenten
                 $file = $_SERVER["DOCUMENT_ROOT"] . '/assets/components/layouts/' . $type . '.php';
 
@@ -64,7 +62,8 @@ $stmtUpdate->close();
         </section>
 
         <!-- Editor Section -->
-        <div id="content-container" class="hidden flex h-[100px] p-5 items-center justify-center text-4xl text-gray-400">
+        <div id="content-container"
+            class="hidden flex h-[100px] p-5 items-center justify-center text-4xl text-gray-400">
             <i class="fa-solid fa-plus"></i>
         </div>
     </main>
@@ -73,23 +72,37 @@ $stmtUpdate->close();
 
     </footer>
 
+
+    <!-- PopUps -->
     <div id="layoutContextMenu">
         <button id="deleteLayoutBtn">Layout löschen</button>
     </div>
+
+    <div id="textWidgetPopup" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%);
+    background:#fff; border:1px solid #ccc; padding:20px; z-index:1000;">
+        <h2>Text Widget bearbeiten</h2>
+        <label for="widgetTitle">Titel:</label><br />
+        <input id="widgetTitle" type="text" /><br /><br />
+        <label for="widgetContent">Content:</label><br />
+        <textarea id="widgetContent" rows="5" cols="30"></textarea><br /><br />
+        <button id="saveWidgetBtn">Speichern</button>
+        <button onclick="document.getElementById('textWidgetPopup').style.display='none'">Abbrechen</button>
+    </div>
+
 
     <script src="/assets/js/editor.js"></script>
     <script src="/assets/js/editorContextMenu.js"></script>
 
     <script>
         fetch('/api/editor/getLayouts.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    pageContentId: 1
-                })
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                pageContentId: 1
             })
+        })
             .then(response => response.json())
             .then(data => {
                 console.log('Layouts:', data.layouts);
@@ -102,13 +115,13 @@ $stmtUpdate->close();
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const container = document.getElementById('dynamicContent');
 
             Sortable.create(container, {
                 animation: 150,
                 handle: '.Layout',
-                onEnd: function(evt) {
+                onEnd: function (evt) {
                     // Reihenfolge auslesen
                     const newOrder = Array.from(container.children).map((el, index) => ({
                         id: el.dataset.layoutId,
@@ -119,14 +132,14 @@ $stmtUpdate->close();
 
                     // Fetch zum Backend
                     fetch('/api/editor/updateStructure.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                order: newOrder
-                            })
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            order: newOrder
                         })
+                    })
                         .then(r => r.json())
                         .then(data => {
                             if (data.success) {

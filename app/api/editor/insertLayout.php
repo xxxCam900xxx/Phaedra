@@ -34,15 +34,15 @@ $newSort = ($rowSort && $rowSort['maxSort'] !== null) ? ((int)$rowSort['maxSort'
 $stmt1 = null;
 if ($pointingTable === "NoSplitLayout") {
     $stmt1 = executeStatement(
-        "INSERT INTO NoSplitLayout (No1_WidgetID) VALUES (NULL)"
+        "INSERT INTO NoSplitLayout (No1_WidgetID, No1_WidgetType) VALUES (NULL, NULL)"
     );
 } elseif ($pointingTable === "TwoSplitLayout") {
     $stmt1 = executeStatement(
-        "INSERT INTO TwoSplitLayout (No1_WidgetID, No2_WidgetID) VALUES (NULL, NULL)"
+        "INSERT INTO TwoSplitLayout (No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType) VALUES (NULL, NULL, NULL, NULL)"
     );
 } elseif ($pointingTable === "ThreeSplitLayout") {
     $stmt1 = executeStatement(
-        "INSERT INTO ThreeSplitLayout (No1_WidgetID, No2_WidgetID, No3_WidgetID) VALUES (NULL, NULL, NULL)"
+        "INSERT INTO ThreeSplitLayout (No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType, No3_WidgetID, No1_WidgetType) VALUES (NULL, NULL, NULL, NULL, NULL, NULL)"
     );
 } else {
     http_response_code(400);
