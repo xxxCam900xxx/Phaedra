@@ -2,12 +2,27 @@
 if (window !== window.top) {
     document.getElementById('content-container').classList.replace('hidden', 'show');
     document.getElementById('content-container').classList.add('border', 'border-dashed', 'border-gray-500');
+
+    const allWidgets = document.querySelectorAll('.Widget');
+
+    allWidgets.forEach(widget => {
+        const content = widget.textContent.trim();
+        const hasChildren = widget.children.length > 0;
+
+        if (content !== '' || hasChildren) {
+            // Wenn das Widget Inhalt hat
+            widget.classList.remove('border', 'border-dashed', 'border-gray-500');
+        } else {
+            // Wenn das Widget leer ist
+            widget.classList.add('border', 'border-dashed', 'border-gray-500');
+        }
+    });
 }
 
 function handleDragStart(event) {
     // Widget Typ aus dem Attribut lesen
     const type = event.target.dataset.layoutType;
-    
+
     // Im Drag-Datenobjekt ablegen
     event.dataTransfer.setData('text/plain', type);
 }
@@ -46,13 +61,13 @@ function insertLayoutblock(type) {
             pageContentId: 1
         })
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Server response:', data);
-        window.location.reload();
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        // Optional: Fehlermeldung für den Nutzer
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log('Server response:', data);
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Optional: Fehlermeldung für den Nutzer
+        });
 }

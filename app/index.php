@@ -26,7 +26,7 @@ $layouts = getLayoutsByPageContent(1);
 
     </header>
     <!-- Dynamic Content -->
-    <main class="flex flex-col flex-1 p-5">
+    <main class="flex flex-col flex-1 gap-5 p-5">
         <!-- Dynamic Layout Creation -->
         <section class="flex flex-col gap-4">
 
@@ -49,8 +49,8 @@ $layouts = getLayoutsByPageContent(1);
         </section>
 
         <!-- Editor Section -->
-        <div id="content-container" class="hidden flex flex-1 items-center justify-center text-4xl">
-            Drop here
+        <div id="content-container" class="hidden flex flex-1 p-5 items-center justify-center text-4xl text-gray-400">
+            <i class="fa-solid fa-plus"></i>
         </div>
     </main>
     <!-- Footer -->
