@@ -37,15 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
                 layoutId: currentLayoutId,
-                type: type
             })
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Layout aus DOM entfernen
-                const el = document.querySelector(`.Layout[data-layout-id='${currentLayoutId}']`);
-                if (el) el.remove();
+                window.location.reload();                
             } else {
                 alert("Fehler beim Löschen: " + (data.message || "Unbekannter Fehler"));
             }

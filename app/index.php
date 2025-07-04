@@ -28,13 +28,15 @@ $layouts = getLayoutsByPageContent(1);
     <!-- Dynamic Content -->
     <main class="flex flex-col flex-1 gap-5 p-5">
         <!-- Dynamic Layout Creation -->
-        <section class="flex flex-col gap-4">
+        <section class="flex flex-col gap-4" id="dynamicContent">
 
             <?php foreach ($layouts as $layout): ?>
                 <?php
                 $layoutID = $layout['id'];
                 $type = $layout['type'];
                 $data = $layout['data'];
+
+                echo $layout['sort'];
 
                 // Hier includen Sie Ihre Komponenten
                 $file = $_SERVER["DOCUMENT_ROOT"] . '/assets/components/layouts/' . $type . '.php';
@@ -84,6 +86,50 @@ $layouts = getLayoutsByPageContent(1);
                 console.error('Fehler beim Abruf:', error);
             });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('dynamicContent');
+
+            Sortable.create(container, {
+                animation: 150,
+                handle: '.Layout',
+                onEnd: function(evt) {
+                    // Reihenfolge auslesen
+                    const newOrder = Array.from(container.children).map((el, index) => ({
+                        id: el.dataset.layoutId,
+                        sort: index + 1
+                    }));
+
+                    console.log('Neue Reihenfolge:', newOrder);
+
+                    // Fetch zum Backend
+                    fetch('/api/editor/updateStructure.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                order: newOrder
+                            })
+                        })
+                        .then(r => r.json())
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Struktur aktualisiert.');
+                                window.location.reload();
+                            } else {
+                                console.error('Fehler:', data.message);
+                            }
+                        })
+                        .catch(e => console.error('Netzwerkfehler:', e));
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
