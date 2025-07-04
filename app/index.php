@@ -49,7 +49,7 @@ $layouts = getLayoutsByPageContent(1);
         </section>
 
         <!-- Editor Section -->
-        <div id="content-container" class="hidden flex flex-1 p-5 items-center justify-center text-4xl text-gray-400">
+        <div id="content-container" class="hidden flex h-[100px] p-5 items-center justify-center text-4xl text-gray-400">
             <i class="fa-solid fa-plus"></i>
         </div>
     </main>

@@ -71,12 +71,30 @@ require_once '../../api/login/IsLoggedIn.php';
                         <div class="flex flex-col p-5 gap-2">
                             <!-- Inhalt -->
                             <div
-                                id="newPageBtn"
+                                id="NoSplitLayoutDropBox"
                                 class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300"
                                 draggable="true"
                                 data-layout-type="NoSplitLayout"
                                 ondragstart="handleDragStart(event)">
-                                Layoutblock
+                                NoSplitLayout
+                            </div>
+
+                            <div
+                                id="TwoSplitLayoutDropBox"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300"
+                                draggable="true"
+                                data-layout-type="TwoSplitLayout"
+                                ondragstart="handleDragStart(event)">
+                                TwoSplitLayout
+                            </div>
+
+                            <div
+                                id="ThreeSplitLayoutDropBox"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300"
+                                draggable="true"
+                                data-layout-type="ThreeSplitLayout"
+                                ondragstart="handleDragStart(event)">
+                                ThreeSplitLayout
                             </div>
 
                         </div>

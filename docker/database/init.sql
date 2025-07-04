@@ -60,6 +60,21 @@ CREATE TABLE IF NOT EXISTS `NoSplitLayout` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `TwoSplitLayout` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT, /* LayloutID */
+  `No1_WidgetID` BIGINT NULL,
+  `No2_WidgetID` BIGINT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `ThreeSplitLayout` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT, /* LayloutID */
+  `No1_WidgetID` BIGINT NULL,
+  `No2_WidgetID` BIGINT NULL,
+  `No3_WidgetID` BIGINT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 COMMIT;
 
 -- Initial Insert: WebConfig

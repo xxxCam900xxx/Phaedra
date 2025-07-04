@@ -16,18 +16,29 @@ if (!isset($data['pageContentId'])) {
     exit;
 }
 $pageContentId = $data['pageContentId'];
+$pointingTable = $data['type'];
+$stmt1;
 
-// 1️⃣ Neuen Eintrag in NoSplitLayout erstellen
-$stmt1 = executeStatement(
-    "INSERT INTO NoSplitLayout (No1_WidgetID) VALUES (NULL)"
-);
+if ($pointingTable == "NoSplitLayout") {
+    $stmt1 = executeStatement(
+        "INSERT INTO NoSplitLayout (No1_WidgetID) VALUES (NULL)"
+    );
+} else if ($pointingTable == "TwoSplitLayout") {
+    $stmt1 = executeStatement(
+        "INSERT INTO TwoSplitLayout (No1_WidgetID, No2_WidgetID) VALUES (NULL, NULL)"
+    );
+} else if ($pointingTable == "ThreeSplitLayout") {
+    $stmt1 = executeStatement(
+        "INSERT INTO ThreeSplitLayout (No1_WidgetID, No2_WidgetID, No3_WidgetID) VALUES (NULL, NULL, NULL)"
+    );
+}
 
 // Neue ID holen
-$noSplitLayoutId = $stmt1->insert_id;
+$LayoutTypID = $stmt1->insert_id;
 
 // 2️⃣ Neuen Eintrag in Layout erstellen
 $stmt2 = executeStatement(
-    "INSERT INTO Layout (PageContentID, Type, Sort) VALUES (?, 'NoSplitLayout', ?)",
+    "INSERT INTO Layout (PageContentID, Type, Sort) VALUES (?, '$pointingTable', ?)",
     [$pageContentId, 0],
     "ii"
 );
@@ -39,5 +50,5 @@ $layoutId = $stmt2->insert_id;
 echo json_encode([
     'success' => true,
     'layoutId' => $layoutId,
-    'noSplitLayoutId' => $noSplitLayoutId
+    'layoutTypID' => $LayoutTypID
 ]);
