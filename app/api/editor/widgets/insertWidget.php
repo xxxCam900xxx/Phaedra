@@ -33,11 +33,16 @@ $colId = "No{$slot}_WidgetID";
 $colType = "No{$slot}_WidgetType";
 
 // Layout aktualisieren
-$stmtUpdate = $conn->prepare("
+$sql = "
     UPDATE {$layoutType}
     SET {$colId} = ?, {$colType} = ?
     WHERE ID = ?
-");
+";
+$stmtUpdate = $conn->prepare($sql);
+if (!$stmtUpdate) {
+    echo json_encode(['error' => 'Prepare failed: ' . $conn->error, 'sql' => $sql]);
+    exit;
+}
 $stmtUpdate->bind_param("isi", $newWidgetId, $widgetType, $layoutId);
 $stmtUpdate->execute();
 $stmtUpdate->close();

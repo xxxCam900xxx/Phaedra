@@ -1,7 +1,8 @@
 <?php
 require_once '../config/database.php';
 
-// Validierung
+header('Content-Type: application/json');
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(['error' => 'Method not allowed']);
@@ -19,8 +20,9 @@ if (!isset($data['pageContentId'], $data['type'])) {
 $pageContentId = (int)$data['pageContentId'];
 $pointingTable = $data['type'];
 
-// 1️⃣ Höchsten Sort-Wert ermitteln
 $conn = getConnection();
+
+// Höchsten Sort-Wert ermitteln
 $stmtSort = $conn->prepare("SELECT MAX(Sort) as maxSort FROM Layout WHERE PageContentID = ?");
 $stmtSort->bind_param("i", $pageContentId);
 $stmtSort->execute();
@@ -30,19 +32,39 @@ $stmtSort->close();
 
 $newSort = ($rowSort && $rowSort['maxSort'] !== null) ? ((int)$rowSort['maxSort'] + 10) : 10;
 
-// 2️⃣ Layout-Tabelle einfügen
-$stmt1 = null;
+// 1️⃣ Zuerst in Layout einfügen und neue layoutId holen
+$stmtLayout = $conn->prepare("INSERT INTO Layout (PageContentID, Type, Sort) VALUES (?, ?, ?)");
+$stmtLayout->bind_param("isi", $pageContentId, $pointingTable, $newSort);
+if (!$stmtLayout->execute()) {
+    echo json_encode(['error' => 'Insert Layout failed: ' . $stmtLayout->error]);
+    exit;
+}
+$layoutId = $conn->insert_id;
+$stmtLayout->close();
+
+// Platzhalter-Werte (kein echtes Widget)
+$placeholderWidgetId = null;  // NULL, da erlaubt
+$placeholderWidgetType = null; // NULL, da erlaubt
+
+// 2️⃣ Jetzt in Detail-Tabelle mit layoutId einfügen
 if ($pointingTable === "NoSplitLayout") {
-    $stmt1 = executeStatement(
-        "INSERT INTO NoSplitLayout (No1_WidgetID, No1_WidgetType) VALUES (NULL, NULL)"
+    $stmtDetail = $conn->prepare(
+        "INSERT INTO NoSplitLayout (ID, No1_WidgetID, No1_WidgetType) VALUES (?, ?, ?)"
     );
+    $stmtDetail->bind_param("iis", $layoutId, $placeholderWidgetId, $placeholderWidgetType);
 } elseif ($pointingTable === "TwoSplitLayout") {
-    $stmt1 = executeStatement(
-        "INSERT INTO TwoSplitLayout (No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType) VALUES (NULL, NULL, NULL, NULL)"
+    $stmtDetail = $conn->prepare(
+        "INSERT INTO TwoSplitLayout (ID, No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType) VALUES (?, ?, ?, ?, ?)"
     );
+    $stmtDetail->bind_param("iisis", $layoutId, $placeholderWidgetId, $placeholderWidgetType, $placeholderWidgetId, $placeholderWidgetType);
 } elseif ($pointingTable === "ThreeSplitLayout") {
-    $stmt1 = executeStatement(
-        "INSERT INTO ThreeSplitLayout (No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType, No3_WidgetID, No1_WidgetType) VALUES (NULL, NULL, NULL, NULL, NULL, NULL)"
+    $stmtDetail = $conn->prepare(
+        "INSERT INTO ThreeSplitLayout (ID, No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType, No3_WidgetID, No3_WidgetType) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    );
+    $stmtDetail->bind_param("iisisis", $layoutId,
+        $placeholderWidgetId, $placeholderWidgetType,
+        $placeholderWidgetId, $placeholderWidgetType,
+        $placeholderWidgetId, $placeholderWidgetType
     );
 } else {
     http_response_code(400);
@@ -50,20 +72,14 @@ if ($pointingTable === "NoSplitLayout") {
     exit;
 }
 
-$LayoutTypID = $stmt1->insert_id;
+if (!$stmtDetail->execute()) {
+    echo json_encode(['error' => 'Insert Detail failed: ' . $stmtDetail->error]);
+    exit;
+}
+$stmtDetail->close();
 
-// 3️⃣ Layout-Eintrag anlegen mit korrektem Sort-Wert
-$stmt2 = executeStatement(
-    "INSERT INTO Layout (PageContentID, Type, Sort) VALUES (?, ?, ?)",
-    [$pageContentId, $pointingTable, $newSort],
-    "isi"
-);
-
-$layoutId = $stmt2->insert_id;
-
-// Ergebnis zurückgeben
 echo json_encode([
     'success' => true,
     'layoutId' => $layoutId,
-    'layoutTypID' => $LayoutTypID
+    'layoutTypID' => $layoutId // Die ID ist gleich der Layout ID wegen Fremdschlüssel
 ]);
