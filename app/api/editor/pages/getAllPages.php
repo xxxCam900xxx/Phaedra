@@ -10,7 +10,7 @@ function getAllPages(): array|false
 {
     $conn = getConnection();
 
-    $sql = "SELECT ID, Titel, PathURL FROM Pages ORDER BY Titel ASC";
+    $sql = "SELECT ID, Titel, PathURL FROM Pages ORDER BY Sort ASC";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {

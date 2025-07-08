@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json();
 
       if (result.success) {
-        alert('Seite erfolgreich erstellt!');
+        /* MAKE A ALERT = alert('Seite erfolgreich erstellt!'); */
         newPageModal.classList.add('hidden');
         newPageForm.reset();
-        // Optional: Seite im Editor aktualisieren
+        window.location.reload();
       } else {
         alert('Fehler: ' + (result.error || 'Unbekannter Fehler'));
       }
@@ -41,4 +41,26 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Netzwerkfehler');
     }
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const titleInput = document.querySelector('input[name="title"]');
+    const pathURLInput = document.querySelector('input[name="pathURL"]');
+
+    function generatePathURL(title) {
+        return title
+            .toLowerCase()
+            .trim()
+            .replace(/ä/g, 'ae')
+            .replace(/ö/g, 'oe')
+            .replace(/ü/g, 'ue')
+            .replace(/ß/g, 'ss')
+            .replace(/[^a-z0-9]+/g, '-')  // alles Nicht-Alphanumerische zu "-"
+            .replace(/^-+|-+$/g, '');     // führende/trailing "-" entfernen
+    }
+
+    titleInput.addEventListener("input", () => {
+        const slug = generatePathURL(titleInput.value);
+        pathURLInput.value = slug;
+    });
 });

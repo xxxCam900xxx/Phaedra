@@ -131,6 +131,7 @@ require_once '../../api/login/IsLoggedIn.php';
                     <input type="text" name="meta_title" placeholder="Meta-Titel" class="border p-2 rounded" />
                     <textarea name="meta_description" placeholder="Meta-Beschreibung" rows="3"
                         class="border p-2 rounded"></textarea>
+                    <input type="number" name="sort" placeholder="Sortierung" class="border p-2 rounded" />
 
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="button" id="cancelBtn"

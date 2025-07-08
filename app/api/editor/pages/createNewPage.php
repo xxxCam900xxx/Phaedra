@@ -11,10 +11,11 @@ $meta_description = $input["meta_description"];
 $meta_title = $input["meta_title"];
 $pathURL = $input["pathURL"];
 $title = $input["title"];
+$sort = $input["sort"];
 
-$stmt = "INSERT INTO Pages (Titel, PathURL, Meta_Description, Meta_Title) VALUES (?,?,?,?)";
-$param = [$title, $pathURL, $meta_description, $meta_title];
-$types = "ssss";
+$stmt = "INSERT INTO Pages (Titel, PathURL, Meta_Description, Meta_Title, Sort) VALUES (?,?,?,?,?)";
+$param = [$title, $pathURL, $meta_description, $meta_title, $sort];
+$types = "ssssi";
 $insertStmt = executeStatement($stmt, $param, $types);
 $newPageID = $insertStmt->insert_id;
 
