@@ -127,6 +127,7 @@ require_once '../../api/login/IsLoggedIn.php';
             <div class="bg-white rounded-lg p-6 w-96">
                 <h2 class="text-xl mb-4">Neue Seite erstellen</h2>
                 <form id="newPageForm" class="flex flex-col gap-3">
+                    <input type="text" name="id" class="hidden" />
                     <input type="text" name="title" placeholder="Titel" required class="border p-2 rounded" />
                     <input type="text" name="pathURL" placeholder="pathURL" required class="border p-2 rounded" />
                     <input type="text" name="meta_title" placeholder="Meta-Titel" class="border p-2 rounded" />
@@ -163,9 +164,9 @@ require_once '../../api/login/IsLoggedIn.php';
                     ?>
                             <div class="p-2 text-lg flex justify-between hover:bg-gray-200 rounded-md trainsition duration-300">
                                 <?= $page['title'] ?>
-                                <!-- Update -->
                                 <div class="flex gap-2">
-                                    <button class="cursor-pointer flex items-center justify-center w-[30px] h-[30px] hover:text-white hover:bg-sky-500 rounded-md trainsition duration-300" onclick="openUpdatePagePopUp()"><i class="fa-solid fa-file-pen"></i></button>
+                                    <!-- Update -->
+                                    <button class="cursor-pointer flex items-center justify-center w-[30px] h-[30px] hover:text-white hover:bg-sky-500 rounded-md trainsition duration-300" onclick="openUpdatePagePopUp('<?= $page['id'] ?>', '<?= $page['title'] ?>', '<?= $page['pathURL'] ?>', '<?= $page['meta_title'] ?>', '<?= $page['meta_description'] ?>', '<?= $page['sort'] ?>')"><i class="fa-solid fa-file-pen"></i></button>
                                     <!-- Delete -->
                                     <button class="cursor-pointer flex items-center justify-center w-[30px] h-[30px] hover:text-white hover:bg-red-500 rounded-md trainsition duration-300" onclick="deletePageById(<?= $page['id'] ?>)"><i class="fa-solid fa-trash"></i></button>
                                 </div>
