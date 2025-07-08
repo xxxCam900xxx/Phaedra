@@ -1,6 +1,6 @@
 <?php
 
-require_once '../api/login/IsLoggedIn.php';
+require_once '../../api/login/IsLoggedIn.php';
 
 ?>
 
@@ -8,8 +8,8 @@ require_once '../api/login/IsLoggedIn.php';
 <html lang="en">
 
 <head>
-    <?php require("../configs/head.php"); ?>
-    <title>MythosMorph - Adminberreich</title>
+    <?php require("../../configs/head.php"); ?>
+    <title>MythosMorph - Settings</title>
 </head>
 
 <body>
