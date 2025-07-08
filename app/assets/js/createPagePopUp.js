@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch('/api/editor/createNewPage.php', {
+      const response = await fetch('/api/editor/pages/createNewPage.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),

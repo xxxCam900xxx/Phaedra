@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `Pages` (
   `Titel` VARCHAR(255) NOT NULL,
   `Meta_Description` TEXT NULL,
   `Meta_Title` VARCHAR(255) NULL,
+  `PathURL` VARCHAR(255) NULL,
   `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -121,9 +122,9 @@ VALUES
   ('admin', 'admin');
 
 INSERT INTO `Pages`
-  (`Titel`, `Meta_Description`, `Meta_Title`)
+  (`Titel`, `PathURL`, `Meta_Description`, `Meta_Title`)
 VALUES
-  ('Index', 'Startseite Ihrer Website', 'Index');
+  ('Index', 'index', 'Startseite Ihrer Website', 'Index');
 
 -- PageContent zur Index-Page
 INSERT INTO `PageContent` (`PageID`) VALUES (1);

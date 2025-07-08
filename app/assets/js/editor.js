@@ -90,12 +90,14 @@ if (allowed) {
    * und sendet optional einen Request ans Backend.
    */
   function insertLayoutblock(type) {
+    let pageContentId = document.querySelector('html').getAttribute('data-pageContentId');
+
     fetch("/api/editor/insertLayout.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         type: type,
-        pageContentId: 1,
+        pageContentId: pageContentId,
       }),
     })
       .then((response) => response.json())

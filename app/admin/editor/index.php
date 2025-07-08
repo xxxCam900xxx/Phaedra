@@ -127,6 +127,7 @@ require_once '../../api/login/IsLoggedIn.php';
                 <h2 class="text-xl mb-4">Neue Seite erstellen</h2>
                 <form id="newPageForm" class="flex flex-col gap-3">
                     <input type="text" name="title" placeholder="Titel" required class="border p-2 rounded" />
+                    <input type="text" name="pathURL" placeholder="pathURL" required class="border p-2 rounded" />
                     <input type="text" name="meta_title" placeholder="Meta-Titel" class="border p-2 rounded" />
                     <textarea name="meta_description" placeholder="Meta-Beschreibung" rows="3"
                         class="border p-2 rounded"></textarea>

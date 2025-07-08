@@ -1,12 +1,43 @@
 <?php
 require_once "./api/launcher/isSetupCompleted.php";
 checkWebLauncherCompleted();
-
-// getLayouts laden
 require_once "./api/editor/getLayouts.php";
 
+/* PathURL */
+$Request_URI = substr($_SERVER["REQUEST_URI"], 1);
+if ($Request_URI === '') {
+    $Request_URI = 'index';
+}
+
+$pageStmt = executeStatement(
+    "SELECT ID FROM Pages WHERE PathURL = ? LIMIT 1",
+    [$Request_URI],
+    "s"
+);
+$pageStmt->bind_result($pageId);
+if (!$pageStmt->fetch()) {
+    http_response_code(404);
+    echo json_encode(['error' => 'Seite nicht gefunden']);
+    exit;
+}
+$pageStmt->close();
+
+$contentStmt = executeStatement(
+    "SELECT ID FROM PageContent WHERE PageID = ? LIMIT 1",
+    [$pageId],
+    "i"
+);
+$contentStmt->bind_result($pageContentId);
+if (!$contentStmt->fetch()) {
+    http_response_code(404);
+    echo json_encode(['error' => 'Kein Seiteninhalt gefunden']);
+    exit;
+}
+$contentStmt->close();
+
 // Daten holen
-$layouts = getLayoutsByPageContent(1);
+$layouts = getLayoutsByPageContent($pageContentId);
+
 
 // --- Nach dem Abrufen neue Sortierung schreiben ---
 $newSort = 10;
@@ -22,7 +53,7 @@ $stmtUpdate->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-pageContentId="<?= $pageContentId ?>">
 
 <head>
     <?php require("configs/head.php"); ?>
@@ -34,9 +65,8 @@ $stmtUpdate->close();
 
     </div>
     <!-- Header -->
-    <header class="h-[60px] w-full bg-sky-300">
+    <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/dynamicNavigation.php" ?>
 
-    </header>
     <!-- Dynamic Content -->
     <main class="flex flex-col flex-1 gap-5 p-[10%] pt-5 pb-5">
         <!-- Dynamic Layout Creation -->
