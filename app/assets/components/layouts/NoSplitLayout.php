@@ -4,19 +4,12 @@
     <div class="Widget w-full h-full" data-widget-slot="1">
         <?php
 
-        echo $type;
-        echo $layoutID;
-        echo print_r($data);
-
         if (!empty($data['no1_widget_id']) && !empty($data['no1_widget_type'])) {
             $widgetId = (int)$data['no1_widget_id'];
             $widgetType = $data['no1_widget_type'];
 
             // Widgetdaten laden
             $widgetData = getWidgetData($widgetType, $widgetId);
-
-            echo "\n\r";
-            echo (print_r($widgetData));
 
             if ($widgetData) {
                 // Widget-Komponenten-Datei (Pfad anpassen)

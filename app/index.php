@@ -95,14 +95,14 @@ $stmtUpdate->close();
 
     <script>
         fetch('/api/editor/getLayouts.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                pageContentId: 1
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    pageContentId: 1
+                })
             })
-        })
             .then(response => response.json())
             .then(data => {
                 console.log('Layouts:', data.layouts);
@@ -115,44 +115,46 @@ $stmtUpdate->close();
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const container = document.getElementById('dynamicContent');
+        if (window !== window.top) {
+            document.addEventListener('DOMContentLoaded', function() {
+                const container = document.getElementById('dynamicContent');
 
-            Sortable.create(container, {
-                animation: 150,
-                handle: '.Layout',
-                onEnd: function (evt) {
-                    // Reihenfolge auslesen
-                    const newOrder = Array.from(container.children).map((el, index) => ({
-                        id: el.dataset.layoutId,
-                        sort: index + 1
-                    }));
+                Sortable.create(container, {
+                    animation: 150,
+                    handle: '.Layout',
+                    onEnd: function(evt) {
+                        // Reihenfolge auslesen
+                        const newOrder = Array.from(container.children).map((el, index) => ({
+                            id: el.dataset.layoutId,
+                            sort: index + 1
+                        }));
 
-                    console.log('Neue Reihenfolge:', newOrder);
+                        console.log('Neue Reihenfolge:', newOrder);
 
-                    // Fetch zum Backend
-                    fetch('/api/editor/updateStructure.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            order: newOrder
-                        })
-                    })
-                        .then(r => r.json())
-                        .then(data => {
-                            if (data.success) {
-                                console.log('Struktur aktualisiert.');
-                                window.location.reload();
-                            } else {
-                                console.error('Fehler:', data.message);
-                            }
-                        })
-                        .catch(e => console.error('Netzwerkfehler:', e));
-                }
+                        // Fetch zum Backend
+                        fetch('/api/editor/updateStructure.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    order: newOrder
+                                })
+                            })
+                            .then(r => r.json())
+                            .then(data => {
+                                if (data.success) {
+                                    console.log('Struktur aktualisiert.');
+                                    window.location.reload();
+                                } else {
+                                    console.error('Fehler:', data.message);
+                                }
+                            })
+                            .catch(e => console.error('Netzwerkfehler:', e));
+                    }
+                });
             });
-        });
+        }
     </script>
 
 </body>
