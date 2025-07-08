@@ -78,16 +78,9 @@ $stmtUpdate->close();
         <button id="deleteLayoutBtn">Layout löschen</button>
     </div>
 
-    <div id="textWidgetPopup" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%);
-    background:#fff; border:1px solid #ccc; padding:20px; z-index:1000;">
-        <h2>Text Widget bearbeiten</h2>
-        <label for="widgetTitle">Titel:</label><br />
-        <input id="widgetTitle" type="text" /><br /><br />
-        <label for="widgetContent">Content:</label><br />
-        <textarea id="widgetContent" rows="5" cols="30"></textarea><br /><br />
-        <button id="saveWidgetBtn">Speichern</button>
-        <button onclick="document.getElementById('textWidgetPopup').style.display='none'">Abbrechen</button>
-    </div>
+    <?php
+        require_once $_SERVER["DOCUMENT_ROOT"] . ("/assets/components/popups/textWidgetPopUp.php")
+    ?>
 
 
     <script src="/assets/js/editor.js"></script>

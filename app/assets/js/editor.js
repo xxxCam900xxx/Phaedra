@@ -177,7 +177,7 @@ if (allowed) {
   function openTextWidgetPopup(widgetId) {
     // Popup-Element anzeigen (z.B. mit einem Modal)
     const popup = document.getElementById("textWidgetPopup");
-    popup.style.display = "block";
+    popup.style.display = "flex";
 
     // Felder leeren oder vorbefüllen, falls gewünscht
     document.getElementById("widgetTitle").value = "";
