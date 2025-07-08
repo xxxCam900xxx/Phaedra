@@ -2,10 +2,11 @@
 
 /** @var array $data enthält z.B.: [ 'no1_widget_id' => 42 ] */
 ?>
+<?php require_once $_SERVER["DOCUMENT_ROOT"] . "/api/editor/widgets/getWidget.php" ?>
 
-<div class="Layout w-full h-[100px] flex gap-5" data-layout-id="<?= htmlspecialchars($layoutID) ?>"
+<div class="Layout w-full min-h-[100px] flex gap-5" data-layout-id="<?= htmlspecialchars($layoutID) ?>"
     data-layout-type="<?= htmlspecialchars($type) ?>">
-    <div class="Widget w-full h-full" data-Widget-Slot="1">
+    <div class="Widget w-full min-h-[100px]" data-Widget-Slot="1">
         <?php
         if (!empty($data['no1_widget_id']) && !empty($data['no1_widget_type'])) {
             $widgetId = (int) $data['no1_widget_id'];
@@ -27,11 +28,10 @@
                 echo "<div>Widget-Daten nicht gefunden</div>";
             }
         } else {
-            echo "<div>Kein Widget gesetzt</div>";
         }
         ?>
     </div>
-    <div class="Widget w-full h-full" data-Widget-Slot="2">
+    <div class="Widget w-full min-h-[100px]" data-Widget-Slot="2">
         <?php
         if (!empty($data['no2_widget_id']) && !empty($data['no2_widget_type'])) {
             $widgetId = (int) $data['no2_widget_id'];
@@ -53,7 +53,6 @@
                 echo "<div>Widget-Daten nicht gefunden</div>";
             }
         } else {
-            echo "<div>Kein Widget gesetzt</div>";
         }
         ?>
     </div>

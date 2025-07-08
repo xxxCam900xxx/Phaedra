@@ -38,9 +38,9 @@ $stmtUpdate->close();
 
     </header>
     <!-- Dynamic Content -->
-    <main class="flex flex-col flex-1 gap-5 p-5">
+    <main class="flex flex-col flex-1 gap-5 p-[10%] pt-5 pb-5">
         <!-- Dynamic Layout Creation -->
-        <section class="flex flex-col gap-4" id="dynamicContent">
+        <section class="flex flex-col gap-10" id="dynamicContent">
 
             <?php foreach ($layouts as $layout): ?>
                 <?php
