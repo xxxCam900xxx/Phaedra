@@ -170,7 +170,12 @@ if (allowed) {
         const layoutType = dropzone.closest(".Layout").dataset.layoutType;
         const slot = dropzone.dataset.widgetSlot;
 
-        insertWidget(layoutId, slot, widgetType, layoutType);
+        const allowedWidgets = ["TextWidget"];
+
+        if (allowedWidgets.includes(widgetType)) {
+          insertWidget(layoutId, slot, widgetType, layoutType);
+        }
+
       });
     });
   });
