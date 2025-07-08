@@ -44,7 +44,6 @@ require_once '../../api/login/IsLoggedIn.php';
                                 data-dropbox-type="TextWidget" ondragstart="handleDragStart(event)">
                                 Textbox
                             </div>
-                            <div class="flex flex-col p-5 gap-2"></div>
                         </div>
                     </div>
 
