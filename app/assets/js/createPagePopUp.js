@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     newPageModal.classList.remove('hidden');
   });
 
-  // Modal schließen
+  // Modal schliessen
   cancelBtn.addEventListener('click', () => {
     newPageModal.classList.add('hidden');
   });

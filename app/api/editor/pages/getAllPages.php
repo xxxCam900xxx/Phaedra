@@ -10,7 +10,7 @@ function getAllPages(): array|false
 {
     $conn = getConnection();
 
-    $sql = "SELECT ID, Titel, PathURL FROM Pages ORDER BY Sort ASC";
+    $sql = "SELECT ID, Titel, Meta_Description, Meta_Title, PathURL, Sort FROM Pages ORDER BY Sort ASC";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -31,7 +31,10 @@ function getAllPages(): array|false
         $pages[] = [
             'id' => $row['ID'],
             'title' => $row['Titel'],
-            'pathURL' => $row['PathURL']
+            'meta_title' => $row['Meta_Title'],
+            'meta_description' => $row['Meta_Description'],
+            'pathURL' => $row['PathURL'],
+            'sort' => $row['Sort']
         ];
     }
 
