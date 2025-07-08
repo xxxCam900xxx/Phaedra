@@ -1,61 +1,91 @@
 if (window !== window.top) {
-
     document.addEventListener("DOMContentLoaded", function () {
         const contextMenu = document.getElementById("layoutContextMenu");
-        let currentLayoutId = null;
+        const deleteLayoutBtn = document.getElementById("deleteLayoutBtn");
+        const deleteWidgetBtn = document.getElementById("deleteWidgetBtn");
 
-        // Rechtsklick-Handler
-        document.querySelectorAll(".Layout").forEach(layout => {
-            layout.addEventListener("contextmenu", function (e) {
+        let currentLayoutId = null;
+        let currentWidgetId = null;
+        let currentWidgetType = null;
+
+        document.querySelectorAll(".Layout .Widget").forEach(widgetEl => {
+            widgetEl.addEventListener("contextmenu", function (e) {
                 e.preventDefault();
 
-                currentLayoutId = this.dataset.layoutId;
+                // Aktuelles Widget-Element (this)
+                const widgetId = this.dataset.widgetId;
+                const widgetType = this.dataset.widgetType;
 
-                // Position neben Cursor
+                if (widgetId && widgetId.trim() !== '' && widgetType && widgetType.trim() !== '') {
+                    console.log("Widget Rechtsklick auf Widget mit ID:", widgetId, "Type:", widgetType);
+                    deleteWidgetBtn.style.display = "block";
+                } else {
+                    console.log("Kein Widget in diesem Slot");
+                    deleteWidgetBtn.style.display = "none";
+                }
+
+                const layoutEl = this.closest(".Layout");
+                const layoutId = layoutEl ? layoutEl.dataset.layoutId : null;
+
+                currentWidgetId = widgetId || null;
+                currentWidgetType = widgetType || null;
+                currentLayoutId = layoutId;
+
                 contextMenu.style.top = `${e.pageY}px`;
                 contextMenu.style.left = `${e.pageX}px`;
                 contextMenu.style.display = "block";
             });
         });
 
-        // Klick außerhalb des Menüs schließt es
+        // Klick außerhalb schließt Menü
         document.addEventListener("click", function (e) {
             if (!contextMenu.contains(e.target)) {
                 contextMenu.style.display = "none";
             }
         });
 
-        // Löschen-Button
-        document.getElementById("deleteLayoutBtn").addEventListener("click", function () {
+        // Layout löschen
+        deleteLayoutBtn.addEventListener("click", function () {
             if (!currentLayoutId) return;
-
-            if (!confirm("Möchten Sie dieses Layout wirklich löschen?")) {
-                contextMenu.style.display = "none";
-                return;
-            }
+            if (!confirm("Möchten Sie dieses Layout wirklich löschen?")) return;
 
             fetch("/api/editor/deleteLayout.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ layoutId: currentLayoutId })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) window.location.reload();
+                    else alert("Fehler beim Löschen: " + (data.message || "Unbekannter Fehler"));
+                })
+                .catch(err => alert("Netzwerkfehler: " + err));
+
+            contextMenu.style.display = "none";
+        });
+
+        // Widget löschen
+        deleteWidgetBtn.addEventListener("click", function () {
+            if (!currentLayoutId || !currentWidgetId || !currentWidgetType) return;
+            if (!confirm("Möchten Sie dieses Widget wirklich löschen?")) return;
+
+            fetch("/api/editor/deleteWidget.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     layoutId: currentLayoutId,
+                    widgetId: currentWidgetId,
+                    widgetType: currentWidgetType
                 })
             })
-                .then(response => response.json())
+                .then(res => res.json())
                 .then(data => {
-                    if (data.success) {
-                        window.location.reload();
-                    } else {
-                        alert("Fehler beim Löschen: " + (data.message || "Unbekannter Fehler"));
-                    }
+                    if (data.success) window.location.reload();
+                    else alert("Fehler beim Löschen: " + (data.message || "Unbekannter Fehler"));
                 })
-                .catch(err => {
-                    console.error("Löschfehler:", err);
-                    alert("Netzwerkfehler beim Löschen.");
-                });
+                .catch(err => alert("Netzwerkfehler: " + err));
 
             contextMenu.style.display = "none";
         });
     });
-
 }

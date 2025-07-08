@@ -75,6 +75,7 @@ $stmtUpdate->close();
 
     <!-- PopUps -->
     <div id="layoutContextMenu">
+        <button id="deleteWidgetBtn">Widget löschen</button>
         <button id="deleteLayoutBtn">Layout löschen</button>
     </div>
 
