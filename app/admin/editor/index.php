@@ -147,7 +147,7 @@ require_once '../../api/login/IsLoggedIn.php';
         <div id="showPageStructure" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
             <div class="bg-white rounded-lg p-6 w-96 relative">
                 <h2 class="text-xl mb-4">Seitenstruktur</h2>
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2" id="pageListContainer">
                     <?php
                     require_once $_SERVER['DOCUMENT_ROOT'] . '/api/editor/pages/getAllPages.php';
                     $pages = getAllPages();
@@ -161,9 +161,10 @@ require_once '../../api/login/IsLoggedIn.php';
                         foreach ($pages as $page) {
 
                     ?>
-                            <div class="p-2 text-lg flex justify-between hover:bg-gray-200 rounded-md trainsition duration-300">
+                            <div class="p-2 text-lg flex justify-between hover:bg-gray-200 rounded-md trainsition duration-300" data-id="<?= $page['id'] ?>">
                                 <?= $page['title'] ?>
                                 <div class="flex gap-2">
+                                    <p class="min-w-[50px] text-center rounded-md bg-sky-300"><?= $page['sort'] ?></p>
                                     <!-- Update -->
                                     <button class="cursor-pointer flex items-center justify-center w-[30px] h-[30px] hover:text-white hover:bg-sky-500 rounded-md trainsition duration-300" onclick="openUpdatePagePopUp('<?= $page['id'] ?>', '<?= $page['title'] ?>', '<?= $page['pathURL'] ?>', '<?= $page['meta_title'] ?>', '<?= $page['meta_description'] ?>', '<?= $page['sort'] ?>')"><i class="fa-solid fa-file-pen"></i></button>
                                     <!-- Delete -->
@@ -188,6 +189,51 @@ require_once '../../api/login/IsLoggedIn.php';
     <script src="/assets/js/createPagePopUp.js"></script>
     <script src="/assets/js/accordion.js"></script>
     <script src="/assets/js/editor.js"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pageList = document.getElementById('pageListContainer');
+
+            Sortable.create(pageList, {
+                animation: 150,
+                onEnd: function() {
+                    const newOrder = Array.from(pageList.children).map((el, index) => ({
+                        id: el.dataset.id,
+                        sort: (index + 1) * 10 // oder einfach index + 1, je nach Sort-Strategie
+                    }));
+
+                    console.log("Neue Seitenreihenfolge:", newOrder);
+
+                    fetch('/api/editor/pages/updatePageSort.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                order: newOrder
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                console.log("Sortierung gespeichert");
+                                window.location.reload();
+                            } else {
+                                alert("Fehler beim Speichern: " + (data.message || 'Unbekannter Fehler'));
+                            }
+                        })
+                        .catch(err => {
+                            console.error("Netzwerkfehler beim Speichern der Sortierung", err);
+                        });
+                }
+            });
+        });
+    </script>
+
 
 </body>
 

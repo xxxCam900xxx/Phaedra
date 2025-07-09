@@ -4,8 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const cancelBtn = document.getElementById('cancelBtn');
   const newPageForm = document.getElementById('newPageForm');
 
+  function clearForm() {
+    newPageForm.querySelector('[name="title"]').value = '';
+    newPageForm.querySelector('[name="pathURL"]').value = '';
+    newPageForm.querySelector('[name="meta_title"]').value = '';
+    newPageForm.querySelector('[name="meta_description"]').textContent = '';
+    newPageForm.querySelector('[name="sort"]').value = '';
+  }
+
   // Modal öffnen
   newPageBtn.addEventListener('click', () => {
+    newPageForm.reset();
+    clearForm();
     newPageModal.classList.remove('hidden');
   });
 
@@ -44,23 +54,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const titleInput = document.querySelector('input[name="title"]');
-    const pathURLInput = document.querySelector('input[name="pathURL"]');
+  const titleInput = document.querySelector('input[name="title"]');
+  const pathURLInput = document.querySelector('input[name="pathURL"]');
 
-    function generatePathURL(title) {
-        return title
-            .toLowerCase()
-            .trim()
-            .replace(/ä/g, 'ae')
-            .replace(/ö/g, 'oe')
-            .replace(/ü/g, 'ue')
-            .replace(/ß/g, 'ss')
-            .replace(/[^a-z0-9]+/g, '-')  // alles Nicht-Alphanumerische zu "-"
-            .replace(/^-+|-+$/g, '');     // führende/trailing "-" entfernen
-    }
+  function generatePathURL(title) {
+    return title
+      .toLowerCase()
+      .trim()
+      .replace(/ä/g, 'ae')
+      .replace(/ö/g, 'oe')
+      .replace(/ü/g, 'ue')
+      .replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-')  // alles Nicht-Alphanumerische zu "-"
+      .replace(/^-+|-+$/g, '');     // führende/trailing "-" entfernen
+  }
 
-    titleInput.addEventListener("input", () => {
-        const slug = generatePathURL(titleInput.value);
-        pathURLInput.value = slug;
-    });
+  titleInput.addEventListener("input", () => {
+    const slug = generatePathURL(titleInput.value);
+    pathURLInput.value = slug;
+  });
 });

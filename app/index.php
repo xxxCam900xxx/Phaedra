@@ -111,7 +111,7 @@ $stmtUpdate->close();
     </div>
 
     <?php
-        require_once $_SERVER["DOCUMENT_ROOT"] . ("/assets/components/popups/textWidgetPopUp.php")
+    require_once $_SERVER["DOCUMENT_ROOT"] . ("/assets/components/popups/textWidgetPopUp.php")
     ?>
 
 
