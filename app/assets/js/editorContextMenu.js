@@ -4,6 +4,15 @@ if (window !== window.top) {
         const deleteLayoutBtn = document.getElementById("deleteLayoutBtn");
         const deleteWidgetBtn = document.getElementById("deleteWidgetBtn");
         const updateWidgetBtn = document.getElementById("updateWidgetBtn");
+        const copydeleteWidgetBtn = document.getElementById("copydeleteWidgetBtn");
+        const pasteWidgetBtn = document.getElementById("pasteWidgetBtn");
+
+        let clipboardWidgetID = null;
+        let clipboardWidgetType = null;
+        let clipboardWidgetSlot = null;
+        let clipboardLayoutType = null;
+        let clipboardLayoutId = null;
+        let clipboardActive = false;
 
         let currentLayoutId = null;
         let currentWidgetId = null;
@@ -24,10 +33,20 @@ if (window !== window.top) {
                     console.log("Widget Rechtsklick auf Widget mit ID:", widgetId, "Type:", widgetType);
                     deleteWidgetBtn.style.display = "block";
                     updateWidgetBtn.style.display = "block";
+                    copydeleteWidgetBtn.style.display = "block";
+                    if (clipboardActive) {
+                        pasteWidgetBtn.style.display = "none";
+                    }
                 } else {
                     console.log("Kein Widget in diesem Slot");
                     deleteWidgetBtn.style.display = "none";
                     updateWidgetBtn.style.display = "none";
+                    copydeleteWidgetBtn.style.display = "none";
+                    if (clipboardActive) {
+                        pasteWidgetBtn.style.display = "block";
+                    } else {
+                        pasteWidgetBtn.style.display = "none";
+                    }
                 }
 
                 const layoutEl = this.closest(".Layout");
@@ -79,6 +98,50 @@ if (window !== window.top) {
             contextMenu.style.display = "none";
             searchPopUp(currentWidgetType, currentWidgetId);
         });
+
+        // Widget verschieben*
+        copydeleteWidgetBtn.addEventListener("click", function () {
+            if (!currentLayoutId || !currentWidgetId || !currentWidgetType) return;
+            clipboardActive = true;
+
+            clipboardWidgetID = currentWidgetId;
+            clipboardWidgetType = currentWidgetType;
+            clipboardWidgetSlot = curretnWidgetSlot;
+            clipboardLayoutType = currentLayoutType;
+            clipboardLayoutId = currentLayoutId;
+
+            console.log("ClipboardData:", clipboardLayoutType, clipboardWidgetID, clipboardWidgetSlot, clipboardWidgetType);
+
+            contextMenu.style.display = "none";
+        })
+
+        // *Clipboard Widget einfügen
+        pasteWidgetBtn.addEventListener("click", function () {
+            clipboardActive = false;
+
+            fetch("/api/editor/widgets/moveWidget.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    clipboardWidgetID: clipboardWidgetID,
+                    clipboardWidgetType: clipboardWidgetType,
+                    clipboardWidgetSlot: clipboardWidgetSlot,
+                    clipboardLayoutType: clipboardLayoutType,
+                    clipboardLayoutId: clipboardLayoutId,
+                    curretnWidgetSlot: curretnWidgetSlot,
+                    currentLayoutType: currentLayoutType,
+                    currentLayoutId: currentLayoutId,
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) window.location.reload();
+                    else alert("Fehler beim Löschen: " + (data.message || "Unbekannter Fehler"));
+                })
+                .catch(err => alert("Netzwerkfehler: " + err));
+
+            contextMenu.style.display = "none";
+        })
 
         // Widget löschen
         deleteWidgetBtn.addEventListener("click", function () {
