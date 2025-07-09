@@ -4,16 +4,16 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/api/config/database.php";
 
 $input = json_decode(file_get_contents("php://input"), true);
 
-if (!isset($input["meta_description"], $input["meta_title"], $input["pathURL"], $input["title"], $input["sort"])) {
+if (!isset($input["meta_description"], $input["page_title"], $input["pathURL"], $input["nav_title"], $input["sort"])) {
     http_response_code(400);
     echo json_encode(['error' => 'Fehlende Felder']);
     exit;
 }
 
 $meta_description = $input["meta_description"];
-$meta_title = $input["meta_title"];
+$page_title = $input["page_title"];
 $pathURL = $input["pathURL"];
-$title = $input["title"];
+$nav_title = $input["nav_title"];
 $sort = (int) $input["sort"];
 
 $conn = getConnection();
@@ -22,8 +22,8 @@ if (!empty($input["id"])) {
     $id = (int) $input["id"];
 
     $updateStmt = executeStatement(
-        "UPDATE Pages SET Titel = ?, PathURL = ?, Meta_Description = ?, Meta_Title = ?, Sort = ? WHERE ID = ?",
-        [$title, $pathURL, $meta_description, $meta_title, $sort, $id],
+        "UPDATE Pages SET Nav_Title = ?, PathURL = ?, Meta_Description = ?, Page_Title = ?, Sort = ? WHERE ID = ?",
+        [$nav_title, $pathURL, $meta_description, $page_title, $sort, $id],
         "ssssii"
     );
 
@@ -34,8 +34,8 @@ if (!empty($input["id"])) {
     }
 
 } else {
-    $stmt = "INSERT INTO Pages (Titel, PathURL, Meta_Description, Meta_Title, Sort) VALUES (?, ?, ?, ?, ?)";
-    $param = [$title, $pathURL, $meta_description, $meta_title, $sort];
+    $stmt = "INSERT INTO Pages (Nav_Title, PathURL, Meta_Description, Page_Title, Sort) VALUES (?, ?, ?, ?, ?)";
+    $param = [$nav_title, $pathURL, $meta_description, $page_title, $sort];
     $types = "ssssi";
     $insertStmt = executeStatement($stmt, $param, $types);
     $newPageID = $insertStmt->insert_id;

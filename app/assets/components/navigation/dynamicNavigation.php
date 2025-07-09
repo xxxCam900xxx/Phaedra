@@ -19,7 +19,7 @@ $pages = getAllPages();
                     href="<?= $page['pathURL'] ?>"
                     class="p-2 text-lg rounded-md hover:text-white hover:bg-sky-500 trainsition duration-300"
                     >
-                    <?= $page['title'] ?>
+                    <?= $page['nav_title'] ?>
                 </a>
         <?php
             }

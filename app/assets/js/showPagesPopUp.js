@@ -4,9 +4,9 @@ const showPageStructureCancelBtn = document.getElementById('showPageStructureCan
 const newPageModal = document.getElementById('newPageModal');
 
 const inputId = document.querySelector('input[name="id"]');
-const inputTitle = document.querySelector('input[name="title"]');
+const inputNavTitle = document.querySelector('input[name="nav_title"]');
 const inputPathURL = document.querySelector('input[name="pathURL"]');
-const inputMetaTitle = document.querySelector('input[name="meta_title"]');
+const inputPageTitle = document.querySelector('input[name="page_title"]');
 const inputMetaDesc = document.querySelector('textarea[name="meta_description"]');
 const inputSort = document.querySelector('input[name="sort"]');
 
@@ -21,12 +21,12 @@ showPageStructureCancelBtn.addEventListener('click', () => {
 });
 
 // Update Selected Page
-function openUpdatePagePopUp(id, title, pathURL, meta_title, meta_desc, sort) {
+function openUpdatePagePopUp(id, nav_title, pathURL, page_title, meta_desc, sort) {
     showPageStructure.classList.add('hidden');
     inputId.setAttribute('value', id);
-    inputTitle.setAttribute('value', title);
+    inputNavTitle.setAttribute('value', nav_title);
     inputPathURL.setAttribute('value', pathURL);
-    inputMetaTitle.setAttribute('value', meta_title);
+    inputPageTitle.setAttribute('value', page_title);
     inputMetaDesc.innerText = meta_desc;
     inputSort.setAttribute('value', sort);
     newPageModal.classList.remove('hidden');

@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/config/database.php';
 
 /**
- * Gibt alle Seiten mit ID, Titel und PathURL zurück.
+ * Gibt alle Seiten mit ID, Nav_Title und PathURL zurück.
  *
  * @return array|false
  */
@@ -10,7 +10,7 @@ function getAllPages(): array|false
 {
     $conn = getConnection();
 
-    $sql = "SELECT ID, Titel, Meta_Description, Meta_Title, PathURL, Sort FROM Pages ORDER BY Sort ASC";
+    $sql = "SELECT ID, Nav_Title, Meta_Description, Page_Title, PathURL, Sort FROM Pages ORDER BY Sort ASC";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -30,8 +30,8 @@ function getAllPages(): array|false
     while ($row = $result->fetch_assoc()) {
         $pages[] = [
             'id' => $row['ID'],
-            'title' => $row['Titel'],
-            'meta_title' => $row['Meta_Title'],
+            'nav_title' => $row['Nav_Title'],
+            'page_title' => $row['Page_Title'],
             'meta_description' => $row['Meta_Description'],
             'pathURL' => $row['PathURL'],
             'sort' => $row['Sort']

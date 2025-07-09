@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS `WebConfig` (
 -- Pages
 CREATE TABLE IF NOT EXISTS `Pages` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
-  `Titel` VARCHAR(255) NOT NULL,
+  `Nav_Title` VARCHAR(255) NOT NULL,
+  `Page_Title` VARCHAR(255) NULL,
   `Meta_Description` TEXT NULL,
-  `Meta_Title` VARCHAR(255) NULL,
   `PathURL` VARCHAR(255) NULL,
   `Sort` BIGINT NULL,
   `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -123,7 +123,7 @@ VALUES
   ('admin', 'admin');
 
 INSERT INTO `Pages`
-  (`Titel`, `PathURL`, `Meta_Description`, `Meta_Title`, `Sort`)
+  (`Nav_Title`, `PathURL`, `Meta_Description`, `Page_Title`, `Sort`)
 VALUES
   ('Startseite', 'index', 'Startseite Ihrer Website', 'Index', 0);
 

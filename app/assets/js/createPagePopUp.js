@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const newPageForm = document.getElementById('newPageForm');
 
   function clearForm() {
-    newPageForm.querySelector('[name="title"]').value = '';
+    newPageForm.querySelector('[name="nav_title"]').value = '';
     newPageForm.querySelector('[name="pathURL"]').value = '';
-    newPageForm.querySelector('[name="meta_title"]').value = '';
+    newPageForm.querySelector('[name="page_title"]').value = '';
     newPageForm.querySelector('[name="meta_description"]').textContent = '';
     newPageForm.querySelector('[name="sort"]').value = '';
   }
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const titleInput = document.querySelector('input[name="title"]');
+  const navTitleInput = document.querySelector('input[name="nav_title"]');
   const pathURLInput = document.querySelector('input[name="pathURL"]');
 
   function generatePathURL(title) {
@@ -69,8 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .replace(/^-+|-+$/g, '');     // führende/trailing "-" entfernen
   }
 
-  titleInput.addEventListener("input", () => {
-    const slug = generatePathURL(titleInput.value);
+  navTitleInput.addEventListener("input", () => {
+    const slug = generatePathURL(navTitleInput.value);
     pathURLInput.value = slug;
   });
 });

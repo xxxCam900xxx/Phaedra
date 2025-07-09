@@ -127,9 +127,9 @@ require_once '../../api/login/IsLoggedIn.php';
                 <h2 class="text-xl mb-4">Neue Seite erstellen</h2>
                 <form id="newPageForm" class="flex flex-col gap-3">
                     <input type="text" name="id" class="hidden" />
-                    <input type="text" name="title" placeholder="Titel" required class="border p-2 rounded" />
-                    <input type="text" name="pathURL" placeholder="pathURL" required class="border p-2 rounded" />
-                    <input type="text" name="meta_title" placeholder="Meta-Titel" class="border p-2 rounded" />
+                    <input type="text" name="nav_title" placeholder="Navigations Titel" required class="border p-2 rounded" />
+                    <input type="text" name="pathURL" placeholder="URL Pfad" required class="border p-2 rounded" />
+                    <input type="text" name="page_title" placeholder="Seiten Titel" class="border p-2 rounded" />
                     <textarea name="meta_description" placeholder="Meta-Beschreibung" rows="3"
                         class="border p-2 rounded"></textarea>
                     <input type="number" name="sort" placeholder="Sortierung" class="border p-2 rounded" />
@@ -162,11 +162,11 @@ require_once '../../api/login/IsLoggedIn.php';
 
                     ?>
                             <div class="p-2 text-lg flex justify-between hover:bg-gray-200 rounded-md trainsition duration-300" data-id="<?= $page['id'] ?>">
-                                <?= $page['title'] ?>
+                                <?= $page['nav_title'] ?>
                                 <div class="flex gap-2">
                                     <p class="min-w-[50px] text-center rounded-md bg-sky-300"><?= $page['sort'] ?></p>
                                     <!-- Update -->
-                                    <button class="cursor-pointer flex items-center justify-center w-[30px] h-[30px] hover:text-white hover:bg-sky-500 rounded-md trainsition duration-300" onclick="openUpdatePagePopUp('<?= $page['id'] ?>', '<?= $page['title'] ?>', '<?= $page['pathURL'] ?>', '<?= $page['meta_title'] ?>', '<?= $page['meta_description'] ?>', '<?= $page['sort'] ?>')"><i class="fa-solid fa-file-pen"></i></button>
+                                    <button class="cursor-pointer flex items-center justify-center w-[30px] h-[30px] hover:text-white hover:bg-sky-500 rounded-md trainsition duration-300" onclick="openUpdatePagePopUp('<?= $page['id'] ?>', '<?= $page['nav_title'] ?>', '<?= $page['pathURL'] ?>', '<?= $page['page_title'] ?>', '<?= $page['meta_description'] ?>', '<?= $page['sort'] ?>')"><i class="fa-solid fa-file-pen"></i></button>
                                     <!-- Delete -->
                                     <button class="cursor-pointer flex items-center justify-center w-[30px] h-[30px] hover:text-white hover:bg-red-500 rounded-md trainsition duration-300" onclick="deletePageById(<?= $page['id'] ?>)"><i class="fa-solid fa-trash"></i></button>
                                 </div>

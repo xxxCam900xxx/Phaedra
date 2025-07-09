@@ -10,11 +10,11 @@ if ($Request_URI === '') {
 }
 
 $pageStmt = executeStatement(
-    "SELECT ID FROM Pages WHERE PathURL = ? LIMIT 1",
+    "SELECT ID, Page_Title FROM Pages WHERE PathURL = ? LIMIT 1",
     [$Request_URI],
     "s"
 );
-$pageStmt->bind_result($pageId);
+$pageStmt->bind_result($pageId, $pageTitle);
 if (!$pageStmt->fetch()) {
     http_response_code(404);
     echo json_encode(['error' => 'Seite nicht gefunden']);
@@ -57,7 +57,10 @@ $stmtUpdate->close();
 
 <head>
     <?php require("configs/head.php"); ?>
-    <title>Welcome Site</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title><?= $pageTitle ?></title>
 </head>
 
 <body class="w-full min-h-screen flex flex-col">
