@@ -34,9 +34,7 @@ if (window !== window.top) {
                     deleteWidgetBtn.style.display = "block";
                     updateWidgetBtn.style.display = "block";
                     copydeleteWidgetBtn.style.display = "block";
-                    if (clipboardActive) {
-                        pasteWidgetBtn.style.display = "none";
-                    }
+                    pasteWidgetBtn.style.display = "none";
                 } else {
                     console.log("Kein Widget in diesem Slot");
                     deleteWidgetBtn.style.display = "none";
