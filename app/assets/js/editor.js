@@ -182,18 +182,42 @@ if (allowed) {
 
 
   function openTextWidgetPopup(widgetId) {
-    // Popup-Element anzeigen (z.B. mit einem Modal)
     const popup = document.getElementById("textWidgetPopup");
     popup.style.display = "flex";
 
-    // Felder leeren oder vorbefüllen, falls gewünscht
-    document.getElementById("widgetTitle").value = "";
-    document.getElementById("widgetContent").value = "";
+    const titleInput = document.getElementById("widgetTitle");
+    const contentInput = document.getElementById("widgetContent");
 
-    // Save-Button click handler registrieren
+    // Felder leeren
+    titleInput.value = "";
+    contentInput.value = "";
+
+    // Bestehende Daten laden
+    fetch("/api/editor/widgets/getWidget.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        widgetId: widgetId,
+        widgetType: "TextWidget"
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.success && data.widget) {
+          titleInput.value = data.widget.Title || "";
+          contentInput.value = data.widget.Content || "";
+        } else {
+          console.warn("Widgetdaten konnten nicht geladen werden:", data.message || data);
+        }
+      })
+      .catch(error => {
+        console.error("Fehler beim Laden der Widgetdaten:", error);
+      });
+
+    // Save-Button Handler
     document.getElementById("saveWidgetBtn").onclick = function () {
-      const title = document.getElementById("widgetTitle").value;
-      const content = document.getElementById("widgetContent").value;
+      const title = titleInput.value;
+      const content = contentInput.value;
 
       saveWidgetData(widgetId, "TextWidget", { Titel: title, Content: content });
     };

@@ -3,6 +3,7 @@ if (window !== window.top) {
         const contextMenu = document.getElementById("layoutContextMenu");
         const deleteLayoutBtn = document.getElementById("deleteLayoutBtn");
         const deleteWidgetBtn = document.getElementById("deleteWidgetBtn");
+        const updateWidgetBtn = document.getElementById("updateWidgetBtn");
 
         let currentLayoutId = null;
         let currentWidgetId = null;
@@ -19,9 +20,11 @@ if (window !== window.top) {
                 if (widgetId && widgetId.trim() !== '' && widgetType && widgetType.trim() !== '') {
                     console.log("Widget Rechtsklick auf Widget mit ID:", widgetId, "Type:", widgetType);
                     deleteWidgetBtn.style.display = "block";
+                    updateWidgetBtn.style.display = "block";
                 } else {
                     console.log("Kein Widget in diesem Slot");
                     deleteWidgetBtn.style.display = "none";
+                    updateWidgetBtn.style.display = "none";
                 }
 
                 const layoutEl = this.closest(".Layout");
@@ -37,7 +40,7 @@ if (window !== window.top) {
             });
         });
 
-        // Klick außerhalb schließt Menü
+        // Klick ausserhalb schliesst Menü
         document.addEventListener("click", function (e) {
             if (!contextMenu.contains(e.target)) {
                 contextMenu.style.display = "none";
@@ -62,6 +65,13 @@ if (window !== window.top) {
                 .catch(err => alert("Netzwerkfehler: " + err));
 
             contextMenu.style.display = "none";
+        });
+
+        // Widget bearbeiten
+        updateWidgetBtn.addEventListener("click", function () {
+            if (!currentWidgetId || !currentWidgetType) return;
+            contextMenu.style.display = "none";
+            searchPopUp(currentWidgetType, currentWidgetId);
         });
 
         // Widget löschen
