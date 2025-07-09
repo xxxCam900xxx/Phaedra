@@ -8,6 +8,8 @@ if (window !== window.top) {
         let currentLayoutId = null;
         let currentWidgetId = null;
         let currentWidgetType = null;
+        let currentLayoutType = null;
+        let curretnWidgetSlot = null;
 
         document.querySelectorAll(".Layout .Widget").forEach(widgetEl => {
             widgetEl.addEventListener("contextmenu", function (e) {
@@ -16,6 +18,7 @@ if (window !== window.top) {
                 // Aktuelles Widget-Element (this)
                 const widgetId = this.dataset.widgetId;
                 const widgetType = this.dataset.widgetType;
+                const widgetSlot = this.dataset.widgetSlot;
 
                 if (widgetId && widgetId.trim() !== '' && widgetType && widgetType.trim() !== '') {
                     console.log("Widget Rechtsklick auf Widget mit ID:", widgetId, "Type:", widgetType);
@@ -29,10 +32,13 @@ if (window !== window.top) {
 
                 const layoutEl = this.closest(".Layout");
                 const layoutId = layoutEl ? layoutEl.dataset.layoutId : null;
+                const layoutType = layoutEl ? layoutEl.dataset.layoutType : null;
 
                 currentWidgetId = widgetId || null;
                 currentWidgetType = widgetType || null;
                 currentLayoutId = layoutId;
+                currentLayoutType = layoutType;
+                curretnWidgetSlot = widgetSlot || null;
 
                 contextMenu.style.top = `${e.pageY}px`;
                 contextMenu.style.left = `${e.pageX}px`;
@@ -79,13 +85,15 @@ if (window !== window.top) {
             if (!currentLayoutId || !currentWidgetId || !currentWidgetType) return;
             if (!confirm("Möchten Sie dieses Widget wirklich löschen?")) return;
 
-            fetch("/api/editor/deleteWidget.php", {
+            fetch("/api/editor/widgets/deleteWidget.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     layoutId: currentLayoutId,
                     widgetId: currentWidgetId,
-                    widgetType: currentWidgetType
+                    widgetType: currentWidgetType,
+                    layoutType: currentLayoutType,
+                    widgetSlot: curretnWidgetSlot
                 })
             })
                 .then(res => res.json())

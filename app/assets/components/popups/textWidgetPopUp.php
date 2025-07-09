@@ -17,7 +17,7 @@
         </div>
 
         <div class="flex justify-end gap-2 mt-2">
-            <button onclick="document.getElementById('textWidgetPopup').style.display = 'none';"
+            <button onclick="window.location.reload();"
                 class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
                 Abbrechen
             </button>
