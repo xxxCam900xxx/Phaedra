@@ -100,11 +100,9 @@ $stmtUpdate->close();
             <i class="fa-solid fa-plus"></i>
         </div>
     </main>
-    <!-- Footer -->
-    <footer class="h-[100px] bg-gray-800">
-
-    </footer>
-
+    
+    <!-- Header -->
+    <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/footer/dynamicFooter.php" ?>
 
     <!-- PopUps -->
     <div id="layoutContextMenu">
