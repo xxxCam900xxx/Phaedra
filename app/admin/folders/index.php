@@ -1,5 +1,4 @@
 <?php
-
 require_once '../../api/login/IsLoggedIn.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/webconfig/getWebConfig.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . "/api/media/getAllMedia.php";
@@ -28,12 +27,9 @@ $webConfig = getWebConfig();
 
             <div id="imageManager" class="p-4">
 
-                <!-- Overlay-Hinweis -->
-                <!-- Overlay, initial unsichtbar -->
                 <div id="dragOverlay" class="hidden absolute inset-0 bg-blue-400 bg-opacity-30 border-4 border-dashed border-blue-500 pointer-events-none z-50 rounded flex items-center justify-center text-blue-900 font-semibold text-lg select-none">
                     Datei hierher ziehen zum Hochladen
                 </div>
-
 
                 <h2 class="text-xl font-semibold mb-4">Bildverwaltung</h2>
 
@@ -51,11 +47,11 @@ $webConfig = getWebConfig();
                         <tbody>
                             <?php foreach ($images as $image): ?>
                                 <tr class="border-t border-gray-300">
-                                    <td class="p-2"><img src="<?= htmlspecialchars($image['url']) ?>" alt="Image" class="h-12"></td>
-                                    <td class="p-2"><a href="<?= htmlspecialchars($image['url']) ?>"><?= htmlspecialchars($image['url']) ?></a></td>
+                                    <td class="p-2"><img draggable="false" src="<?= htmlspecialchars($image['url']) ?>" alt="Image" class="h-12"></td>
+                                    <td class="p-2"><a draggable="false" href="<?= htmlspecialchars($image['url']) ?>"><?= htmlspecialchars($image['url']) ?></a></td>
                                     <td class="p-2">
                                         <button
-                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 cursor-pointer"
                                             data-image-id="<?= $image['id'] ?>"
                                             onclick="deleteImage(this)">
                                             Löschen
