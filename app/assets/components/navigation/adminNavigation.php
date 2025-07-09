@@ -5,8 +5,10 @@
     </div>
 
     <div class="flex gap-5 text-2xl">
-        <a href="/admin">Home</a>
-        <a href="/admin/editor">Editor</a>
-        <a href="/admin/settings">Web-Einstellungen</a>
+        <a href="/admin"><i class="fa-solid fa-house"></i></a>
+        <a href="/admin/editor"><i class="fa-solid fa-newspaper"></i></a>
+        <a href="/admin/settings"><i class="fa-solid fa-gear"></i></a>
+        <a href="/admin/folders"><i class="fa-solid fa-folder"></i></a>
+        <a href="/admin/userprofile"><i class="fa-solid fa-circle-user"></i></a>
     </div>
 </nav>
