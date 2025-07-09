@@ -1,9 +1,14 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET
+  SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+
 START TRANSACTION;
-SET time_zone = "+00:00";
+
+SET
+  time_zone = "+00:00";
 
 -- Datenbank anlegen
 CREATE DATABASE IF NOT EXISTS `database_mythosmorph`;
+
 USE `database_mythosmorph`;
 
 -- Users
@@ -14,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `SessionToken` TEXT,
   `SessionTokenExpireDate` TEXT,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- WebConfig
 CREATE TABLE IF NOT EXISTS `WebConfig` (
@@ -25,7 +30,14 @@ CREATE TABLE IF NOT EXISTS `WebConfig` (
   `WebContact` VARCHAR(80) NOT NULL,
   `WebLauncherCompleted` ENUM('true', 'false') NOT NULL DEFAULT 'false',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- Image Folder
+CREATE TABLE IF NOT EXISTS `Images` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `ImageURL` TEXT NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- Pages
 CREATE TABLE IF NOT EXISTS `Pages` (
@@ -37,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `Pages` (
   `Sort` BIGINT NULL,
   `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- PageContent
 CREATE TABLE IF NOT EXISTS `PageContent` (
@@ -45,22 +57,22 @@ CREATE TABLE IF NOT EXISTS `PageContent` (
   `PageID` BIGINT NOT NULL,
   `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
-  CONSTRAINT FK_PageContent_Page
-    FOREIGN KEY (`PageID`) REFERENCES `Pages`(`ID`)
-    ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT FK_PageContent_Page FOREIGN KEY (`PageID`) REFERENCES `Pages`(`ID`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- Layout
 CREATE TABLE IF NOT EXISTS `Layout` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
   `PageContentID` BIGINT NOT NULL,
-  `Type` ENUM('NoSplitLayout', 'TwoSplitLayout', 'ThreeSplitLayout') NULL,
+  `Type` ENUM(
+    'NoSplitLayout',
+    'TwoSplitLayout',
+    'ThreeSplitLayout'
+  ) NULL,
   `Sort` BIGINT NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT FK_Layout_PageContent
-    FOREIGN KEY (`PageContentID`) REFERENCES `PageContent`(`ID`)
-    ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT FK_Layout_PageContent FOREIGN KEY (`PageContentID`) REFERENCES `PageContent`(`ID`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- NoSplitLayout
 CREATE TABLE IF NOT EXISTS `NoSplitLayout` (
@@ -68,10 +80,8 @@ CREATE TABLE IF NOT EXISTS `NoSplitLayout` (
   `No1_WidgetID` BIGINT NULL,
   `No1_WidgetType` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT FK_NoSplitLayout_Layout
-    FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`)
-    ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT FK_NoSplitLayout_Layout FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- TwoSplitLayout
 CREATE TABLE IF NOT EXISTS `TwoSplitLayout` (
@@ -81,10 +91,8 @@ CREATE TABLE IF NOT EXISTS `TwoSplitLayout` (
   `No2_WidgetID` BIGINT NULL,
   `No2_WidgetType` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT FK_TwoSplitLayout_Layout
-    FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`)
-    ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT FK_TwoSplitLayout_Layout FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- ThreeSplitLayout
 CREATE TABLE IF NOT EXISTS `ThreeSplitLayout` (
@@ -96,10 +104,8 @@ CREATE TABLE IF NOT EXISTS `ThreeSplitLayout` (
   `No3_WidgetID` BIGINT NULL,
   `No3_WidgetType` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`),
-  CONSTRAINT FK_ThreeSplitLayout_Layout
-    FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`)
-    ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT FK_ThreeSplitLayout_Layout FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- Widgets
 CREATE TABLE IF NOT EXISTS `TextWidget` (
@@ -107,25 +113,52 @@ CREATE TABLE IF NOT EXISTS `TextWidget` (
   `Titel` TEXT NULL,
   `Content` TEXT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 COMMIT;
 
 -- Initial Inserts
-INSERT INTO `WebConfig`
-  (`WebsiteName`, `WebHostName`, `WebLogoURL`, `WebContact`, `WebLauncherCompleted`)
+INSERT INTO
+  `WebConfig` (
+    `WebsiteName`,
+    `WebHostName`,
+    `WebLogoURL`,
+    `WebContact`,
+    `WebLauncherCompleted`
+  )
 VALUES
-  ('My Website', 'www.example.com', '', 'contact@example.com', 'false');
+  (
+    'My Website',
+    'www.example.com',
+    '',
+    'contact@example.com',
+    'false'
+  );
 
-INSERT INTO `Users`
-  (`Username`, `Password`)
+INSERT INTO
+  `Users` (`Username`, `Password`)
 VALUES
   ('admin', 'admin');
 
-INSERT INTO `Pages`
-  (`Nav_Title`, `PathURL`, `Meta_Description`, `Page_Title`, `Sort`)
+INSERT INTO
+  `Pages` (
+    `Nav_Title`,
+    `PathURL`,
+    `Meta_Description`,
+    `Page_Title`,
+    `Sort`
+  )
 VALUES
-  ('Startseite', 'index', 'Startseite Ihrer Website', 'Index', 0);
+  (
+    'Startseite',
+    'index',
+    'Startseite Ihrer Website',
+    'Index',
+    0
+  );
 
 -- PageContent zur Index-Page
-INSERT INTO `PageContent` (`PageID`) VALUES (1);
+INSERT INTO
+  `PageContent` (`PageID`)
+VALUES
+  (1);

@@ -43,7 +43,22 @@ if (
         $targetFile = $uploadDir . $uniqueName;
 
         if (move_uploaded_file($tmpName, $targetFile)) {
-            $logoPath = 'upload/' . $uniqueName; // relativer Pfad für DB
+            $logoPath = '/upload/' . $uniqueName; // relativer Pfad für DB
+
+            // Bild-Pfad in Images-Tabelle speichern
+            $queryImage = "INSERT INTO Images (ImageURL) VALUES (?)";
+            $paramsImage = [$logoPath];
+            $typesImage = "s";
+            $resultImage = executeStatement($queryImage, $paramsImage, $typesImage);
+
+            if (!$resultImage) {
+                http_response_code(500);
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Fehler beim Speichern des Logos in der Datenbank.'
+                ]);
+                exit;
+            }
         } else {
             http_response_code(500);
             echo json_encode([

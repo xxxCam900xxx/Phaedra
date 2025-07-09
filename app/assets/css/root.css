@@ -2,6 +2,7 @@
     content: "_";
     animation: blink 1s infinite step-start;
 }
+
 @keyframes blink {
     50% {
         opacity: 0;
@@ -10,7 +11,8 @@
 
 /* Rahmen beim Hover */
 .EditorLayout:hover {
-    outline: 2px dashed #0ea5e9; /* Tailwind sky-500 */
+    outline: 2px dashed #0ea5e9;
+    /* Tailwind sky-500 */
     cursor: pointer;
 }
 
@@ -23,7 +25,7 @@
     z-index: 9999;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 #layoutContextMenu button {
@@ -37,5 +39,31 @@
 }
 
 #layoutContextMenu button:hover {
-    background: #f1f5f9; /* Tailwind slate-100 */
+    background: #f1f5f9;
+    /* Tailwind slate-100 */
+}
+
+/* Styles für Drag & Drop State */
+#imageManager {
+    background-color: #f3f4f6;
+    /* helles Grau */
+    border: 2px dashed transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    min-height: 150px;
+    color: #6b7280;
+    /* grauer Text */
+    font-size: 1.2rem;
+    user-select: none;
+}
+
+#imageManager.dragover {
+    background-color: #e0f2fe;
+    /* helles Blau */
+    border-color: #3b82f6;
+    /* Blau */
+    box-shadow: 0 0 8px 3px rgba(59, 130, 246, 0.5);
+    color: #1e40af;
+    /* dunkleres Blau */
+    font-weight: 600;
 }

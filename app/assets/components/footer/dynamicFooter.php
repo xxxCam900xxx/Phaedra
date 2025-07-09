@@ -16,7 +16,7 @@ $webConfig = getWebConfig();
     <div>
         <?php if ($webConfig->WebLogoURL != null) {
             $logoURL = "";
-            $logoURL = $_SERVER["DOCUMENT_ROOT"] . $webConfig->WebLogoURL;
+            $logoURL = $webConfig->WebLogoURL;
         ?>
             <img class="w-[100px] h-[100px] object-fit" src='<?= $logoURL ?>' alt="">
         <?php } ?>
