@@ -14,7 +14,7 @@ $widgetType = $input['widgetType'];
 $widgetContent = $input['widgetContent'];
 
 // Sicherheit: erlaubte Tabellen prüfen
-$allowedTypes = ['TextWidget', 'TextboxWidget'];
+$allowedTypes = ['TextWidget', 'ImageWidget'];
 if (!in_array($widgetType, $allowedTypes, true)) {
     echo json_encode(['success' => false, 'message' => 'Ungültiger Widget-Typ']);
     exit;
@@ -23,15 +23,24 @@ if (!in_array($widgetType, $allowedTypes, true)) {
 $conn = getConnection();
 
 // Beispiel für TextWidget mit Spalten Titel und Content
-if ($widgetType === 'TextWidget') {
-    $stmt = $conn->prepare("UPDATE TextWidget SET Titel = ?, Content = ? WHERE ID = ?");
-    $stmt->bind_param('ssi', $widgetContent['Title'], $widgetContent['Content'], $widgetId);
-    $stmt->execute();
-    $stmt->close();
-    echo json_encode(['success' => true]);
-    exit;
+switch ($widgetType) {
+    case 'TextWidget':
+        $stmt = $conn->prepare("UPDATE TextWidget SET Titel = ?, Content = ? WHERE ID = ?");
+        $stmt->bind_param('ssi', $widgetContent['Title'], $widgetContent['Content'], $widgetId);
+        $stmt->execute();
+        $stmt->close();
+        echo json_encode(['success' => true]);
+        break;
+    case 'ImageWidget':
+        $stmt = $conn->prepare("UPDATE ImageWidget SET ImageURL = ?, ImageDesc = ? WHERE ID = ?");
+        $stmt->bind_param('ssi', $widgetContent['ImageURL'], $widgetContent['ImageDesc'], $widgetId);
+        $stmt->execute();
+        $stmt->close();
+        echo json_encode(['success' => true]);
+        break;
+    default:
+        echo json_encode(['success' => false, 'message' => 'Widget-Typ nicht implementiert']);
+        break;
 }
 
-// Für andere Widgets entsprechend anpassen...
-
-echo json_encode(['success' => false, 'message' => 'Widget-Typ nicht implementiert']);
+exit;

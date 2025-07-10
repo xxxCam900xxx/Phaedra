@@ -39,10 +39,15 @@ require_once '../../api/login/IsLoggedIn.php';
 
                         <!-- Inhalt -->
                         <div class="flex flex-col p-5 gap-2">
-                            <div id="ThreeSplitLayoutDropBox"
+                            <div id="TextWidget"
                                 class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
                                 data-dropbox-type="TextWidget" ondragstart="handleDragStart(event)">
                                 Textbox
+                            </div>
+                            <div id="ImageWidget"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                data-dropbox-type="ImageWidget" ondragstart="handleDragStart(event)">
+                                Imagebox
                             </div>
                         </div>
                     </div>

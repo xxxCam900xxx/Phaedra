@@ -133,6 +133,13 @@ CREATE TABLE IF NOT EXISTS `TextWidget` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `ImageWidget` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `ImageURL` TEXT NULL,
+  `ImageDesc` TEXT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 COMMIT;
 
 -- Initial Inserts
@@ -196,16 +203,16 @@ INSERT INTO `WebDesign` (
   `Link_Color`,
   `LinkHover_Color`
 ) VALUES (
-  '#2563EB',        
-  '#1E3A8A',        
-  '#F9FAFB',        
-  '#111827',        
+  '#616161',        
+  '#969696',        
+  '#FFFFFF',        
+  '#2E2E2E',        
   '36',             
   '28',             
   '18',             
   '700',            
   '600',            
   '400',            
-  '#1D4ED8',        
-  '#93C5FD'         
+  '#FFFFFF',        
+  '#123456'         
 );

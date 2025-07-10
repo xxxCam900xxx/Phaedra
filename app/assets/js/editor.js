@@ -133,10 +133,14 @@ if (allowed) {
         const layoutType = dropzone.closest(".Layout").dataset.layoutType;
         const slot = dropzone.dataset.widgetSlot;
 
-        const allowedWidgets = ["TextWidget"];
+        console.log(widgetType, layoutId, layoutType, slot)
+
+        const allowedWidgets = ["TextWidget", "ImageWidget"];
 
         if (allowedWidgets.includes(widgetType)) {
           insertWidget(layoutId, slot, widgetType, layoutType);
+        } else {
+          console.warn("Nicht erlaubtes Widget!");
         }
 
       });

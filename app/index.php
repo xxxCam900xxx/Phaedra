@@ -183,12 +183,20 @@ $webConfig = getWebConfig();
         <button id="deleteLayoutBtn">Layout löschen</button>
     </div>
 
-    <?php require_once $_SERVER["DOCUMENT_ROOT"] . ("/assets/components/popups/textWidgetPopUp.php") ?>
+    <?php
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/textWidgetPopUp.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/imageWidgetPopUp.php";
+    ?>
 
+    <!-- PopUps -->
+    <script src="/assets/js/popups/createImagePopUp.js"></script>
 
+    <!-- Editor Relevant -->
     <script src="/assets/js/editor.js"></script>
     <script src="/assets/js/editorWidgets.js"></script>
     <script src="/assets/js/editorContextMenu.js"></script>
+
+    <!-- Other Functionalites -->
     <script>
         fetch('/api/editor/getLayouts.php', {
                 method: 'POST',

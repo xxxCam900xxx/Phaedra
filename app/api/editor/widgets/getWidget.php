@@ -6,7 +6,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/api/config/database.php";
  * Holt Widget-Daten aus der Datenbank
  */
 function getWidgetData(string $widgetType, int $widgetId): ?array {
-    $allowedTypes = ['TextWidget']; // Weitere Typen hinzufügen
+    $allowedTypes = ['TextWidget', "ImageWidget"];
 
     if (!in_array($widgetType, $allowedTypes, true)) {
         return null;
@@ -63,9 +63,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             ];
             break;
 
-        // case "ImageWidget":
-        //     $formatted = [...];
-        //     break;
+        case "ImageWidget":
+            $formatted = [
+                "ImageURL" => $data["ImageURL"] ?? "",
+                "ImageDesc" => $data["ImageDesc"] ?? ""
+            ];
+            break;
 
         default:
             http_response_code(400);

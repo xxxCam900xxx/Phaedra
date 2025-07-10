@@ -101,6 +101,9 @@ if (allowed) {
             case "TextWidget":
                 openTextWidgetPopup(widgetData, isInserted);
                 break;
+            case "ImageWidget":
+                openImageWidgetPopUp(widgetData, isInserted);
+                break;
             default:
                 alert("Kein Popup definiert für Widget-Typ: " + widgetType);
         }
