@@ -39,6 +39,24 @@ CREATE TABLE IF NOT EXISTS `Images` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
+-- Webdesign
+CREATE TABLE IF NOT EXISTS `WebDesign` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `Primary_Color` VARCHAR(80) NULL,
+  `Secondary_Color` VARCHAR(80) NULL,
+  `Background_Color` VARCHAR(80) NULL,
+  `Footer_Color` VARCHAR(80) NULL,
+  `Heading1_Size` VARCHAR(80) NULL,
+  `Heading2_Size` VARCHAR(80) NULL,
+  `Paragraph_Size` VARCHAR(80) NULL,
+  `Heading1_Weight` VARCHAR(80) NULL,
+  `Heading2_Weight` VARCHAR(80) NULL,
+  `Paragraph_Weight` VARCHAR(80) NULL,
+  `Link_Color` VARCHAR(80) NULL,
+  `LinkHover_Color` VARCHAR(80) NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 -- Pages
 CREATE TABLE IF NOT EXISTS `Pages` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
@@ -162,3 +180,32 @@ INSERT INTO
   `PageContent` (`PageID`)
 VALUES
   (1);
+
+-- Standardwerte für Webseite
+INSERT INTO `WebDesign` (
+  `Primary_Color`,
+  `Secondary_Color`,
+  `Background_Color`,
+  `Footer_Color`,
+  `Heading1_Size`,
+  `Heading2_Size`,
+  `Paragraph_Size`,
+  `Heading1_Weight`,
+  `Heading2_Weight`,
+  `Paragraph_Weight`,
+  `Link_Color`,
+  `LinkHover_Color`
+) VALUES (
+  '#2563EB',        
+  '#1E3A8A',        
+  '#F9FAFB',        
+  '#111827',        
+  '36',             
+  '28',             
+  '18',             
+  '700',            
+  '600',            
+  '400',            
+  '#1D4ED8',        
+  '#93C5FD'         
+);

@@ -1,12 +1,17 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/editor/pages/getAllPages.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/webconfig/getWebConfig.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/editor/design/getEditorStyles.php';
+$styles = getWebDesign();
+
+// Fallback-Farben
+$primary = $styles['data']['Primary_Color'] ?? '#1D4ED8';
 
 $webConfig = getWebConfig();
 $pages = getAllPages();
 ?>
 
-<header class="h-[60px] w-full bg-sky-300 flex gap-5 pl-[10%] pr-[10%]">
+<header class="h-[60px] w-full flex gap-5 pl-[10%] pr-[10%] primary-color" style="background-color: <?= htmlspecialchars($primary) ?>;">
     <a href="/" class="logo h-full bg-black w-[60px]">
         <?php if ($webConfig->WebLogoURL != null) {
             $logoURL = "";

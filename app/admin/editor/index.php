@@ -26,7 +26,7 @@ require_once '../../api/login/IsLoggedIn.php';
             <!-- Editor -->
             <aside class="w-[400px] h-full bg-sky-700 flex flex-col text-white">
                 <!-- Accordion: Widgets -->
-                <div class="border-b border-sky-500">
+                <div>
                     <button onclick="toggleAccordion(this)"
                         class="w-full flex justify-between items-center px-4 py-3 hover:bg-sky-600 focus:outline-none">
                         <span><i class="fa-solid fa-code"></i> Widgets</span>
@@ -48,7 +48,7 @@ require_once '../../api/login/IsLoggedIn.php';
                     </div>
 
                     <!-- Accordion: Layout -->
-                    <div class="border-b border-sky-500">
+                    <div>
                         <button onclick="toggleAccordion(this)"
                             class="w-full flex justify-between items-center px-4 py-3 hover:bg-sky-600 focus:outline-none">
                             <span><i class="fa-solid fa-layer-group"></i> Layout</span>
@@ -83,11 +83,104 @@ require_once '../../api/login/IsLoggedIn.php';
                         </div>
                     </div>
 
-                    <!-- Accordion: Core Einstellungen -->
                     <div>
                         <button onclick="toggleAccordion(this)"
                             class="w-full flex justify-between items-center px-4 py-3 hover:bg-sky-600 focus:outline-none">
-                            <span><i class="fa-solid fa-brush"></i> Core Einstellungen</span>
+                            <span><i class="fa-solid fa-brush"></i> Design</span>
+                            <svg class="h-4 w-4 transform transition-transform duration-300" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 bg-sky-600">
+                            <div class="flex flex-col p-5 gap-4" id="editorSettings">
+                                <!-- Primärfarbe -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Primärfarbe</label>
+                                    <input type="color" name="Primary_Color" value="#1D4ED8" data-style-target=".primary-color" data-style-prop="background-color" />
+                                </div>
+
+                                <!-- Secondarycolor -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Sekundärefarbe</label>
+                                    <input type="color" name="Secondary_Color" value="#1D4ED8" data-style-target=".secondary-color" data-style-prop="background-color" />
+                                </div>
+
+                                <!-- Hintergrundfarbe -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Hintergrundfarbe</label>
+                                    <input type="color" name="Background_Color" value="#ffffff" data-style-target="body" data-style-prop="background-color" />
+                                </div>
+
+                                <!-- Footercolor -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Footerfarbe</label>
+                                    <input type="color" name="Footer_Color" value="#1D4ED8" data-style-target="footer" data-style-prop="background-color" />
+                                </div>
+
+                                <!-- H1 Schriftgröße -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">H1 Größe</label>
+                                    <input type="range" name="Heading1_Size" min="16" max="72" value="36" data-style-target="h1" data-style-prop="fontSize" />
+                                    <span class="font-mono" id="Heading1_SizeLabel">36px</span>
+                                </div>
+
+                                <!-- H1 Gewicht -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">H1 Gewicht</label>
+                                    <input type="range" name="Heading1_Weight" min="100" max="900" step="100" value="700" data-style-target="h1" data-style-prop="fontWeight" />
+                                    <span class="font-mono" id="Heading1_WeightLabel">700</span>
+                                </div>
+
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">H2 Grösse</label>
+                                    <input type="range" name="Heading2_Size" min="16" max="72" value="36" data-style-target="h2" data-style-prop="fontSize" />
+                                    <span class="font-mono" id="Heading2_SizeLabel">36px</span>
+                                </div>
+
+                                <!-- H1 Gewicht -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">H2 Gewicht</label>
+                                    <input type="range" name="Heading2_Weight" min="100" max="900" step="100" value="700" data-style-target="h2" data-style-prop="fontWeight" />
+                                    <span class="font-mono" id="h2WeightLabel">700</span>
+                                </div>
+
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Paragraph Grösse</label>
+                                    <input type="range" name="Paragraph_Size" min="16" max="72" value="36" data-style-target="p" data-style-prop="fontSize" />
+                                    <span class="font-mono" id="Paragraph_SizeLabel">36px</span>
+                                </div>
+
+                                <!-- Hp Gewicht -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Paragraph Gewicht</label>
+                                    <input type="range" name="Paragraph_Weight" min="100" max="900" step="100" value="700" data-style-target="p" data-style-prop="fontWeight" />
+                                    <span class="font-mono" id="Paragraph_WeightLabel">700</span>
+                                </div>
+
+                                <!-- Linkfarbe -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Linkfarbe</label>
+                                    <input type="color" name="Link_Color" value="#2563EB" data-style-target="a" data-style-prop="color" />
+                                </div>
+
+                                <!-- Link Hoverfarbe -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Link Hover</label>
+                                    <input type="color" name="LinkHover_Color" value="#1E40AF" data-hover-color />
+                                </div>
+
+                                <button id="saveEditorStyles" class="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded mt-5 w-fit">Speichern</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion: Webseiten verwaltung -->
+                    <div>
+                        <button onclick="toggleAccordion(this)"
+                            class="w-full flex justify-between items-center px-4 py-3 hover:bg-sky-600 focus:outline-none">
+                            <span><i class="fa-solid fa-file"></i> Seiten</span>
                             <svg class="h-4 w-4 transform transition-transform duration-300" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -96,9 +189,6 @@ require_once '../../api/login/IsLoggedIn.php';
                         </button>
                         <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 bg-sky-600">
                             <div class="flex flex-col p-5 gap-2">
-
-                                <!-- More -->
-
                                 <button id="newPageBtn"
                                     class="cursor-pointer bg-sky-500 p-3 rounded-md hover:bg-sky-300">
                                     Neue Seite erstellen
@@ -189,6 +279,7 @@ require_once '../../api/login/IsLoggedIn.php';
     <script src="/assets/js/createPagePopUp.js"></script>
     <script src="/assets/js/accordion.js"></script>
     <script src="/assets/js/editor.js"></script>
+    <script src="/assets/js/editorDesign.js"></script>
 
 
 

@@ -50,6 +50,10 @@ foreach ($layouts as $layout) {
     $newSort += 10;
 }
 $stmtUpdate->close();
+
+
+require_once $_SERVER["DOCUMENT_ROOT"] . "/api/editor/design/getEditorStyles.php";
+$design = getWebDesign();
 ?>
 
 <!DOCTYPE html>
@@ -61,10 +65,39 @@ $stmtUpdate->close();
     <meta name="keywords" content="">
     <meta name="author" content="">
     <title><?= $pageTitle ?></title>
+
+    <style>
+        body {
+            background-color: <?= $design['Background_Color'] ?>;
+        }
+
+        h1 {
+            font-size: <?= $design['Heading1_Size'] ?>px;
+            font-weight: <?= $design['Heading1_Weight'] ?>;
+        }
+
+        h2 {
+            font-size: <?= $design['Heading2_Size'] ?>px;
+            font-weight: <?= $design['Heading2_Weight'] ?>;
+        }
+
+        p {
+            font-size: <?= $design['Paragraph_Size'] ?>px;
+            font-weight: <?= $design['Paragraph_Weight'] ?>;
+        }
+
+        a {
+            color: <?= $design['Link_Color'] ?>;
+        }
+
+        a:hover {
+            color: <?= $design['LinkHover_Color'] ?>;
+        }
+    </style>
 </head>
 
 <body class="w-full min-h-screen flex flex-col">
-    <div class="preheader h-[30px] w-full bg-sky-800">
+    <div class="preheader h-[30px] w-full bg-sky-800 secondary-color">
 
     </div>
     <!-- Header -->
@@ -100,7 +133,7 @@ $stmtUpdate->close();
             <i class="fa-solid fa-plus"></i>
         </div>
     </main>
-    
+
     <!-- Header -->
     <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/footer/dynamicFooter.php" ?>
 
