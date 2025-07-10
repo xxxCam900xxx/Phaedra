@@ -140,6 +140,14 @@ CREATE TABLE IF NOT EXISTS `ImageWidget` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `RepoCrawlerWidget` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `ForgejoURL` TEXT NULL,
+  `ForgejoUsername` TEXT NULL,
+  `GithubUsername` TEXT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 COMMIT;
 
 -- Initial Inserts

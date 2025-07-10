@@ -73,6 +73,11 @@ if (allowed) {
                 htmlObjects.imagePreview.setAttribute("src", widgetData.ImageURL);
                 break;
 
+            case "RepoCrawlerWidget":
+                htmlObjects.forgejoURLInput.value = widgetData.ForgejoURL || "";
+                htmlObjects.forgejoUsernameInput.value = widgetData.ForgejoUsername || "";
+                htmlObjects.githubUsernameInput.value = widgetData.GithubUsername || "";
+
             default:
                 break;
         }
@@ -109,6 +114,9 @@ if (allowed) {
                 break;
             case "ImageWidget":
                 openImageWidgetPopUp(widgetData, isInserted);
+                break;
+            case "RepoCrawlerWidget":
+                openRepoCrawlerWidgetPopup(widgetData, isInserted);
                 break;
             default:
                 alert("Kein Popup definiert für Widget-Typ: " + widgetType);

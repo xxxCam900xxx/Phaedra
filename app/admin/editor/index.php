@@ -11,7 +11,6 @@ require_once '../../api/login/IsLoggedIn.php';
     <?php require("../../configs/head.php"); ?>
     <title>MythosMorph - Editor</title>
     <script src="//unpkg.com/alpinejs" defer></script>
-
 </head>
 
 <body>
@@ -48,6 +47,11 @@ require_once '../../api/login/IsLoggedIn.php';
                                 class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
                                 data-dropbox-type="ImageWidget" ondragstart="handleDragStart(event)">
                                 Imagebox
+                            </div>
+                            <div id="RepoCrawlerWidget"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                data-dropbox-type="RepoCrawlerWidget" ondragstart="handleDragStart(event)">
+                                Repository-Crawler
                             </div>
                         </div>
                     </div>

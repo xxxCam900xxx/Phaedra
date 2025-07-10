@@ -186,10 +186,12 @@ $webConfig = getWebConfig();
     <?php
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/textWidgetPopUp.php";
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/imageWidgetPopUp.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/repoCrawlerWidgetPopUp.php";
     ?>
 
     <!-- PopUps -->
     <script src="/assets/js/popups/createImagePopUp.js"></script>
+    <script src="/assets/js/popups/createRepoCrawlerPopUp.js"></script>
 
     <!-- Editor Relevant -->
     <script src="/assets/js/editor.js"></script>

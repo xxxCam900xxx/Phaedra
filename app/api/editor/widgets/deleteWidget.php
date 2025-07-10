@@ -30,7 +30,7 @@ $widgetSlot = $data['widgetSlot']; // z. B. 'no2'
 
 // Sicherheitsprüfung
 $allowedSlots = ['1', '2', '3'];
-$allowedWidgets = ['TextWidget', "ImageWidget"];
+$allowedWidgets = ['TextWidget', "ImageWidget", "RepoCrawlerWidget"];
 $allowedLayoutTypes = ['TwoSplitLayout', 'ThreeSplitLayout', 'NoSplitLayout'];
 
 if (!in_array($widgetSlot, $allowedSlots, true)) {
