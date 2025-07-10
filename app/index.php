@@ -50,10 +50,6 @@ foreach ($layouts as $layout) {
     $newSort += 10;
 }
 $stmtUpdate->close();
-
-
-require_once $_SERVER["DOCUMENT_ROOT"] . "/api/editor/design/getEditorStyles.php";
-$design = getWebDesign();
 ?>
 
 <!DOCTYPE html>
@@ -66,34 +62,69 @@ $design = getWebDesign();
     <meta name="author" content="">
     <title><?= $pageTitle ?></title>
 
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/api/editor/design/getEditorStyles.php';
+    $styles = getWebDesign();
+
+    $data = $styles['data'] ?? [];
+    ?>
     <style>
+        :root {
+            --primary-color: <?= htmlspecialchars($data['Primary_Color'] ?? '#1D4ED8') ?>;
+            --secondary-color: <?= htmlspecialchars($data['Secondary_Color'] ?? '#2563EB') ?>;
+            --background-color: <?= htmlspecialchars($data['Background_Color'] ?? '#ffffff') ?>;
+            --footer-color: <?= htmlspecialchars($data['Footer_Color'] ?? '#111827') ?>;
+
+            --h1-size: <?= htmlspecialchars($data['Heading1_Size'] ?? '36') ?>px;
+            --h2-size: <?= htmlspecialchars($data['Heading2_Size'] ?? '28') ?>px;
+            --p-size: <?= htmlspecialchars($data['Paragraph_Size'] ?? '18') ?>px;
+
+            --h1-weight: <?= htmlspecialchars($data['Heading1_Weight'] ?? '700') ?>;
+            --h2-weight: <?= htmlspecialchars($data['Heading2_Weight'] ?? '600') ?>;
+            --p-weight: <?= htmlspecialchars($data['Paragraph_Weight'] ?? '400') ?>;
+
+            --link-color: <?= htmlspecialchars($data['Link_Color'] ?? '#1D4ED8') ?>;
+            --link-hover-color: <?= htmlspecialchars($data['LinkHover_Color'] ?? '#93C5FD') ?>;
+        }
+
         body {
-            background-color: <?= $design['Background_Color'] ?>;
+            background-color: var(--background-color);
+            font-size: var(--p-size);
+            font-weight: var(--p-weight);
         }
 
         h1 {
-            font-size: <?= $design['Heading1_Size'] ?>px;
-            font-weight: <?= $design['Heading1_Weight'] ?>;
+            font-size: var(--h1-size);
+            font-weight: var(--h1-weight);
         }
 
         h2 {
-            font-size: <?= $design['Heading2_Size'] ?>px;
-            font-weight: <?= $design['Heading2_Weight'] ?>;
+            font-size: var(--h2-size);
+            font-weight: var(--h2-weight);
         }
 
-        p {
-            font-size: <?= $design['Paragraph_Size'] ?>px;
-            font-weight: <?= $design['Paragraph_Weight'] ?>;
+        footer {
+            background-color: var(--footer-color);
+        }
+
+        .primary-color {
+            background-color: var(--primary-color);
+        }
+
+        .secondary-color {
+            background-color: var(--secondary-color);
         }
 
         a {
-            color: <?= $design['Link_Color'] ?>;
+            color: var(--link-color);
+            transition: color 0.3s;
         }
 
         a:hover {
-            color: <?= $design['LinkHover_Color'] ?>;
+            color: var(--link-hover-color);
         }
     </style>
+
 </head>
 
 <body class="w-full min-h-screen flex flex-col">

@@ -143,7 +143,7 @@ require_once '../../api/login/IsLoggedIn.php';
                                 <div class="flex items-center gap-3">
                                     <label class="w-40">H2 Gewicht</label>
                                     <input type="range" name="Heading2_Weight" min="100" max="900" step="100" value="700" data-style-target="h2" data-style-prop="fontWeight" />
-                                    <span class="font-mono" id="h2WeightLabel">700</span>
+                                    <span class="font-mono" id="Heading2_Weight">700</span>
                                 </div>
 
                                 <div class="flex items-center gap-3">

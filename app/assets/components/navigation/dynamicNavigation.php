@@ -1,11 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/editor/pages/getAllPages.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/webconfig/getWebConfig.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/api/editor/design/getEditorStyles.php';
-$styles = getWebDesign();
-
-// Fallback-Farben
-$primary = $styles['data']['Primary_Color'] ?? '#1D4ED8';
 
 $webConfig = getWebConfig();
 $pages = getAllPages();
@@ -31,7 +26,7 @@ $pages = getAllPages();
         ?>
                 <a
                     href="<?= $page['pathURL'] ?>"
-                    class="p-2 text-lg rounded-md hover:text-white hover:bg-sky-500 trainsition duration-300">
+                    class="p-2 text-lg rounded-md hover:text-white trainsition duration-300">
                     <?= $page['nav_title'] ?>
                 </a>
         <?php
