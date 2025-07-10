@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadImages();
     });
 
-    // Popup schließen
+    // Popup schliessen
     closePopupBtn.addEventListener('click', () => {
         popup.classList.add('hidden');
     });

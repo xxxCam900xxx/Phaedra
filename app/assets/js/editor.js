@@ -237,7 +237,7 @@ if (allowed) {
       .then((resData) => {
         if (resData.success) {
           alert("Widget gespeichert!");
-          // Popup schließen
+          // Popup schliessen
           document.getElementById("textWidgetPopup").style.display = "none";
           // Danach Seite neu laden
           window.location.reload();
