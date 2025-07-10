@@ -62,7 +62,7 @@ $webConfig = getWebConfig();
                                 <?php if (!empty($webConfig->WebLogoURL)): ?>
                                     <img src="<?= htmlspecialchars($webConfig->WebLogoURL) ?>" alt="Aktuelles Logo" class="max-h-[200px] mx-auto" />
                                 <?php else: ?>
-                                    <p class="text-center text-gray-500">Kein Logo ausgewählt.</p>
+                                    <img src="" alt="Kein Logo ausgewählt" class="max-h-[200px] mx-auto" />
                                 <?php endif; ?>
                             </div>
 
