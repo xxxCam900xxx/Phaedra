@@ -67,6 +67,12 @@ if (allowed) {
                 htmlObjects.contentInput.value = widgetData.Content || "";
                 break;
 
+            case "ImageWidget":
+                htmlObjects.imageURLInput.value = widgetData.ImageURL || "";
+                htmlObjects.imageDescInput.value = widgetData.ImageDesc || "";
+                htmlObjects.imagePreview.setAttribute("src", widgetData.ImageURL);
+                break;
+
             default:
                 break;
         }

@@ -14,10 +14,12 @@ function openImageWidgetPopUp(widgetData, isInserted = false) {
 
     const imageURLInput = document.getElementById("widgetImageURL");
     const imageDescInput = document.getElementById("widgetImageDesc");
+    const imagePreview = logoPreview.querySelector('img');
 
     const htmlObjects = {
         imageURLInput: imageURLInput,
-        imageDescInput: imageDescInput
+        imageDescInput: imageDescInput,
+        imagePreview: imagePreview
     }
 
     imageURLInput.value = "";
