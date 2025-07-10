@@ -10,11 +10,11 @@ if ($Request_URI === '') {
 }
 
 $pageStmt = executeStatement(
-    "SELECT ID, Page_Title FROM Pages WHERE PathURL = ? LIMIT 1",
+    "SELECT ID, Page_Title, Meta_Description FROM Pages WHERE PathURL = ? LIMIT 1",
     [$Request_URI],
     "s"
 );
-$pageStmt->bind_result($pageId, $pageTitle);
+$pageStmt->bind_result($pageId, $pageTitle, $pageMetaDesc);
 if (!$pageStmt->fetch()) {
     http_response_code(404);
     echo json_encode(['error' => 'Seite nicht gefunden']);
@@ -50,6 +50,12 @@ foreach ($layouts as $layout) {
     $newSort += 10;
 }
 $stmtUpdate->close();
+
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/webconfig/getWebConfig.php';
+
+$webConfig = getWebConfig();
+
 ?>
 
 <!DOCTYPE html>
@@ -57,9 +63,9 @@ $stmtUpdate->close();
 
 <head>
     <?php require("configs/head.php"); ?>
-    <meta name="description" content="">
+    <meta name="description" content="<?= htmlspecialchars($pageMetaDesc) ?>">
     <meta name="keywords" content="">
-    <meta name="author" content="">
+    <meta name="author" content="<?= htmlspecialchars($webConfig->WebHostName) ?>">
     <title><?= $pageTitle ?></title>
 
     <?php
@@ -184,7 +190,6 @@ $stmtUpdate->close();
 
     <script src="/assets/js/editor.js"></script>
     <script src="/assets/js/editorContextMenu.js"></script>
-
     <script>
         fetch('/api/editor/getLayouts.php', {
                 method: 'POST',
@@ -203,9 +208,7 @@ $stmtUpdate->close();
                 console.error('Fehler beim Abruf:', error);
             });
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-
     <script>
         if (window !== window.top) {
             document.addEventListener('DOMContentLoaded', function() {
