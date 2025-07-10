@@ -211,7 +211,7 @@ require_once '../../api/login/IsLoggedIn.php';
 
         </section>
 
-        <!-- Modal -->
+        <!-- Create New Page PopUp -->
         <div id="newPageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
             <div class="bg-white rounded-lg p-6 w-96">
                 <h2 class="text-xl mb-4">Neue Seite erstellen</h2>
@@ -234,6 +234,7 @@ require_once '../../api/login/IsLoggedIn.php';
             </div>
         </div>
 
+        <!-- Page Structure PopUp -->
         <div id="showPageStructure" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
             <div class="bg-white rounded-lg p-6 w-96 relative">
                 <h2 class="text-xl mb-4">Seitenstruktur</h2>
@@ -241,9 +242,6 @@ require_once '../../api/login/IsLoggedIn.php';
                     <?php
                     require_once $_SERVER['DOCUMENT_ROOT'] . '/api/editor/pages/getAllPages.php';
                     $pages = getAllPages();
-                    ?>
-                    <!-- Forech bauen -->
-                    <?php
 
                     if ($pages === false) {
                         echo "Fehler beim Laden der Seiten.";
@@ -264,7 +262,6 @@ require_once '../../api/login/IsLoggedIn.php';
                     <?php
                         }
                     }
-
                     ?>
                 </div>
                 <button type="button" id="showPageStructureCancelBtn"
@@ -272,19 +269,20 @@ require_once '../../api/login/IsLoggedIn.php';
             </div>
         </div>
 
-
     </main>
 
-    <script src="/assets/js/showPagesPopUp.js"></script>
-    <script src="/assets/js/createPagePopUp.js"></script>
-    <script src="/assets/js/accordion.js"></script>
+    <!-- Editor Functionalitys -->
     <script src="/assets/js/editor.js"></script>
     <script src="/assets/js/editorDesign.js"></script>
+    <script src="/assets/js/editorWidgets.js"></script>
 
+    <!-- PopUps -->
+    <script src="/assets/js/showPagesPopUp.js"></script>
+    <script src="/assets/js/createPagePopUp.js"></script>
 
-
+    <!-- Other Features -->
+    <script src="/assets/js/accordion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const pageList = document.getElementById('pageListContainer');
@@ -324,7 +322,6 @@ require_once '../../api/login/IsLoggedIn.php';
             });
         });
     </script>
-
 
 </body>
 

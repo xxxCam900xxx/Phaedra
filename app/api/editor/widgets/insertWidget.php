@@ -10,16 +10,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $input = json_decode(file_get_contents('php://input'), true);
-if (!isset($input['layoutId'], $input['slot'], $input['widgetType'], $input['layoutType'])) {
+if (!isset($input['layoutId'], $input['widgetSlot'], $input['widgetType'], $input['layoutType'])) {
     http_response_code(400);
     echo json_encode(['error' => 'Missing parameters']);
     exit;
 }
 
+// Layout
 $layoutId = (int) $input['layoutId'];
-$slot = (int) $input['slot'];
+$layoutType = $input['layoutType'];
+// Widget
+$widgetSlot = (int) $input['widgetSlot'];
 $widgetType = $input['widgetType'];
-$layoutType = $input['layoutType']; // Direkt aus data-layout-type
+
 
 // Widget in der Widget-Tabelle anlegen
 $conn = getConnection();
@@ -29,8 +32,8 @@ $newWidgetId = $stmtWidget->insert_id;
 $stmtWidget->close();
 
 // Spaltennamen für den Slot
-$colId = "No{$slot}_WidgetID";
-$colType = "No{$slot}_WidgetType";
+$colId = "No{$widgetSlot}_WidgetID";
+$colType = "No{$widgetSlot}_WidgetType";
 
 // Layout aktualisieren
 $sql = "

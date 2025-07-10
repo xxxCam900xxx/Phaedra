@@ -92,7 +92,18 @@ if (window !== window.top) {
         updateWidgetBtn.addEventListener("click", function () {
             if (!currentWidgetId || !currentWidgetType) return;
             contextMenu.style.display = "none";
-            searchPopUp(currentWidgetType, currentWidgetId);
+
+            const widgetData = {
+                layoutId: currentLayoutId,
+                widgetId: currentWidgetId,
+                widgetType: currentWidgetType,
+                layoutType: currentLayoutType,
+                widgetSlot: currentWidgetSlot
+            }
+
+            console.log(widgetData);
+
+            searchPopUp(currentWidgetType, widgetData);
         });
 
         copydeleteWidgetBtn.addEventListener("click", function () {
@@ -145,23 +156,15 @@ if (window !== window.top) {
             if (!currentLayoutId || !currentWidgetId || !currentWidgetType) return;
             if (!confirm("Möchten Sie dieses Widget wirklich löschen?")) return;
 
-            fetch("/api/editor/widgets/deleteWidget.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    layoutId: currentLayoutId,
-                    widgetId: currentWidgetId,
-                    widgetType: currentWidgetType,
-                    layoutType: currentLayoutType,
-                    widgetSlot: currentWidgetSlot
-                })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) window.location.reload();
-                    else alert("Fehler beim Löschen: " + (data.message || "Unbekannter Fehler"));
-                })
-                .catch(err => alert("Netzwerkfehler: " + err));
+            const widgetData = {
+                layoutId: currentLayoutId,
+                widgetId: currentWidgetId,
+                widgetType: currentWidgetType,
+                layoutType: currentLayoutType,
+                widgetSlot: currentWidgetSlot
+            }
+
+            deleteWidget(widgetData);
 
             contextMenu.style.display = "none";
         });

@@ -111,43 +111,6 @@ if (allowed) {
       });
   }
 
-  function searchPopUp(widgetType, widgetId) {
-    // Je nach widgetType kannst du unterschiedliche Popups starten
-    switch (widgetType) {
-      case "TextWidget":
-        openTextWidgetPopup(widgetId);
-        break;
-      default:
-        alert("Kein Popup definiert für Widget-Typ: " + widgetType);
-    }
-  }
-
-  function insertWidget(layoutId, slot, widgetType, layoutType) {
-    fetch("/api/editor/widgets/insertWidget.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        layoutId: layoutId,
-        slot: slot,
-        widgetType: widgetType,
-        layoutType: layoutType,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Widget angelegt:", data);
-        if (data.success && data.widgetId) {
-          // Popup mit widgetType und widgetId öffnen
-          searchPopUp(widgetType, data.widgetId);
-        }
-        /* INBETWEEN OPEN EDITOR OF WIDGET AFTERWARDS RELOAD WITH SAVE */
-      })
-      .catch((error) => {
-        console.error("Fehler beim Widget-Insert:", error);
-        alert("Fehler beim Einfügen des Widgets.");
-      });
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     const widgetDropzones = document.querySelectorAll(".Widget");
 
@@ -180,75 +143,6 @@ if (allowed) {
     });
   });
 
-
-  function openTextWidgetPopup(widgetId) {
-    const popup = document.getElementById("textWidgetPopup");
-    popup.style.display = "flex";
-
-    const titleInput = document.getElementById("widgetTitle");
-    const contentInput = document.getElementById("widgetContent");
-
-    // Felder leeren
-    titleInput.value = "";
-    contentInput.value = "";
-
-    // Bestehende Daten laden
-    fetch("/api/editor/widgets/getWidget.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        widgetId: widgetId,
-        widgetType: "TextWidget"
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.success && data.widget) {
-          titleInput.value = data.widget.Title || "";
-          contentInput.value = data.widget.Content || "";
-        } else {
-          console.warn("Widgetdaten konnten nicht geladen werden:", data.message || data);
-        }
-      })
-      .catch(error => {
-        console.error("Fehler beim Laden der Widgetdaten:", error);
-      });
-
-    // Save-Button Handler
-    document.getElementById("saveWidgetBtn").onclick = function () {
-      const title = titleInput.value;
-      const content = contentInput.value;
-
-      saveWidgetData(widgetId, "TextWidget", { Titel: title, Content: content });
-    };
-  }
-
-  function saveWidgetData(widgetId, widgetType, data) {
-    fetch("/api/editor/widgets/saveWidget.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        widgetId: widgetId,
-        widgetType: widgetType,
-        data: data,
-      }),
-    })
-      .then((res) => res.json())
-      .then((resData) => {
-        if (resData.success) {
-          alert("Widget gespeichert!");
-          // Popup schliessen
-          document.getElementById("textWidgetPopup").style.display = "none";
-          // Danach Seite neu laden
-          window.location.reload();
-        } else {
-          alert("Fehler beim Speichern: " + (resData.message || "Unbekannter Fehler"));
-        }
-      })
-      .catch((error) => {
-        console.error("Fehler beim Speichern:", error);
-        alert("Netzwerkfehler beim Speichern.");
-      });
-  }
+  
 
 }
