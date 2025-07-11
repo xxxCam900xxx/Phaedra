@@ -30,7 +30,7 @@ $faqs = getFaqs();
                             <th class="px-4 py-3 border-b">Beantwortet?</th>
                             <th class="px-4 py-3 border-b">Aktiv?</th>
                             <th class="px-4 py-3 border-b">Erstellt</th>
-                            <th class="px-4 py-3 border-b">Aktion</th>
+                            <th class="px-4 py-3 border-b"></th>
                         </tr>
                     </thead>
                     <tbody class="text-sm divide-y divide-gray-200">
@@ -52,7 +52,7 @@ $faqs = getFaqs();
                                     <?php endif; ?>
                                 </td>
                                 <td class="px-4 py-3"><?= htmlspecialchars($faq['createDate']) ?></td>
-                                <td class="px-4 py-3">
+                                <td class="px-4 py-3 flex gap-2 justify-end">
                                     <button
                                         class="text-blue-600 hover:underline text-sm"
                                         onclick="editFAQ(this)"
@@ -61,6 +61,12 @@ $faqs = getFaqs();
                                         data-answer="<?= htmlspecialchars($faq['answer'], ENT_QUOTES) ?>"
                                         data-active="<?= $faq['isShown'] == "true" ? '1' : '0' ?>">
                                         Bearbeiten
+                                    </button>
+                                    <button
+                                        class="text-blue-600 hover:underline text-sm"
+                                        onclick="deleteFAQ(this)"
+                                        data-id="<?= $faq['id'] ?>">
+                                        Löschen
                                     </button>
                                 </td>
                             </tr>
@@ -115,6 +121,24 @@ $faqs = getFaqs();
                 document.getElementById('Question').value = button.dataset.question;
                 document.getElementById('Answer').value = button.dataset.answer;
                 document.getElementById('IsShown').checked = button.dataset.active === "1";
+            }
+
+            function deleteFAQ(button) {
+                fetch("/api/faqs/deleteFaq.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            faqId: button.dataset.id
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) window.location.reload();
+                        else alert("Fehler beim Löschen: " + (data.message || "Unbekannter Fehler"));
+                    })
+                    .catch(err => alert("Netzwerkfehler: " + err));
             }
         </script>
         <script src="/assets/js/widgets/faqWidget.js"></script>
