@@ -7,8 +7,6 @@ $forgejoUser = $widgetData['ForgejoUsername'];
 $githubUser = $widgetData['GithubUsername'];
 
 $repos = fetchRepos($forgejoBase, $forgejoUser, $githubUser);
-
-echo print_r($repos);
 ?>
 
 <h1 class="text-3xl font-bold mb-6 text-gray-800">Public Repositories</h1>
