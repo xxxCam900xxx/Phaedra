@@ -306,7 +306,7 @@ require_once '../../api/login/IsLoggedIn.php';
                 onEnd: function() {
                     const newOrder = Array.from(pageList.children).map((el, index) => ({
                         id: el.dataset.id,
-                        sort: (index + 1) * 10 // oder einfach index + 1, je nach Sort-Strategie
+                        sort: (index) * 10 // oder einfach index + 1, je nach Sort-Strategie
                     }));
 
                     console.log("Neue Seitenreihenfolge:", newOrder);

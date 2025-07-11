@@ -5,8 +5,15 @@ require_once "./api/editor/getLayouts.php";
 
 /* PathURL */
 $Request_URI = substr($_SERVER["REQUEST_URI"], 1);
+
 if ($Request_URI === '') {
-    $Request_URI = 'index';
+    
+$getFirstSortPageAsIndexStmt = executeStatement("SELECT PathURL FROM Pages WHERE Sort = 0 LIMIT 1");
+$getFirstSortPageAsIndexStmt->bind_result($indexURL);
+$getFirstSortPageAsIndexStmt->fetch();
+
+$Request_URI = $indexURL;
+
 }
 
 $pageStmt = executeStatement(
@@ -17,7 +24,7 @@ $pageStmt = executeStatement(
 $pageStmt->bind_result($pageId, $pageTitle, $pageMetaDesc);
 if (!$pageStmt->fetch()) {
     http_response_code(404);
-    echo json_encode(['error' => 'Seite nicht gefunden']);
+    echo json_encode(['error' => $Request_URI]);
     exit;
 }
 $pageStmt->close();
