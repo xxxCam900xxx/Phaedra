@@ -7,13 +7,12 @@ require_once "./api/editor/getLayouts.php";
 $Request_URI = substr($_SERVER["REQUEST_URI"], 1);
 
 if ($Request_URI === '') {
-    
-$getFirstSortPageAsIndexStmt = executeStatement("SELECT PathURL FROM Pages WHERE Sort = 0 LIMIT 1");
-$getFirstSortPageAsIndexStmt->bind_result($indexURL);
-$getFirstSortPageAsIndexStmt->fetch();
 
-$Request_URI = $indexURL;
+    $getFirstSortPageAsIndexStmt = executeStatement("SELECT PathURL FROM Pages WHERE Sort = 0 LIMIT 1");
+    $getFirstSortPageAsIndexStmt->bind_result($indexURL);
+    $getFirstSortPageAsIndexStmt->fetch();
 
+    $Request_URI = $indexURL;
 }
 
 $pageStmt = executeStatement(
@@ -194,6 +193,7 @@ $webConfig = getWebConfig();
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/textWidgetPopUp.php";
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/imageWidgetPopUp.php";
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/repoCrawlerWidgetPopUp.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/built-in/scrollToTopBtn.php";
     ?>
 
     <!-- PopUps -->
