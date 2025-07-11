@@ -93,6 +93,18 @@ require_once '../../api/login/IsLoggedIn.php';
                                     ThreeSplitLayout
                                 </div>
 
+                                <div id="BigLeftSplitLayout"
+                                    class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                    data-dropbox-type="BigLeftSplitLayout" ondragstart="handleDragStart(event)">
+                                    2/3
+                                </div>
+
+                                <div id="BigRightSplitLayout"
+                                    class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                    data-dropbox-type="BigRightSplitLayout" ondragstart="handleDragStart(event)">
+                                    1/3
+                                </div>
+
                             </div>
                         </div>
                     </div>

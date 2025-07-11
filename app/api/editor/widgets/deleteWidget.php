@@ -31,7 +31,7 @@ $widgetSlot = $data['widgetSlot']; // z. B. 'no2'
 // Sicherheitsprüfung
 $allowedSlots = ['1', '2', '3'];
 $allowedWidgets = ['TextWidget', "ImageWidget", "RepoCrawlerWidget", "FaqWidget"];
-$allowedLayoutTypes = ['TwoSplitLayout', 'ThreeSplitLayout', 'NoSplitLayout'];
+$allowedLayoutTypes = ['TwoSplitLayout', 'ThreeSplitLayout', 'NoSplitLayout', "BigLeftSplitLayout", "BigRightSplitLayout"];
 
 if (!in_array($widgetSlot, $allowedSlots, true)) {
     http_response_code(400);

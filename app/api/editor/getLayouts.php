@@ -75,6 +75,44 @@ function getLayoutsByPageContent($pageContentId)
                 }
                 $stmtDetail->close();
                 break;
+
+            case 'BigLeftSplitLayout':
+                $stmtDetail = $conn->prepare("SELECT No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType FROM BigLeftSplitLayout WHERE ID = ?");
+                $stmtDetail->bind_param("i", $layoutId);
+                $stmtDetail->execute();
+                $resDetail = $stmtDetail->get_result();
+                $detailRow = $resDetail->fetch_assoc();
+                if ($detailRow) {
+                    $data = [
+                        'no1_widget_id' => $detailRow['No1_WidgetID'],
+                        'no1_widget_type' => $detailRow['No1_WidgetType'],
+                        'no2_widget_id' => $detailRow['No2_WidgetID'],
+                        'no2_widget_type' => $detailRow['No2_WidgetType']
+                    ];
+                } else {
+                    $data = [];
+                }
+                $stmtDetail->close();
+                break;
+
+            case 'BigRightSplitLayout':
+                $stmtDetail = $conn->prepare("SELECT No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType FROM BigRightSplitLayout WHERE ID = ?");
+                $stmtDetail->bind_param("i", $layoutId);
+                $stmtDetail->execute();
+                $resDetail = $stmtDetail->get_result();
+                $detailRow = $resDetail->fetch_assoc();
+                if ($detailRow) {
+                    $data = [
+                        'no1_widget_id' => $detailRow['No1_WidgetID'],
+                        'no1_widget_type' => $detailRow['No1_WidgetType'],
+                        'no2_widget_id' => $detailRow['No2_WidgetID'],
+                        'no2_widget_type' => $detailRow['No2_WidgetType']
+                    ];
+                } else {
+                    $data = [];
+                }
+                $stmtDetail->close();
+                break;
         }
 
         $layouts[] = [

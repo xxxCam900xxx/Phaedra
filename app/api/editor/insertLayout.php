@@ -61,11 +61,26 @@ if ($pointingTable === "NoSplitLayout") {
     $stmtDetail = $conn->prepare(
         "INSERT INTO ThreeSplitLayout (ID, No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType, No3_WidgetID, No3_WidgetType) VALUES (?, ?, ?, ?, ?, ?, ?)"
     );
-    $stmtDetail->bind_param("iisisis", $layoutId,
-        $placeholderWidgetId, $placeholderWidgetType,
-        $placeholderWidgetId, $placeholderWidgetType,
-        $placeholderWidgetId, $placeholderWidgetType
+    $stmtDetail->bind_param(
+        "iisisis",
+        $layoutId,
+        $placeholderWidgetId,
+        $placeholderWidgetType,
+        $placeholderWidgetId,
+        $placeholderWidgetType,
+        $placeholderWidgetId,
+        $placeholderWidgetType
     );
+} elseif ($pointingTable === "BigLeftSplitLayout") {
+    $stmtDetail = $conn->prepare(
+        "INSERT INTO BigLeftSplitLayout (ID, No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType) VALUES (?, ?, ?, ?, ?)"
+    );
+    $stmtDetail->bind_param("iisis", $layoutId, $placeholderWidgetId, $placeholderWidgetType, $placeholderWidgetId, $placeholderWidgetType);
+} elseif ($pointingTable === "BigRightSplitLayout") {
+    $stmtDetail = $conn->prepare(
+        "INSERT INTO BigRightSplitLayout (ID, No1_WidgetID, No1_WidgetType, No2_WidgetID, No2_WidgetType) VALUES (?, ?, ?, ?, ?)"
+    );
+    $stmtDetail->bind_param("iisis", $layoutId, $placeholderWidgetId, $placeholderWidgetType, $placeholderWidgetId, $placeholderWidgetType);
 } else {
     http_response_code(400);
     echo json_encode(['error' => 'Invalid type']);

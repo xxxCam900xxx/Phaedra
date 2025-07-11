@@ -37,6 +37,12 @@ switch ($type) {
     case "ThreeSplitLayout":
         executeStatement("DELETE FROM ThreeSplitLayout WHERE ID = ?", [$layoutId], "i")->close();
         break;
+    case "BigLeftSplitLayout":
+        executeStatement("DELETE FROM BigLeftSplitLayout WHERE ID = ?", [$layoutId], "i")->close();
+        break;
+    case "BigRightSplitLayout":
+        executeStatement("DELETE FROM BigRightSplitLayout WHERE ID = ?", [$layoutId], "i")->close();
+        break;
 }
 
 // Haupttabelle löschen

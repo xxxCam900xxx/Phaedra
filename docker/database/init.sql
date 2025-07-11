@@ -85,7 +85,9 @@ CREATE TABLE IF NOT EXISTS `Layout` (
   `Type` ENUM(
     'NoSplitLayout',
     'TwoSplitLayout',
-    'ThreeSplitLayout'
+    'ThreeSplitLayout',
+    'BigRightSplitLayout',
+    'BigLeftSplitLayout'
   ) NULL,
   `Sort` BIGINT NULL,
   PRIMARY KEY (`ID`),
@@ -123,6 +125,28 @@ CREATE TABLE IF NOT EXISTS `ThreeSplitLayout` (
   `No3_WidgetType` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`),
   CONSTRAINT FK_ThreeSplitLayout_Layout FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- BigLeftSplitLayout
+CREATE TABLE IF NOT EXISTS `BigLeftSplitLayout` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `No1_WidgetID` BIGINT NULL,
+  `No1_WidgetType` VARCHAR(80) NULL,
+  `No2_WidgetID` BIGINT NULL,
+  `No2_WidgetType` VARCHAR(80) NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT FK_BigLeftSplit_Layout FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- BigRightSplitLayout
+CREATE TABLE IF NOT EXISTS `BigRightSplitLayout` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `No1_WidgetID` BIGINT NULL,
+  `No1_WidgetType` VARCHAR(80) NULL,
+  `No2_WidgetID` BIGINT NULL,
+  `No2_WidgetType` VARCHAR(80) NULL,
+  PRIMARY KEY (`ID`),
+  CONSTRAINT FK_BigRightSplit_Layout FOREIGN KEY (`ID`) REFERENCES `Layout`(`ID`) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- Widgets
