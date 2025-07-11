@@ -192,6 +192,7 @@ $webConfig = getWebConfig();
     <!-- PopUps -->
     <script src="/assets/js/popups/createImagePopUp.js"></script>
     <script src="/assets/js/popups/createRepoCrawlerPopUp.js"></script>
+    <script src="/assets/js/popups/createTextWidgetPopUp.js"></script>
 
     <!-- Editor Relevant -->
     <script src="/assets/js/editor.js"></script>
