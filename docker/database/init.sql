@@ -148,6 +148,22 @@ CREATE TABLE IF NOT EXISTS `RepoCrawlerWidget` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
+-- Widget
+CREATE TABLE IF NOT EXISTS `FaqWidget` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- Backend Questions
+CREATE TABLE IF NOT EXISTS `Faqs` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `Question` TEXT NULL,
+  `Answer` TEXT NULL,
+  `IsShown` ENUM('true', 'false') NOT NULL DEFAULT 'false',
+  `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 COMMIT;
 
 -- Initial Inserts
@@ -224,3 +240,10 @@ INSERT INTO `WebDesign` (
   '#FFFFFF',        
   '#123456'         
 );
+
+INSERT INTO
+  `Faqs` (`Question`, `Answer`, `IsShown`)
+VALUES
+  ("Test1", "Antowrt1", "true"),
+  ("Test2", "Antowrt2", "false"),
+  ("Test3", "Antowrt3", "true");

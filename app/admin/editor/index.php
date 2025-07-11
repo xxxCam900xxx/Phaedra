@@ -53,6 +53,11 @@ require_once '../../api/login/IsLoggedIn.php';
                                 data-dropbox-type="RepoCrawlerWidget" ondragstart="handleDragStart(event)">
                                 Repository-Crawler
                             </div>
+                            <div id="FaqWidget"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                data-dropbox-type="FaqWidget" ondragstart="handleDragStart(event)">
+                                FAQ
+                            </div>
                         </div>
                     </div>
 

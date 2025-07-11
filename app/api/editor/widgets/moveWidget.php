@@ -37,7 +37,7 @@ $newLayoutType = $input["currentLayoutType"];
 $newLayoutId = (int) $input["currentLayoutId"];
 
 // Sicherheitsprüfung
-$allowedWidgetTypes = ['TextWidget', "ImageWidget", "RepoCrawlerWidget"];
+$allowedWidgetTypes = ['TextWidget', "ImageWidget", "RepoCrawlerWidget", "FaqWidget"];
 if (!in_array($widgetType, $allowedWidgetTypes, true)) {
     http_response_code(400);
     echo json_encode(["success" => false, "message" => "Widget-Typ nicht erlaubt"]);

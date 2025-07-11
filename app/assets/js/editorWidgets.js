@@ -118,6 +118,9 @@ if (allowed) {
             case "RepoCrawlerWidget":
                 openRepoCrawlerWidgetPopup(widgetData, isInserted);
                 break;
+            case "FaqWidget":
+                window.location.reload();
+                break;
             default:
                 alert("Kein Popup definiert für Widget-Typ: " + widgetType);
         }

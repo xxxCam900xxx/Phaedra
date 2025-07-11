@@ -6,7 +6,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/api/config/database.php";
  * Holt Widget-Daten aus der Datenbank
  */
 function getWidgetData(string $widgetType, int $widgetId): ?array {
-    $allowedTypes = ['TextWidget', "ImageWidget", "RepoCrawlerWidget"];
+    $allowedTypes = ['TextWidget', "ImageWidget", "RepoCrawlerWidget", "FaqWidget"];
 
     if (!in_array($widgetType, $allowedTypes, true)) {
         return null;
@@ -76,6 +76,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "ForgejoUsername" => $data["ForgejoUsername"] ?? "",
                 "GithubUsername" => $data["GithubUsername"] ?? ""
             ];
+            break;
+
+        case "FaqWidget":
             break;
 
         default:
