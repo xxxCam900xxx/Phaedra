@@ -7,14 +7,14 @@ $pages = getAllPages();
 ?>
 
 <header class="h-[60px] w-full flex gap-5 pl-[10%] pr-[10%] primary-color">
-    <a href="/" class="logo h-full bg-black w-[60px]">
-        <?php if ($webConfig->WebLogoURL != null) {
-            $logoURL = "";
-            $logoURL = $webConfig->WebLogoURL;
-        ?>
+    <?php if ($webConfig->WebLogoURL != null) {
+        $logoURL = "";
+        $logoURL = $webConfig->WebLogoURL;
+    ?>
+        <a href="/" class="logo h-full bg-black w-[60px]">
             <img class="w-[60px] h-[60px] object-fit" src='<?= $logoURL ?>' alt="">
-        <?php } ?>
-    </a>
+        </a>
+    <?php } ?>
     <nav class="flex gap-2 items-center">
         <?php
 
