@@ -22,9 +22,9 @@ function openRepoCrawlerWidgetPopup(widgetData, isInserted = false) {
     // Save-Button Handler
     document.getElementById("saveRepoWidgetBtn").onclick = function () {
         const widgetContent = {
-            ForgejoURLInput: forgejoURLInput.value,
-            ForgejoUsernameInput: forgejoUsernameInput.value,
-            GithubUsernameInput: githubUsernameInput.value
+            ForgejoURL: forgejoURLInput.value,
+            ForgejoUsername: forgejoUsernameInput.value,
+            GithubUsername: githubUsernameInput.value
         }
 
         saveWidgetData(widgetData, widgetContent);
