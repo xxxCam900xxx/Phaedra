@@ -12,7 +12,7 @@
         $widgetId = $hasWidget ? (int)$data[$widgetIdKey] : '';
         $widgetType = $hasWidget ? htmlspecialchars($data[$widgetTypeKey]) : '';
     ?>
-        <div class="Widget w-full min-h-[100px]" 
+        <div class="Widget w-1/2 min-h-[100px]" 
              data-widget-slot="<?= $i ?>" 
              <?= $hasWidget ? "data-widget-id=\"$widgetId\" data-widget-type=\"$widgetType\"" : "" ?>>
              
