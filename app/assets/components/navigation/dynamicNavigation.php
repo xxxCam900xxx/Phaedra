@@ -6,7 +6,7 @@ $webConfig = getWebConfig();
 $pages = getAllPages();
 ?>
 
-<header class="h-[60px] w-full flex gap-5 pl-[10%] pr-[10%] primary-color" style="background-color: <?= htmlspecialchars($primary) ?>;">
+<header class="h-[60px] w-full flex gap-5 pl-[10%] pr-[10%] primary-color">
     <a href="/" class="logo h-full bg-black w-[60px]">
         <?php if ($webConfig->WebLogoURL != null) {
             $logoURL = "";
