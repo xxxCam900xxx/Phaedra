@@ -1,3 +1,4 @@
 .env
 upload
 cache
+upload_chunks
