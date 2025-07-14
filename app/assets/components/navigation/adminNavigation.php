@@ -10,6 +10,7 @@
         <a href="/admin/settings"><i class="fa-solid fa-gear"></i></a>
         <a href="/admin/folders"><i class="fa-solid fa-folder"></i></a>
         <a href="/admin/faq"><i class="fa-solid fa-pen-nib"></i></a>
+        <a href="/admin/socials"><i class="fa-solid fa-share-nodes"></i></a>
         <a href="/admin/userprofile"><i class="fa-solid fa-circle-user"></i></a>
         <a href="/api/login/logout.php"><i class="fa-solid fa-right-from-bracket"></i></a>
     </div>

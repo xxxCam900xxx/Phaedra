@@ -131,6 +131,9 @@ if (allowed) {
             case "VideoWidget":
                 openVideoWidgetPopUp(widgetData, isInserted);
                 break;
+            case "SocialWidget":
+                window.location.reload();
+                break;
             default:
                 alert("Kein Popup definiert für Widget-Typ: " + widgetType);
         }

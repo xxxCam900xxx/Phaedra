@@ -204,6 +204,22 @@ CREATE TABLE IF NOT EXISTS `VideoWidget` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
+-- Social Widget
+CREATE TABLE IF NOT EXISTS `SocialWidget` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- Backend Social
+CREATE TABLE IF NOT EXISTS `Socials` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `Icon` TEXT NULL,
+  `SocialURL` TEXT NULL,
+  `IsShown` ENUM('true', 'false') NOT NULL DEFAULT 'false',
+  `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 COMMIT;
 
 -- Initial Inserts

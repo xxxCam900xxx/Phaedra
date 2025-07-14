@@ -68,6 +68,11 @@ require_once '../../api/login/IsLoggedIn.php';
                                 data-dropbox-type="VideoWidget" ondragstart="handleDragStart(event)">
                                 Video
                             </div>
+                            <div id="SocialWidget"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                data-dropbox-type="SocialWidget" ondragstart="handleDragStart(event)">
+                                SocialWidget
+                            </div>
                         </div>
                     </div>
 
