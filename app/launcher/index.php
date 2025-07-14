@@ -11,9 +11,9 @@ checkWebLauncherCompleted(true)
     <title>MythosMorph - Launcher</title>
 </head>
 
-<body>
+<body class="bg-black">
 
-    <main class="bg-black flex flex-col gap-5 h-screen text-emerald-300 p-5">
+    <main class="bg-black flex flex-col gap-5 min-h-screen text-emerald-300 p-5">
 
         <!-- Title Launcher -->
         <div class="flex gap-2 items-center text-4xl">

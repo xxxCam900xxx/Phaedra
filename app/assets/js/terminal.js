@@ -5,7 +5,7 @@ const questions = [{
 },
 {
     name: "website_logo",
-    text: "Wenn Sie ein Logo bereits haben, laden Sie es hier hoch, sonst drücken Sie enter um fortzufahren:",
+    text: "Laden Sie ein Logo hoch oder drücken Sie 'Enter'!",
     type: "file"
 },
 {
@@ -15,8 +15,8 @@ const questions = [{
 },
 {
     name: "website_contact",
-    text: "Wie kann man die am besten erreichen? Geben Sie hier einen Link, Username oder Email an:",
-    type: "text"
+    text: "Geben Sie eine Email an!",
+    type: "email"
 },
 {
     name: "website_pwd",
@@ -53,6 +53,11 @@ function appendLine(text) {
     return div;
 }
 
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email.toLowerCase());
+}
+
 function typeLine(text, callback) {
     if (!text) {
         // Nur Präfix ohne Text animieren
@@ -70,7 +75,7 @@ function typeLine(text, callback) {
             clearInterval(interval);
             if (callback) callback();
         }
-    }, 40);
+    }, 20);
 }
 
 
@@ -264,7 +269,7 @@ hiddenInput.addEventListener("input", () => {
     if (!inputTextSpan) return;
 
     const currentQ = questions[currentQuestion];
-    if (currentQ && (currentQ.name === "website_pwd" || currentQ.name === "website_pws_confirm")) {
+    if (currentQ && (currentQ.name === "website_pwd" || currentQ.name === "website_pwd_confirm")) {
         inputTextSpan.textContent = "*".repeat(hiddenInput.value.length);
     } else {
         inputTextSpan.textContent = hiddenInput.value;
@@ -279,11 +284,12 @@ hiddenInput.addEventListener("keydown", (e) => {
 
         const currentQ = questions[currentQuestion];
 
+        // Passwortvalidierung
         if (currentQ.name === "website_pwd") {
             if (!validatePassword(answer)) {
-                appendLine(">> Fehler: Das Passwort muss mindestens 8 Zeichen lang sein und mindestens eine Zahl enthalten.");
+                appendLine(">> ERROR: Passwort zu schwach. Es muss mindestens 8 Zeichen lang sein und eine Zahl enthalten!");
                 hiddenInput.value = "";
-                if (inputTextSpan) inputTextSpan.textContent = "";
+                inputTextSpan.textContent = "";
                 return;
             }
             tempPassword = answer;
@@ -293,11 +299,15 @@ hiddenInput.addEventListener("keydown", (e) => {
             currentQuestion++;
             typeLine();
             askQuestion();
-        } else if (currentQ.name === "website_pws_confirm") {
+            return;
+        }
+
+        // Passwortbestätigung
+        if (currentQ.name === "website_pwd_confirm") {
             if (answer !== tempPassword) {
-                appendLine("Fehler: Die Passwortbestätigung stimmt nicht überein. Bitte erneut eingeben.");
+                appendLine(">> ERROR: Passwörter stimmen nicht überein!");
                 hiddenInput.value = "";
-                if (inputTextSpan) inputTextSpan.textContent = "";
+                inputTextSpan.textContent = "";
                 return;
             }
             answers.push(answer);
@@ -306,24 +316,35 @@ hiddenInput.addEventListener("keydown", (e) => {
             currentQuestion++;
             typeLine();
             askQuestion();
-        } else {
-            answers.push(answer);
-            inputLine.textContent = ">> " + answer;
-            hiddenInput.value = "";
-            currentQuestion++;
-            typeLine();
-            askQuestion();
+            return;
         }
+
+        // E-Mail-Validierung
+        if (currentQ.name === "website_contact") {
+            if (!validateEmail(answer)) {
+                appendLine(">> ERROR: Ungültige E-Mail-Adresse!");
+                hiddenInput.value = "";
+                inputTextSpan.textContent = "";
+                return;
+            }
+        }
+
+        // Standard-Verarbeitung
+        answers.push(answer);
+        inputLine.textContent = ">> " + answer;
+        hiddenInput.value = "";
+        currentQuestion++;
+        typeLine();
+        askQuestion();
     }
 });
 
 typeLine("Willkommen beim MythosMorph Launcher Terminal.", () => {
-    typeLine("Dies hier ist der Startlauncher, sie werden den nur einmalig ausführen müssen,", () => {
-        typeLine("Danach wird die Webseite für Sie völlig eingerichtet sein, sodass Sie einfach und gemütlich starten können.", () => {
-            typeLine("Fangen wir an!", () => {
-                typeLine("", () => {
-                    askQuestion();
-                });
+    typeLine("Dies hier ist der Startlauncher, sie werden den nur einmalig ausführen müssen,", () => { });
+    typeLine("Danach wird die Webseite für Sie völlig eingerichtet sein, sodass Sie einfach und gemütlich starten können.", () => {
+        typeLine("Fangen wir an!", () => {
+            typeLine("", () => {
+                askQuestion();
             });
         });
     });

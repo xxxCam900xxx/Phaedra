@@ -9,7 +9,7 @@ $webConfig = getWebConfig();
     <div>
         <h1 class="text-4xl"><?= htmlspecialchars($webConfig->WebsiteName) ?></h1>
         <h2 class="text-lg font-semibold"><?= htmlspecialchars($webConfig->WebHostName) ?></h2>
-        <p class="text-sm">Kontakt: <?= htmlspecialchars($webConfig->WebContact) ?></p>
+        <p class="text-sm"><?= htmlspecialchars($webConfig->WebContact) ?></p>
     </div>
 
     <!-- Contact Section -->
