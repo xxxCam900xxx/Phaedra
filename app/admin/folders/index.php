@@ -47,8 +47,23 @@ $webConfig = getWebConfig();
                         <tbody>
                             <?php foreach ($images as $image): ?>
                                 <tr class="border-t border-gray-300">
-                                    <td class="p-2"><img draggable="false" src="<?= htmlspecialchars($image['url']) ?>" alt="Image" class="h-12"></td>
-                                    <td class="p-2"><a draggable="false" href="<?= htmlspecialchars($image['url']) ?>"><?= htmlspecialchars($image['url']) ?></a></td>
+                                    <td class="p-2">
+                                        <?php
+                                        $url = htmlspecialchars($image['url']);
+                                        $extension = strtolower(pathinfo($url, PATHINFO_EXTENSION));
+                                        $videoExtensions = ['mp4', 'webm', 'ogg'];
+
+                                        if (in_array($extension, $videoExtensions)):
+                                        ?>
+                                            <video controls class="h-[150px] max-w-xs">
+                                                <source src="<?= $url ?>" type="video/<?= $extension ?>">
+                                                Dein Browser unterstützt das Video-Tag nicht.
+                                            </video>
+                                        <?php else: ?>
+                                            <img draggable="false" src="<?= $url ?>" alt="Image" class="h-[150px]">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="p-2"><a draggable="false" href="<?= $url ?>"><?= $url ?></a></td>
                                     <td class="p-2">
                                         <button
                                             class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 cursor-pointer"

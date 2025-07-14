@@ -76,6 +76,18 @@ if ($allChunksUploaded) {
     fclose($out);
     rmdir($tempDir);
 
+    $path = '/upload/' . basename($finalFilePath);
+
+    require_once $_SERVER["DOCUMENT_ROOT"] . '/api/config/database.php';
+    $conn = getConnection();
+    $stmt = $conn->prepare("INSERT INTO Media (MediaURL) VALUES (?)");
+    $stmt->bind_param("s", $path);
+    if (!$stmt->execute()) {
+        echo json_encode(['success' => false, 'message' => 'Fehler beim Speichern in der Datenbank']);
+        exit;
+    }
+    $stmt->close();
+
     echo json_encode(['success' => true, 'message' => 'Datei erfolgreich hochgeladen', 'path' => '/upload/' . basename($finalFilePath)]);
     exit;
 }
