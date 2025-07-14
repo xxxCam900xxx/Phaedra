@@ -78,6 +78,10 @@ if (allowed) {
                 htmlObjects.forgejoUsernameInput.value = widgetData.ForgejoUsername || "";
                 htmlObjects.githubUsernameInput.value = widgetData.GithubUsername || "";
 
+            case "TextTypingWidget":
+                htmlObjects.rotationTextInput.textContent = widgetData.RotationText || "";
+                htmlObjects.contentInput.textContent = widgetData.Content || "";
+
             default:
                 break;
         }
@@ -120,6 +124,9 @@ if (allowed) {
                 break;
             case "FaqWidget":
                 window.location.reload();
+                break;
+            case "TextTypingWidget":
+                openTextTypingWidgetPopUp(widgetData, isInserted);
                 break;
             default:
                 alert("Kein Popup definiert für Widget-Typ: " + widgetType);

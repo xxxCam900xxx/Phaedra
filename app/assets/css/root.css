@@ -71,3 +71,14 @@
 .rotate-180 {
     transform: rotate(0deg);
 }
+
+.blinking-cursor {
+    transform: translateY(-2.5px);
+    font-weight: bold;
+    color: inherit;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}

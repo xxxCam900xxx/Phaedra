@@ -188,6 +188,14 @@ CREATE TABLE IF NOT EXISTS `Faqs` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
+-- TextTyping Widget
+CREATE TABLE IF NOT EXISTS `TextTypingWidget` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `RotationText` TEXT NULL,
+  `Content` TEXT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 COMMIT;
 
 -- Initial Inserts

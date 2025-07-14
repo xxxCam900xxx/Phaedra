@@ -14,7 +14,7 @@ $widgetType = $input['widgetType'];
 $widgetContent = $input['widgetContent'];
 
 // Sicherheit: erlaubte Tabellen prüfen
-$allowedTypes = ['TextWidget', 'ImageWidget', "RepoCrawlerWidget"];
+$allowedTypes = ['TextWidget', 'ImageWidget', "RepoCrawlerWidget", "TextTypingWidget"];
 if (!in_array($widgetType, $allowedTypes, true)) {
     echo json_encode(['success' => false, 'message' => 'Ungültiger Widget-Typ']);
     exit;
@@ -41,6 +41,13 @@ switch ($widgetType) {
     case 'RepoCrawlerWidget':
         $stmt = $conn->prepare("UPDATE RepoCrawlerWidget SET ForgejoURL = ?, ForgejoUsername = ?, GithubUsername = ? WHERE ID = ?");
         $stmt->bind_param('sssi', $widgetContent['ForgejoURL'], $widgetContent['ForgejoUsername'], $widgetContent['GithubUsername'], $widgetId);
+        $stmt->execute();
+        $stmt->close();
+        echo json_encode(['success' => true]);
+        break;
+    case 'TextTypingWidget':
+        $stmt = $conn->prepare("UPDATE TextTypingWidget SET RotationText = ?, Content = ? WHERE ID = ?");
+        $stmt->bind_param('ssi', $widgetContent['RotationText'], $widgetContent['Content'], $widgetId);
         $stmt->execute();
         $stmt->close();
         echo json_encode(['success' => true]);

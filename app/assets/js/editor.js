@@ -135,7 +135,7 @@ if (allowed) {
 
         console.log(widgetType, layoutId, layoutType, slot)
 
-        const allowedWidgets = ["TextWidget", "ImageWidget", "RepoCrawlerWidget", "FaqWidget"];
+        const allowedWidgets = ["TextWidget", "ImageWidget", "RepoCrawlerWidget", "FaqWidget", "TextTypingWidget"];
 
         if (allowedWidgets.includes(widgetType)) {
           insertWidget(layoutId, slot, widgetType, layoutType);
