@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS `WebConfig` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
--- Image Folder
-CREATE TABLE IF NOT EXISTS `Images` (
+-- Media Folder
+CREATE TABLE IF NOT EXISTS `Media` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
-  `ImageURL` TEXT NOT NULL,
+  `MediaURL` TEXT NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
@@ -193,6 +193,14 @@ CREATE TABLE IF NOT EXISTS `TextTypingWidget` (
   `ID` BIGINT NOT NULL AUTO_INCREMENT,
   `RotationText` TEXT NULL,
   `Content` TEXT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- Video Widget
+CREATE TABLE IF NOT EXISTS `VideoWidget` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `VideoURL` TEXT NULL,
+  `VideoDesc` TEXT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 

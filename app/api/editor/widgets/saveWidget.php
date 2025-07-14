@@ -14,7 +14,7 @@ $widgetType = $input['widgetType'];
 $widgetContent = $input['widgetContent'];
 
 // Sicherheit: erlaubte Tabellen prüfen
-$allowedTypes = ['TextWidget', 'ImageWidget', "RepoCrawlerWidget", "TextTypingWidget"];
+$allowedTypes = ['TextWidget', 'ImageWidget', "RepoCrawlerWidget", "TextTypingWidget", "VideoWidget"];
 if (!in_array($widgetType, $allowedTypes, true)) {
     echo json_encode(['success' => false, 'message' => 'Ungültiger Widget-Typ']);
     exit;
@@ -48,6 +48,13 @@ switch ($widgetType) {
     case 'TextTypingWidget':
         $stmt = $conn->prepare("UPDATE TextTypingWidget SET RotationText = ?, Content = ? WHERE ID = ?");
         $stmt->bind_param('ssi', $widgetContent['RotationText'], $widgetContent['Content'], $widgetId);
+        $stmt->execute();
+        $stmt->close();
+        echo json_encode(['success' => true]);
+        break;
+    case 'VideoWidget':
+        $stmt = $conn->prepare("UPDATE VideoWidget SET VideoURL = ?, VideoDesc = ? WHERE ID = ?");
+        $stmt->bind_param('ssi', $widgetContent['VideoURL'], $widgetContent['VideoDesc'], $widgetId);
         $stmt->execute();
         $stmt->close();
         echo json_encode(['success' => true]);

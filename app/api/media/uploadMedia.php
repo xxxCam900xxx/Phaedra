@@ -3,12 +3,12 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/api/config/database.php'; // Pfad anp
 
 header('Content-Type: application/json');
 
-if (!isset($_FILES['image'])) {
+if (!isset($_FILES['media'])) {
     echo json_encode(['success' => false, 'message' => 'Keine Datei hochgeladen']);
     exit;
 }
 
-$file = $_FILES['image'];
+$file = $_FILES['media'];
 
 // Upload-Ordner im Root-Verzeichnis deiner Webseite
 $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
@@ -22,14 +22,12 @@ $filename = basename($file['name']);
 $safeFilename = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '', $filename);
 
 $targetFile = $uploadDir . $safeFilename;
-
-// Webzugänglicher Pfad (für ImageURL in DB)
 $relativePath = '/upload/' . $safeFilename;
 
 if (move_uploaded_file($file['tmp_name'], $targetFile)) {
     $conn = getConnection();
 
-    $stmt = $conn->prepare("INSERT INTO Images (ImageURL) VALUES (?)");
+    $stmt = $conn->prepare("INSERT INTO Media (MediaURL) VALUES (?)");
     $stmt->bind_param("s", $relativePath);
     if (!$stmt->execute()) {
         echo json_encode(['success' => false, 'message' => 'Fehler beim Speichern in der Datenbank']);

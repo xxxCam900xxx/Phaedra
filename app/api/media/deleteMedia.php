@@ -21,7 +21,7 @@ $imageId = (int)$data['id'];
 $conn = getConnection();
 
 // Bildpfad aus DB holen
-$stmt = $conn->prepare("SELECT ImageURL FROM Images WHERE ID = ?");
+$stmt = $conn->prepare("SELECT MediaURL FROM Media WHERE ID = ?");
 $stmt->bind_param("i", $imageId);
 $stmt->execute();
 $stmt->bind_result($imagePath);
@@ -39,7 +39,7 @@ if (file_exists($fullPath)) {
 }
 
 // DB-Eintrag löschen
-$stmt = $conn->prepare("DELETE FROM Images WHERE ID = ?");
+$stmt = $conn->prepare("DELETE FROM Media WHERE ID = ?");
 $stmt->bind_param("i", $imageId);
 $stmt->execute();
 $stmt->close();

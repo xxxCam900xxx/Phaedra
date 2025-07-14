@@ -8,7 +8,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/api/config/database.php";
 function getAllImages(): array
 {
     $images = [];
-    $stmt = executeStatement("SELECT ID, ImageURL FROM Images");
+    $stmt = executeStatement("SELECT ID, MediaURL FROM Media");
 
     $stmt->bind_result($id, $imageURL);
 

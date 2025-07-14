@@ -46,7 +46,7 @@ if (
             $logoPath = '/upload/' . $uniqueName; // relativer Pfad für DB
 
             // Bild-Pfad in Images-Tabelle speichern
-            $queryImage = "INSERT INTO Images (ImageURL) VALUES (?)";
+            $queryImage = "INSERT INTO Media (MediaURL) VALUES (?)";
             $paramsImage = [$logoPath];
             $typesImage = "s";
             $resultImage = executeStatement($queryImage, $paramsImage, $typesImage);

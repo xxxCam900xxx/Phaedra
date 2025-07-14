@@ -128,6 +128,9 @@ if (allowed) {
             case "TextTypingWidget":
                 openTextTypingWidgetPopUp(widgetData, isInserted);
                 break;
+            case "VideoWidget":
+                openVideoWidgetPopUp(widgetData, isInserted);
+                break;
             default:
                 alert("Kein Popup definiert für Widget-Typ: " + widgetType);
         }

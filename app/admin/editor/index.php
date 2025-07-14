@@ -63,6 +63,11 @@ require_once '../../api/login/IsLoggedIn.php';
                                 data-dropbox-type="TextTypingWidget" ondragstart="handleDragStart(event)">
                                 Getippter Text
                             </div>
+                            <div id="VideoWidget"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                data-dropbox-type="VideoWidget" ondragstart="handleDragStart(event)">
+                                Video
+                            </div>
                         </div>
                     </div>
 

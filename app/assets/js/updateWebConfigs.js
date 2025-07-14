@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const formData = new FormData();
-        formData.append('image', file);
+        formData.append('media', file);
 
         try {
             const res = await fetch('/api/media/uploadMedia.php', {
