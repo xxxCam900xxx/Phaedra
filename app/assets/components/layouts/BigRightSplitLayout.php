@@ -1,6 +1,6 @@
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/api/editor/widgets/getWidget.php"; ?>
 
-<div class="Layout w-full min-h-[100px] flex gap-5"
+<div class="Layout w-full flex gap-5"
     data-layout-id="<?= htmlspecialchars($layoutID) ?>"
     data-layout-type="<?= htmlspecialchars($type) ?>">
 
@@ -20,7 +20,7 @@
             $widthClass = $i === 1 ? 'w-1/3' : 'w-2/3';
         }
     ?>
-        <div class="Widget <?= $widthClass ?> min-h-[100px]"
+        <div class="Widget <?= $widthClass ?> <?php if (!$hasWidget) echo "min-h-[100px]"; ?>"
             data-widget-slot="<?= $i ?>"
             <?= $hasWidget ? "data-widget-id=\"$widgetId\" data-widget-type=\"$widgetType\"" : "" ?>>
 
