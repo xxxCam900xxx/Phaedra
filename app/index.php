@@ -2,6 +2,7 @@
 require_once "./api/launcher/isSetupCompleted.php";
 checkWebLauncherCompleted();
 require_once "./api/editor/getLayouts.php";
+session_start();
 
 /* PathURL */
 $Request_URI = substr($_SERVER["REQUEST_URI"], 1);

@@ -37,12 +37,12 @@ $webConfig = getWebConfig();
                         <div class="w-full bg-sky-100 flex flex-col rounded-xl overflow-hidden">
                             <label class="w-full bg-sky-700 text-white p-3 text-2xl" for="webHostName">Webseiten Hostname</label>
                             <div class="p-5">
-                                <input class="p-2 w-full bg-white" type="text" name="webHostName" placeholder="Max Mustermann" value="<?= htmlspecialchars($webConfig->WebHostName) ?>">
+                                <input class="p-2 w-full bg-white" type="email" name="webHostName" placeholder="example@sample.com" value="<?= htmlspecialchars($webConfig->WebHostName) ?>">
                             </div>
                         </div>
 
                         <div class="w-full bg-sky-100 flex flex-col rounded-xl overflow-hidden">
-                            <label class="w-full bg-sky-700 text-white p-3 text-2xl" for="webContact">Webseiten Kontakt (Link, Email, Username)</label>
+                            <label class="w-full bg-sky-700 text-white p-3 text-2xl" for="webContact">Webseiten Email</label>
                             <div class="p-5">
                                 <input class="p-2 w-full bg-white" type="text" name="webContact" placeholder="support@email.com" value="<?= htmlspecialchars($webConfig->WebContact) ?>">
                             </div>

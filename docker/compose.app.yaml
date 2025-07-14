@@ -1,4 +1,4 @@
 name: MythosMorph
 include:
-  - ./compose.php.yaml
   - ./compose.database.yaml
+  - ./compose.php.yaml

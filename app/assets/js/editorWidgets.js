@@ -134,6 +134,9 @@ if (allowed) {
             case "SocialWidget":
                 window.location.reload();
                 break;
+            case "ContactFormWidget":
+                window.location.reload();
+                break;
             default:
                 alert("Kein Popup definiert für Widget-Typ: " + widgetType);
         }

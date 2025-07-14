@@ -220,6 +220,12 @@ CREATE TABLE IF NOT EXISTS `Socials` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
+-- ContactForm Widget
+CREATE TABLE IF NOT EXISTS `ContactFormWidget` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 COMMIT;
 
 -- Initial Inserts
@@ -269,33 +275,36 @@ VALUES
   (1);
 
 -- Standardwerte für Webseite
-INSERT INTO `WebDesign` (
-  `Primary_Color`,
-  `Secondary_Color`,
-  `Background_Color`,
-  `Footer_Color`,
-  `Heading1_Size`,
-  `Heading2_Size`,
-  `Paragraph_Size`,
-  `Heading1_Weight`,
-  `Heading2_Weight`,
-  `Paragraph_Weight`,
-  `Link_Color`,
-  `LinkHover_Color`
-) VALUES (
-  '#616161',        
-  '#969696',        
-  '#FFFFFF',        
-  '#2E2E2E',        
-  '36',             
-  '28',             
-  '18',             
-  '700',            
-  '600',            
-  '400',            
-  '#FFFFFF',        
-  '#123456'         
-);
+INSERT INTO
+  `WebDesign` (
+    `Primary_Color`,
+    `Secondary_Color`,
+    `Background_Color`,
+    `Footer_Color`,
+    `Heading1_Size`,
+    `Heading2_Size`,
+    `Paragraph_Size`,
+    `Heading1_Weight`,
+    `Heading2_Weight`,
+    `Paragraph_Weight`,
+    `Link_Color`,
+    `LinkHover_Color`
+  )
+VALUES
+  (
+    '#616161',
+    '#969696',
+    '#FFFFFF',
+    '#2E2E2E',
+    '36',
+    '28',
+    '18',
+    '700',
+    '600',
+    '400',
+    '#FFFFFF',
+    '#123456'
+  );
 
 INSERT INTO
   `Faqs` (`Question`, `Answer`, `IsShown`)

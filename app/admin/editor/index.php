@@ -73,6 +73,11 @@ require_once '../../api/login/IsLoggedIn.php';
                                 data-dropbox-type="SocialWidget" ondragstart="handleDragStart(event)">
                                 SocialWidget
                             </div>
+                            <div id="ContactFormWidget"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                data-dropbox-type="ContactFormWidget" ondragstart="handleDragStart(event)">
+                                Kontaktformular
+                            </div>
                         </div>
                     </div>
 

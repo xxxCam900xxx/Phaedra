@@ -7,7 +7,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/api/config/database.php";
  */
 function getWidgetData(string $widgetType, int $widgetId): ?array
 {
-    $allowedTypes = ['TextWidget', "ImageWidget", "RepoCrawlerWidget", "FaqWidget", "TextTypingWidget", "VideoWidget", "SocialWidget"];
+    $allowedTypes = ['TextWidget', "ImageWidget", "RepoCrawlerWidget", "FaqWidget", "TextTypingWidget", "VideoWidget", "SocialWidget", "ContactFormWidget"];
 
     if (!in_array($widgetType, $allowedTypes, true)) {
         return null;
@@ -97,6 +97,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             break;
 
         case "SocialWidget":
+            break;
+
+        case "ContactFormWidget":
             break;
 
         default:

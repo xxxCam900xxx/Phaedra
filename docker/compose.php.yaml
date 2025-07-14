@@ -10,3 +10,11 @@ services:
       - type: bind
         source: ../app
         target: /var/www/html
+    depends_on:
+      - mailhog
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"   # SMTP Port
+      - "8025:8025"   # Web UI
