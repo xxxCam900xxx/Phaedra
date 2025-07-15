@@ -13,7 +13,7 @@ function deleteTimeLine(button) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            TimeLineId: button.dataset.id
+            timeLineId: button.dataset.id
         })
     })
         .then(res => res.json())
