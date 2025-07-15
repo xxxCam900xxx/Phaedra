@@ -207,14 +207,37 @@ require_once '../../api/login/IsLoggedIn.php';
 
                                 <!-- Linkfarbe -->
                                 <div class="flex items-center gap-3">
-                                    <label class="w-40">Linkfarbe</label>
-                                    <input type="color" name="Link_Color" value="#2563EB" data-style-target="a" data-style-prop="color" />
+                                    <label class="w-40">Link - Textfarbe</label>
+                                    <input type="color" name="Link_Color" value="#ffffffff" data-style-target="a" data-style-prop="color" />
                                 </div>
 
                                 <!-- Link Hoverfarbe -->
                                 <div class="flex items-center gap-3">
-                                    <label class="w-40">Link Hover</label>
-                                    <input type="color" name="LinkHover_Color" value="#1E40AF" data-hover-color />
+                                    <label class="w-40">Link - Hover Textfarbe</label>
+                                    <input type="color" name="LinkHover_Color" value="#ffffffff" data-hover-color />
+                                </div>
+
+                                <!-- Link-Button Textfarbe -->
+                                 <div class="flex items-center gap-3">
+                                    <label class="w-40">Link Button - Textfarbe</label>
+                                    <input type="color" name="LinkBtn_TextColor" value="#ffffffff" data-style-target=".button" data-style-prop="color" />
+                                </div>
+                                <!-- Link-Button Hintergrundfarbe -->
+                                 <div class="flex items-center gap-3">
+                                    <label class="w-40">Link Button - Hintergrundfarbe</label>
+                                    <input type="color" name="LinkBtn_Color" value="#ffffffff" data-style-target=".button" data-style-prop="background-color" />
+                                </div>
+                                <!-- Link-Button Hover Hintergrundfarbe -->
+                                 <div class="flex items-center gap-3">
+                                    <label class="w-40">Link Button - Hover Hintergrundfarbe</label>
+                                    <input type="color" name="LinkHoverBtn_Color" value="#ffffffff" data-btn-hover-color />
+                                </div>
+
+                                <!-- Section Abstand -->
+                                <div class="flex items-center gap-3">
+                                    <label class="w-40">Sektionen - Abstände</label>
+                                    <input type="range" name="Section_Gap" min="2" max="10" value="5" data-section-gab />
+                                    <span class="font-mono" id="Section_GapLabel">5px</span>
                                 </div>
 
                                 <button id="saveEditorStyles" class="bg-emerald-500 hover:bg-emerald-600 text-white py-2 px-4 rounded mt-5 w-fit">Speichern</button>

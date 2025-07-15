@@ -9,7 +9,7 @@ $socials = getSocials(true);
     <?php foreach ($socials as $index => $social): ?>
         <a 
         href="<?= $social['socialURL'] ?>"
-        class="flex items-center justify-center text-4xl secondary-color w-[50px] aspect-square rounded-xl"
+        class="button flex items-center justify-center text-4xl w-[50px] aspect-square rounded-xl"
         >
         <i class="<?= $social['icon'] ?>"></i>
     </a>

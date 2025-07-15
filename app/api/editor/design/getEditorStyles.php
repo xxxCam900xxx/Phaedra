@@ -22,7 +22,11 @@ function getWebDesign(): ?array
         $heading2Weight,
         $paragraphWeight,
         $linkColor,
-        $linkHoverColor
+        $linkHoverColor,
+        $linkBtn_TextColor,
+        $linkBtn_Color,
+        $linkHoverBtn_Color,
+        $section_Gap,
     );
 
     if ($stmt->fetch()) {
@@ -40,7 +44,11 @@ function getWebDesign(): ?array
                 'Heading2_Weight'    => $heading2Weight,
                 'Paragraph_Weight'   => $paragraphWeight,
                 'Link_Color'         => $linkColor,
-                'LinkHover_Color'    => $linkHoverColor
+                'LinkHover_Color'    => $linkHoverColor,
+                'LinkBtn_TextColor'  => $linkBtn_TextColor,
+                'LinkBtn_Color'      => $linkBtn_Color,
+                'LinkHoverBtn_Color' => $linkHoverBtn_Color,
+                'Section_Gap'        => $section_Gap,
             ]
         ];
     }

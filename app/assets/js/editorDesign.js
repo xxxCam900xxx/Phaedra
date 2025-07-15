@@ -65,6 +65,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (input.hasAttribute("data-hover-color") && iframeDoc) {
                 hoverStyle.textContent = `a:hover { color: ${input.value}; }`;
             }
+            // Hover-Button-Farbe live anwenden
+            if (input.hasAttribute("data-btn-hover-color") && iframeDoc) {
+                hoverStyle.textContent = `a.button:hover { background-color: ${input.value}; }`;
+            }
+            if (input.hasAttribute("data-section-gab") && iframeDoc) {
+                hoverStyle.textContent = `main.sectionGab { gap: ${input.value} !important; }`;
+            }
         });
     });
 

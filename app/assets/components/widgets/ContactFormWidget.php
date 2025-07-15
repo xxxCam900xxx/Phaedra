@@ -32,7 +32,7 @@
         </div>
 
         <button type="submit"
-            class="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            class="w-full button cursor-pointer text-white font-semibold py-2 rounded focus:outline-none focus:ring-2">
             Absenden
         </button>
     </form>

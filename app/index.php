@@ -97,12 +97,35 @@ $webConfig = getWebConfig();
 
             --link-color: <?= htmlspecialchars($data['Link_Color'] ?? '#1D4ED8') ?>;
             --link-hover-color: <?= htmlspecialchars($data['LinkHover_Color'] ?? '#93C5FD') ?>;
+
+            --link-btn-color: <?= htmlspecialchars($data['LinkBtn_TextColor'] ?? '#000000ff') ?>;
+            --link-btn-background-color: <?= htmlspecialchars($data['LinkBtn_Color'] ?? '#cacacaff') ?>;
+            --link-btn-background-hover-color: <?= htmlspecialchars($data['LinkHoverBtn_Color'] ?? '#8e8e8eff') ?>;
+
+            --main-gap: <?= htmlspecialchars($data['Section_Gap'] ?? '5px') ?>;
+        }
+
+        * {
+            transition: all each 0.3s;
         }
 
         body {
             background-color: var(--background-color);
             font-size: var(--p-size);
             font-weight: var(--p-weight);
+        }
+
+        main {
+            gap: var(--main-gap);
+        }
+
+        .button {
+            color: var(--link-btn-color);
+            background-color: var(--link-btn-background-color);
+        }
+
+        .button:hover {
+            background-color: var(--link-btn-background-hover-color);
         }
 
         h1 {
@@ -147,7 +170,7 @@ $webConfig = getWebConfig();
     <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/dynamicNavigation.php" ?>
 
     <!-- Dynamic Content -->
-    <main class="flex flex-col flex-1 gap-5 p-[10%] pt-5 pb-5">
+    <main class="sectionGab flex flex-col flex-1 gap-5 p-[10%] pt-5 pb-5">
         <!-- Dynamic Layout Creation -->
         <section class="flex flex-col gap-10" id="dynamicContent">
 

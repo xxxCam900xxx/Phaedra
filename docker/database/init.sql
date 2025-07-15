@@ -54,6 +54,10 @@ CREATE TABLE IF NOT EXISTS `WebDesign` (
   `Paragraph_Weight` VARCHAR(80) NULL,
   `Link_Color` VARCHAR(80) NULL,
   `LinkHover_Color` VARCHAR(80) NULL,
+  `LinkBtn_TextColor` VARCHAR(80) NULL,
+  `LinkBtn_Color` VARCHAR(80) NULL,
+  `LinkHoverBtn_Color` VARCHAR(80) NULL,
+  `Section_Gap` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
