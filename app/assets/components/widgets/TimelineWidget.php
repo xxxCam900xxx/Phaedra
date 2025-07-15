@@ -8,7 +8,7 @@ $timeLines = getTimeLines();
     <div class="absolute left-4 top-0 bottom-0 border-l-2 border-gray-300"></div>
 
     <?php foreach ($timeLines as $timeLine): ?>
-        <div class="mb-10 pl-12 relative">
+        <div class="mb-5 mt-5 pl-12 relative">
             <!-- Punkt -->
             <div class="absolute left-1.5 top-3 w-5 h-5 primary-color rounded-full border-2 border-white shadow"></div>
             
