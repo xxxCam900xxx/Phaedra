@@ -137,6 +137,9 @@ if (allowed) {
             case "ContactFormWidget":
                 window.location.reload();
                 break;
+            case "TimelineWidget":
+                openTimelineWidgetPopUp(widgetData, isInserted);
+                break;
             default:
                 alert("Kein Popup definiert für Widget-Typ: " + widgetType);
         }

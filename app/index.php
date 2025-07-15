@@ -218,6 +218,7 @@ $webConfig = getWebConfig();
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/repoCrawlerWidgetPopUp.php";
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/textTypingWidgetPopUp.php";
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/videoWidgetPopUp.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/popups/timeLineWidgetPopUp.php";
     require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/built-in/scrollToTopBtn.php";
     ?>
 
@@ -227,6 +228,7 @@ $webConfig = getWebConfig();
     <script src="/assets/js/popups/createTextWidgetPopUp.js"></script>
     <script src="/assets/js/popups/createTextTypingWidgetPopUp.js"></script>
     <script src="/assets/js/popups/createVideoWidgetPopUp.js"></script>
+    <script src="/assets/js/popups/createTimeLinePopUp.js"></script>
 
     <!-- Editor Relevant -->
     <script src="/assets/js/editor.js"></script>

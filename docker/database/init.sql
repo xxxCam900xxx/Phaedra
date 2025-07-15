@@ -230,6 +230,25 @@ CREATE TABLE IF NOT EXISTS `ContactFormWidget` (
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
+-- Timeline 
+CREATE TABLE IF NOT EXISTS `Timeline` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `Date` VARCHAR(80) NULL,
+  `Title` VARCHAR(80) NULL,
+  `Description` TEXT NULL,
+  `Link` TEXT NULL,
+  `Created_At` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- Timeline Widget
+CREATE TABLE IF NOT EXISTS `TimelineWidget` (
+  `ID` BIGINT NOT NULL AUTO_INCREMENT,
+  `FromDate` VARCHAR(80) NULL,
+  `ToDate` VARCHAR(80) NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 COMMIT;
 
 -- Initial Inserts

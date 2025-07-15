@@ -78,6 +78,11 @@ require_once '../../api/login/IsLoggedIn.php';
                                 data-dropbox-type="ContactFormWidget" ondragstart="handleDragStart(event)">
                                 Kontaktformular
                             </div>
+                            <div id="TimelineWidget"
+                                class="cursor-grab bg-sky-500 p-3 rounded-md hover:bg-sky-300" draggable="true"
+                                data-dropbox-type="TimelineWidget" ondragstart="handleDragStart(event)">
+                                Timeline
+                            </div>
                         </div>
                     </div>
 
@@ -236,7 +241,7 @@ require_once '../../api/login/IsLoggedIn.php';
                                 <!-- Section Abstand -->
                                 <div class="flex items-center gap-3">
                                     <label class="w-40">Sektionen - Abstände</label>
-                                    <input type="range" name="Section_Gap" min="2" max="10" value="5" data-section-gab />
+                                    <input type="range" name="Section_Gap" min="0" max="100" value="5" data-section-gab />
                                     <span class="font-mono" id="Section_GapLabel">5px</span>
                                 </div>
 
