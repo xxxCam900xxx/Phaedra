@@ -102,7 +102,7 @@ $webConfig = getWebConfig();
             --link-btn-background-color: <?= htmlspecialchars($data['LinkBtn_Color'] ?? '#cacacaff') ?>;
             --link-btn-background-hover-color: <?= htmlspecialchars($data['LinkHoverBtn_Color'] ?? '#8e8e8eff') ?>;
 
-            --main-gap: <?= htmlspecialchars($data['Section_Gap'] ?? '5px') ?>;
+            --main-gap: <?= htmlspecialchars($data['Section_Gap'] . "px" ?? '5px') ?>;
         }
 
         * {
@@ -115,8 +115,8 @@ $webConfig = getWebConfig();
             font-weight: var(--p-weight);
         }
 
-        main {
-            gap: var(--main-gap);
+        #dynamicContent {
+            gap: var(--main-gap) !important;
         }
 
         .button {
@@ -170,7 +170,7 @@ $webConfig = getWebConfig();
     <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/dynamicNavigation.php" ?>
 
     <!-- Dynamic Content -->
-    <main class="sectionGab flex flex-col flex-1 gap-5 p-[10%] pt-5 pb-5">
+    <main class="flex flex-col flex-1 gap-5 p-[10%] pt-5 pb-5">
         <!-- Dynamic Layout Creation -->
         <section class="flex flex-col gap-10" id="dynamicContent">
 

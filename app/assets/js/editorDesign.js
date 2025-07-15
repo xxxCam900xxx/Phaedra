@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 hoverStyle.textContent = `a.button:hover { background-color: ${input.value}; }`;
             }
             if (input.hasAttribute("data-section-gab") && iframeDoc) {
-                hoverStyle.textContent = `main.sectionGab { gap: ${input.value} !important; }`;
+                hoverStyle.textContent = `#dynamicContent { gap: ${input.value}px !important; }`;
             }
         });
     });
