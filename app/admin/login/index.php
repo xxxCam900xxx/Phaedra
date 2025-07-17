@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <?php require("../../configs/head.php"); ?>
-    <title>MythosMorph - Login</title>
+    <title>Phaedra - Login</title>
 </head>
 
 <body>
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="w-4/7 h-screen flex flex-col gap-10 items-center justify-center">
 
             <div class="flex flex-col items-center">
-                <h1 class="text-6xl font-semibold">MythosMorph</h1>
+                <h1 class="text-6xl font-semibold">Phaedra</h1>
                 <h2 class="text-3xl">Melden Sie sich ganz gemütlich an</h2>
             </div>
 

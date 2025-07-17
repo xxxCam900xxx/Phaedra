@@ -11,7 +11,7 @@ $faqs = getFaqs();
 
 <head>
     <?php require $_SERVER["DOCUMENT_ROOT"] . "/configs/head.php"; ?>
-    <title>MythosMorph - FAQ Bereich</title>
+    <title>Phaedra - FAQ Bereich</title>
 </head>
 
 <body>

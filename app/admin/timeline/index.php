@@ -11,7 +11,7 @@ $timeLines = getTimeLines();
 
 <head>
     <?php require $_SERVER["DOCUMENT_ROOT"] . "/configs/head.php"; ?>
-    <title>MythosMorph - TimeLine Bereich</title>
+    <title>Phaedra - TimeLine Bereich</title>
 </head>
 
 <body>

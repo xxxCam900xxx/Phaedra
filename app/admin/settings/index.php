@@ -10,7 +10,7 @@ $webConfig = getWebConfig();
 
 <head>
     <?php require("../../configs/head.php"); ?>
-    <title>MythosMorph - Settings</title>
+    <title>Phaedra - Settings</title>
 </head>
 
 <body>

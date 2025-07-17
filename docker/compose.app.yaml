@@ -1,4 +1,4 @@
-name: MythosMorph
+name: Phaedra
 include:
   - ./compose.database.yaml
   - ./compose.php.yaml

@@ -9,7 +9,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/api/login/IsLoggedIn.php';
 
 <head>
     <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/configs/head.php"; ?>
-    <title>MythosMorph - Benutzerprofil</title>
+    <title>Phaedra - Benutzerprofil</title>
 </head>
 
 <body>

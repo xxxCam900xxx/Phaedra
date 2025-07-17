@@ -1,10 +1,10 @@
-![MythosMorph Banner](/concept/media/MythosMorph%20Banner.png)
+![Phaedra Banner](/concept/media/Phaedra_Banner.png)
 
-# MythosMorph
-MythosMorph ist ein Webseiten Portfolio. Es soll eine Modulare Webseite sein. Es soll ein selbst erstellter Webseiten Editor werden.
+# Phaedra
+Phaedra ist ein Webseiten Portfolio. Es soll eine Modulare Webseite sein. Es soll ein selbst erstellter Webseiten Editor werden.
 
 ## Inhaltsverzeichnis
-- [MythosMorph](#mythosmorph)
+- [Phaedra](#phaedra)
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Installation](#installation)
   - [Konzept](#konzept)

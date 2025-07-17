@@ -6,9 +6,9 @@ Füge im Ordner `docker` eine Datei namens `.env` hinzu welche folgende Umgebung
 ```
 DB_HOST=Database
 DB_USER=root
-DB_PASS=MythosMorph
+DB_PASS=Phaedra
 DB_NAME=database_mythosmorph
-ENCRYPTION_KEY=MythosMorph
+ENCRYPTION_KEY=Phaedra
 ENCRYPTION_IV=1234567890123456
 ```
 

@@ -339,7 +339,7 @@ hiddenInput.addEventListener("keydown", (e) => {
     }
 });
 
-typeLine("Willkommen beim MythosMorph Launcher Terminal.", () => {
+typeLine("Willkommen beim Phaedra Launcher Terminal.", () => {
     typeLine("Dies hier ist der Startlauncher, sie werden den nur einmalig ausführen müssen,", () => { });
     typeLine("Danach wird die Webseite für Sie völlig eingerichtet sein, sodass Sie einfach und gemütlich starten können.", () => {
         typeLine("Fangen wir an!", () => {

@@ -1,8 +1,8 @@
-# MythosMorph Site Editor Konzept
+# Phaedra Site Editor Konzept
 In diesem Projekt wird ein einfach anwendbarer aber auch komplexer Site Editor gebaut werden, welche neue Seiten erstellen & bearbeiten kann sowie die Inhalte davon jederzeit Live überarbeiten kann. Es soll dynamisch und Modular sein.
 
 ## Inhaltsverzeichnis
-- [MythosMorph Site Editor Konzept](#mythosmorph-site-editor-konzept)
+- [Phaedra Site Editor Konzept](#Phaedra-site-editor-konzept)
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Ziele](#ziele)
   - [Technologie](#technologie)

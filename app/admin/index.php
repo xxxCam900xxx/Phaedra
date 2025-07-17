@@ -9,7 +9,7 @@ require_once '../api/login/IsLoggedIn.php';
 
 <head>
     <?php require("../configs/head.php"); ?>
-    <title>MythosMorph - Adminberreich</title>
+    <title>Phaedra - Adminberreich</title>
 </head>
 
 <body>

@@ -8,7 +8,7 @@ checkWebLauncherCompleted(true)
 
 <head>
     <?php require("../configs/head.php"); ?>
-    <title>MythosMorph - Launcher</title>
+    <title>Phaedra - Launcher</title>
 </head>
 
 <body class="bg-black">
@@ -18,7 +18,7 @@ checkWebLauncherCompleted(true)
         <!-- Title Launcher -->
         <div class="flex gap-2 items-center text-4xl">
             <i class="fa-solid fa-cloud"></i>
-            <h1>MythosMorph</h1>
+            <h1>Phaedra</h1>
         </div>
 
         <!-- Terminal / Form -->

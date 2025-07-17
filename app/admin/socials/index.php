@@ -11,7 +11,7 @@ $socials = getSocials();
 
 <head>
     <?php require $_SERVER["DOCUMENT_ROOT"] . "/configs/head.php"; ?>
-    <title>MythosMorph - Socials Bereich</title>
+    <title>Phaedra - Socials Bereich</title>
 </head>
 
 <body>

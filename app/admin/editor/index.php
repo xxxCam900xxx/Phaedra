@@ -9,7 +9,7 @@ require_once '../../api/login/IsLoggedIn.php';
 
 <head>
     <?php require("../../configs/head.php"); ?>
-    <title>MythosMorph - Editor</title>
+    <title>Phaedra - Editor</title>
     <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
