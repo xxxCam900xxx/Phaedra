@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="post" action="" class="space-y-4 w-full max-w-lg mx-auto">
                 <!-- Benutzerfeld -->
                 <div class="flex items-center border border-gray-300 rounded-lg px-3 py-2">
-                    <i class="fa-solid fa-user text-emerald-400 text-3xl"></i>
+                    <i class="fa-solid fa-user phaedra-primary-color text-3xl"></i>
                     <input
                         type="text"
                         name="username"
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Passwortfeld -->
                 <div class="flex items-center border border-gray-300 rounded-lg px-3 py-2">
-                    <i class="fa-solid fa-lock text-emerald-400 text-3xl"></i>
+                    <i class="fa-solid fa-lock phaedra-primary-color text-3xl"></i>
                     <input
                         type="password"
                         name="password"
@@ -120,17 +120,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <button
                     type="submit"
-                    class="w-full bg-emerald-400 cursor-pointer text-white font-semibold py-2 rounded hover:bg-emerald-600 transition"
+                    class="w-full phaedra-primary-backgroundcolor cursor-pointer font-semibold py-2 rounded hover:bg-emerald-600 transition"
                 >
                     Anmelden
                 </button>
             </form>
 
-            <a class="text-emerald-400" href="/credits">Hier kommen Sie zu den Credits</a>
+            <a class="phaedra-primary-color" href="/credits">Hier kommen Sie zu den Credits</a>
 
         </section>
 
-        <aside class="w-3/7 h-screen bg-emerald-300 flex flex-col justify-center items-center gap-2 text-white">
+        <aside class="w-3/7 h-screen phaedra-primary-backgroundcolor flex flex-col justify-center items-center gap-2">
 
             <i class="fa-solid fa-cloud text-8xl"></i>
             <h1 class="text-5xl font-semibold">Willkommen Zurück!</h1>
