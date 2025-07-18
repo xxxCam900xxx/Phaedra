@@ -12,15 +12,15 @@ require_once '../api/login/IsLoggedIn.php';
     <title>Phaedra - Adminberreich</title>
 </head>
 
-<body>
+<body class="admin-background">
 
-    <main class="flex flex-col h-screen">
+    <main class="flex flex-row h-screen">
 
         <!-- Navigation -->
         <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/adminNavigation.php" ?>
 
         <!-- Dashboard Informationen -->
-        <section></section>
+        <section class="pl-[100px]"></section>
 
     </main>
 
