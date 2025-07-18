@@ -116,6 +116,11 @@
     color: white;
 }
 
+.phaedra-scondary-backgroundcolor {
+    background-color: #C3C6E8;
+    color: #1D247C;
+}
+
 .phaedra-primary-color {
     color: #1D247C;
 }
@@ -162,4 +167,31 @@
 
 .sidebar-open .navLabel {
     display: block;
+}
+
+
+
+.range-box {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e0e0ff;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    user-select: none;
+    cursor: ew-resize;
+    font-weight: bold;
+    font-size: 1.2rem;
+    gap: 12px;
+    font-family: sans-serif;
+}
+.range-box button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+}
+.range-value {
+    min-width: 40px;
+    text-align: center;
 }

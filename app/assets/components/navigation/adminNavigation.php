@@ -1,7 +1,7 @@
 <nav id="sidebar" class="Sidebar h-full bg-white fixed left-0 top-0 p-5 flex flex-col gap-6 sidebar-closed z-50">
 
     <!-- Chevron Toggle Button -->
-    <button onclick="toggleSidebar()" class="absolute -right-3 top-10 z-50 bg-white border border-gray-300 rounded-full phaedra-primary-backgroundcolor w-[30px] h-[30px] shadow-md cursor-pointer">
+    <button onclick="toggleSidebar()" class="absolute -right-3 top-10 z-50 rounded-full phaedra-primary-backgroundcolor w-[30px] h-[30px] shadow-md cursor-pointer">
         <i id="chevronIcon" class="fa-solid fa-chevron-right transition-transform duration-300"></i>
     </button>
 

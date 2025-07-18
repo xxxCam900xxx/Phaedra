@@ -15,12 +15,13 @@ $webConfig = getWebConfig();
     <title>Phaedra - Settings</title>
 </head>
 
-<body>
+<body class="admin-background">
 
-    <main class="flex flex-col h-screen">
+    <main class="flex flex-row h-screen">
 
         <!-- Navigation -->
         <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/adminNavigation.php" ?>
+        <div class="platzhalter w-[100px] h-screen"></div>
 
         <!-- Dateimanager Liste -->
         <section class="p-5">

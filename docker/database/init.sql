@@ -311,7 +311,8 @@ INSERT INTO
     `Heading2_Weight`,
     `Paragraph_Weight`,
     `Link_Color`,
-    `LinkHover_Color`
+    `LinkHover_Color`,
+    `Section_Gap`
   )
 VALUES
   (
@@ -326,7 +327,8 @@ VALUES
     '600',
     '400',
     '#FFFFFF',
-    '#123456'
+    '#123456',
+    '10'
   );
 
 INSERT INTO

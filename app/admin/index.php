@@ -18,9 +18,10 @@ require_once '../api/login/IsLoggedIn.php';
 
         <!-- Navigation -->
         <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/adminNavigation.php" ?>
+        <div class="platzhalter w-[100px] h-screen"></div>
 
         <!-- Dashboard Informationen -->
-        <section class="pl-[100px]"></section>
+        <section></section>
 
     </main>
 

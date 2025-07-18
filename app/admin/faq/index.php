@@ -14,10 +14,12 @@ $faqs = getFaqs();
     <title>Phaedra - FAQ Bereich</title>
 </head>
 
-<body>
-    <main class="flex flex-col min-h-screen">
+<body class="admin-background">
+
+    <main class="flex flex-row h-screen">
         <!-- Navigation -->
         <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/adminNavigation.php" ?>
+        <div class="platzhalter w-[100px] h-screen"></div>
 
         <section class="flex flex-col lg:flex-row gap-8 p-8">
             <!-- FAQ Tabellen Liste -->
