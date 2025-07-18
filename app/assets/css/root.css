@@ -121,6 +121,15 @@
     color: #1D247C;
 }
 
+button.phaedra-scondary-backgroundcolor:hover {
+    background-color: #a3a5c2;
+    color: #1D247C;
+}
+
+.phaedra-popup-background {
+    background-color: #1d237cc3;
+}
+
 .phaedra-primary-color {
     color: #1D247C;
 }
