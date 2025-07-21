@@ -45,8 +45,6 @@
 
 /* Styles für Drag & Drop State */
 #imageManager {
-    background-color: #f3f4f6;
-    /* helles Grau */
     border: 2px dashed transparent;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     position: relative;

@@ -1,6 +1,42 @@
 const dragOverlay = document.getElementById('dragOverlay');
 const imageManager = document.getElementById('imageManager');
 
+const hiddenFileInput = document.getElementById('hiddenFileInput');
+
+function triggerFileUpload() {
+    hiddenFileInput.click();
+}
+
+hiddenFileInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert('Bitte eine Bilddatei hochladen.');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('media', file);
+
+    try {
+        const response = await fetch('/api/media/uploadMedia.php', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            window.location.reload();
+        } else {
+            alert('Fehler: ' + (result.message || 'Unbekannter Fehler'));
+        }
+    } catch (err) {
+        alert('Netzwerkfehler: ' + err.message);
+    }
+});
+
 imageManager.addEventListener('dragover', (e) => {
     e.preventDefault();
     dragOverlay.classList.remove('hidden');
@@ -30,7 +66,7 @@ imageManager.addEventListener('drop', async (e) => {
     }
 
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('media', file);
 
     try {
         const response = await fetch('/api/media/uploadMedia.php', {

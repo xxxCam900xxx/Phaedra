@@ -24,21 +24,25 @@ $webConfig = getWebConfig();
         <div class="platzhalter w-[100px] h-screen"></div>
 
         <!-- Dateimanager Liste -->
-        <section class="p-5">
+        <section class="p-5 w-full">
 
-            <div id="imageManager" class="p-4">
+            <div id="imageManager" class="bg-white p-5 rounded-md flex flex-col gap-5 shadow-lg min-w-[500px]">
 
                 <div id="dragOverlay" class="hidden absolute inset-0 bg-blue-400 bg-opacity-30 border-4 border-dashed border-blue-500 pointer-events-none z-50 rounded flex items-center justify-center text-blue-900 font-semibold text-lg select-none">
                     Datei hierher ziehen zum Hochladen
                 </div>
 
-                <h2 class="text-xl font-semibold mb-4">Bildverwaltung</h2>
+                <div class="flex gap-2 justify-between items-center">
+                    <h2 class="text-3xl phaedra-primary-color font-semibold">Bildverwaltung</h2>
+                    <button onclick="triggerFileUpload()" class="cursor-pointer phaedra-scondary-backgroundcolor w-[50px] rounded-md aspect-square"><i class="fa-solid fa-cloud-arrow-up"></i></button>
+                    <input type="file" id="hiddenFileInput" accept="image/*" class="hidden">
+                </div>
 
                 <?php if (empty($images)) : ?>
                     <p class="text-gray-600">Keine Bilder gefunden.</p>
                 <?php else : ?>
-                    <table class="w-full border border-gray-300">
-                        <thead class="bg-gray-200">
+                    <table class="w-full rounded-md overflow-hidden">
+                        <thead class="phaedra-scondary-backgroundcolor">
                             <tr>
                                 <th class="p-2 text-left">Bild</th>
                                 <th class="p-2 text-left">URL</th>
@@ -47,7 +51,7 @@ $webConfig = getWebConfig();
                         </thead>
                         <tbody>
                             <?php foreach ($images as $image): ?>
-                                <tr class="border-t border-gray-300">
+                                <tr class="border-t border-blue-800 hover:bg-gray-100">
                                     <td class="p-2">
                                         <?php
                                         $url = htmlspecialchars($image['url']);
@@ -64,7 +68,7 @@ $webConfig = getWebConfig();
                                             <img draggable="false" src="<?= $url ?>" alt="Image" class="h-[150px]">
                                         <?php endif; ?>
                                     </td>
-                                    <td class="p-2"><a draggable="false" href="<?= $url ?>"><?= $url ?></a></td>
+                                    <td class="p-2"><a class="hover:text-blue-800" draggable="false" href="<?= $url ?>"><?= $url ?></a></td>
                                     <td class="p-2">
                                         <button
                                             class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 cursor-pointer"
