@@ -1,3 +1,14 @@
+<?php
+$activeClass = "activeNavigation";
+
+// Pfad extrahieren (z. B. editor aus /admin/editor)
+$Request_URI = explode('/', trim($_SERVER["REQUEST_URI"], '/'));
+
+// Standardmäßig kein aktiver Wert
+$activeNavId = isset($Request_URI[1]) ? $Request_URI[1] : 'dashboard';
+?>
+
+
 <nav id="sidebar" class="Sidebar h-full bg-white fixed left-0 top-0 p-5 flex flex-col gap-6 sidebar-closed z-50">
 
     <!-- Chevron Toggle Button -->
@@ -18,31 +29,31 @@
     <!-- Navigation -->
     <div class="pl-2 flex flex-col gap-5">
         <a href="/admin" class="flex flex-row gap-5 items-center nav-link" data-nav-id="dashboard">
-            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5">
+            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5 <?= $activeNavId === 'dashboard' ? $activeClass : '' ?>">
                 <i class="fa-solid fa-chart-simple text-3xl"></i>
             </div>
             <h2 class="text-2xl phaedra-primary-color navLabel">Dashboard</h2>
         </a>
-        <a href="/admin/editor" class="flex flex-row gap-5 items-center nav-link" data-nav-id="siteEditor">
-            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5">
+        <a href="/admin/editor" class="flex flex-row gap-5 items-center nav-link" data-nav-id="editor">
+            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5 <?= $activeNavId === 'editor' ? $activeClass : '' ?>">
                 <i class="fa-regular fa-newspaper text-3xl"></i>
             </div>
             <h2 class="text-2xl phaedra-primary-color navLabel">Site-Editor</h2>
         </a>
-        <a href="/admin/folders" class="flex flex-row gap-5 items-center nav-link" data-nav-id="filemanager">
-            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5">
+        <a href="/admin/folders" class="flex flex-row gap-5 items-center nav-link" data-nav-id="folders">
+            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5 <?= $activeNavId === 'folders' ? $activeClass : '' ?>">
                 <i class="fa-solid fa-folder-open text-3xl"></i>
             </div>
             <h2 class="text-2xl phaedra-primary-color navLabel">Dateimanager</h2>
         </a>
         <a href="/admin/settings" class="flex flex-row gap-5 items-center nav-link" data-nav-id="settings">
-            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5">
+            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5 <?= $activeNavId === 'settings' ? $activeClass : '' ?>">
                 <i class="fa-solid fa-gears text-3xl"></i>
             </div>
             <h2 class="text-2xl phaedra-primary-color navLabel">Einstellungen</h2>
         </a>
         <a href="/admin/userprofile" class="flex flex-row gap-5 items-center nav-link" data-nav-id="userprofile">
-            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5">
+            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5 <?= $activeNavId === 'userprofile' ? $activeClass : '' ?>">
                 <i class="fa-solid fa-key text-3xl"></i>
             </div>
             <h2 class="text-2xl phaedra-primary-color navLabel">Profil</h2>
@@ -54,19 +65,19 @@
     <!-- Widget Navigation -->
     <div class="pl-2 flex flex-col gap-5">
         <a href="/admin/timeline" class="flex flex-row gap-5 items-center nav-link" data-nav-id="timeline">
-            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5">
+            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5 <?= $activeNavId === 'timeline' ? $activeClass : '' ?>">
                 <i class="fa-solid fa-timeline text-3xl"></i>
             </div>
             <h2 class="text-2xl phaedra-primary-color navLabel">Timeline</h2>
         </a>
         <a href="/admin/socials" class="flex flex-row gap-5 items-center nav-link" data-nav-id="socials">
-            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5">
+            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5 <?= $activeNavId === 'socials' ? $activeClass : '' ?>">
                 <i class="fa-solid fa-share-nodes text-3xl"></i>
             </div>
             <h2 class="text-2xl phaedra-primary-color navLabel">Socials</h2>
         </a>
         <a href="/admin/faq" class="flex flex-row gap-5 items-center nav-link" data-nav-id="faq">
-            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5">
+            <div class="h-[30px] w-[30px] phaedra-primary-color flex items-center justify-center rounded-md p-5 <?= $activeNavId === 'faq' ? $activeClass : '' ?>">
                 <i class="fa-solid fa-comments text-3xl"></i>
             </div>
             <h2 class="text-2xl phaedra-primary-color navLabel">FAQ</h2>
@@ -105,41 +116,4 @@
             chevron.classList.remove("rotate-180");
         }
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const NAV_KEY = "phaedra-active-nav";
-        const navLinks = document.querySelectorAll(".nav-link");
-        const savedNav = localStorage.getItem(NAV_KEY);
-
-        // Aktive Navigation setzen
-        navLinks.forEach(link => {
-            const navId = link.getAttribute("data-nav-id");
-            const iconBox = link.querySelector("div");
-
-            if (savedNav === navId) {
-                iconBox.classList.add("activeNavigation");
-            }
-
-            link.addEventListener("click", event => {
-                event.preventDefault();
-
-                if (navId === "logout") {
-                    localStorage.removeItem(NAV_KEY);
-                } else {
-                    localStorage.setItem(NAV_KEY, navId);
-                }
-
-                // Jetzt weiterleiten
-                window.location.href = link.getAttribute("href");
-            });
-        });
-
-        // Fallback auf Dashboard, wenn nichts gespeichert
-        if (!savedNav || savedNav === "logout") {
-            const defaultLink = document.querySelector('.nav-link[data-nav-id="dashboard"]');
-            if (defaultLink) {
-                defaultLink.querySelector("div").classList.add("activeNavigation");
-            }
-        }
-    });
 </script>
