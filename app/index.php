@@ -338,6 +338,47 @@ $webConfig = getWebConfig();
             });
         }
     </script>
+    <script>
+        if (!localStorage.getItem("visit_id")) {
+            localStorage.setItem("visit_id", crypto.randomUUID());
+            fetch("/api/login/track_visitor.php", {
+                method: "POST"
+            });
+        }
+    </script>
+    <script>
+        const originalFetch = window.fetch;
+
+        window.fetch = async function(...args) {
+            try {
+                const response = await originalFetch.apply(this, args);
+
+                const clonedResponse = response.clone();
+
+                try {
+                    const data = await clonedResponse.json();
+
+                    if (data.success === false || data.error === true) {
+                        // Fehler gefunden — sende Tracking-Request
+                        fetch("/api/tracking/track_errors.php", {
+                            method: "POST"
+                        });
+                    }
+                } catch {
+                    // JSON Parsing fehlgeschlagen, ignoriere
+                }
+
+                return response;
+
+            } catch (networkError) {
+                // Bei Netzwerkfehler auch tracken
+                fetch("/api/tracking/track_errors.php", {
+                    method: "POST"
+                });
+                throw networkError;
+            }
+        };
+    </script>
 
 </body>
 
