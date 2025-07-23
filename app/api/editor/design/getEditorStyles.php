@@ -27,28 +27,53 @@ function getWebDesign(): ?array
         $linkBtn_Color,
         $linkHoverBtn_Color,
         $section_Gap,
+        $footerBackgroundColor,
+        $footerLinkColor,
+        $footerEndBackgroundColor,
+        $footerEndColor,
+        $headerBackgroundColor,
+        $headerLinkColor,
+        $preHeaderColor,
+        $preHeaderBackgroundColor,
     );
 
     if ($stmt->fetch()) {
         return [
             'success' => true,
             'data' => [
-                'Primary_Color'      => $primaryColor,
-                'Secondary_Color'    => $secondaryColor,
-                'Background_Color'   => $backgroundColor,
-                'Footer_Color'       => $footerColor,
-                'Heading1_Size'      => $heading1Size,
-                'Heading2_Size'      => $heading2Size,
-                'Paragraph_Size'     => $paragraphSize,
-                'Heading1_Weight'    => $heading1Weight,
-                'Heading2_Weight'    => $heading2Weight,
-                'Paragraph_Weight'   => $paragraphWeight,
-                'Link_Color'         => $linkColor,
-                'LinkHover_Color'    => $linkHoverColor,
-                'LinkBtn_TextColor'  => $linkBtn_TextColor,
-                'LinkBtn_Color'      => $linkBtn_Color,
-                'LinkHoverBtn_Color' => $linkHoverBtn_Color,
-                'Section_Gap'        => $section_Gap,
+                'Primary_Color'             => $primaryColor,
+                'Secondary_Color'           => $secondaryColor,
+                'Background_Color'          => $backgroundColor,
+
+                'Heading1_Size'             => $heading1Size,
+                'Heading2_Size'             => $heading2Size,
+                'Paragraph_Size'            => $paragraphSize,
+
+                'Heading1_Weight'           => $heading1Weight,
+                'Heading2_Weight'           => $heading2Weight,
+                'Paragraph_Weight'          => $paragraphWeight,
+
+                'Link_Color'                => $linkColor,
+                'LinkHover_Color'           => $linkHoverColor,
+
+                'LinkBtn_TextColor'         => $linkBtn_TextColor,
+                'LinkBtn_Color'             => $linkBtn_Color,
+                'LinkHoverBtn_Color'        => $linkHoverBtn_Color,
+
+                'Section_Gap'               => $section_Gap,
+
+                'Footer_Color'              => $footerColor,
+                'Footer_BackgroundColor'    => $footerBackgroundColor,
+                'Footer_LinkColor'          => $footerLinkColor,
+
+                'FooterEnd_BackgroundColor' => $footerEndBackgroundColor,
+                'FooterEnd_Color'           => $footerEndColor,
+
+                'Header_BackgroundColor'    => $headerBackgroundColor,
+                'Header_LinkColor'          => $headerLinkColor,
+
+                'PreHeader_Color'           => $preHeaderColor,
+                'PreHeader_BackgroundColor' => $preHeaderBackgroundColor,
             ]
         ];
     }

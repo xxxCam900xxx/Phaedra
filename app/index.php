@@ -82,50 +82,52 @@ $webConfig = getWebConfig();
     ?>
     <style>
         :root {
-            --primary-color: <?= htmlspecialchars($data['Primary_Color'] ?? '#1D4ED8') ?>;
+            --primary-color: <?= htmlspecialchars($data['Primary_Color'] ?? '#4f1dd8ff') ?>;
             --secondary-color: <?= htmlspecialchars($data['Secondary_Color'] ?? '#2563EB') ?>;
             --background-color: <?= htmlspecialchars($data['Background_Color'] ?? '#ffffff') ?>;
-            --footer-color: <?= htmlspecialchars($data['Footer_Color'] ?? '#111827') ?>;
 
             --h1-size: <?= htmlspecialchars($data['Heading1_Size'] ?? '36') ?>px;
-            --h2-size: <?= htmlspecialchars($data['Heading2_Size'] ?? '28') ?>px;
-            --p-size: <?= htmlspecialchars($data['Paragraph_Size'] ?? '18') ?>px;
-
             --h1-weight: <?= htmlspecialchars($data['Heading1_Weight'] ?? '700') ?>;
+
+            --h2-size: <?= htmlspecialchars($data['Heading2_Size'] ?? '28') ?>px;
             --h2-weight: <?= htmlspecialchars($data['Heading2_Weight'] ?? '600') ?>;
+
+            --p-size: <?= htmlspecialchars($data['Paragraph_Size'] ?? '18') ?>px;
             --p-weight: <?= htmlspecialchars($data['Paragraph_Weight'] ?? '400') ?>;
 
             --link-color: <?= htmlspecialchars($data['Link_Color'] ?? '#1D4ED8') ?>;
             --link-hover-color: <?= htmlspecialchars($data['LinkHover_Color'] ?? '#93C5FD') ?>;
 
             --link-btn-color: <?= htmlspecialchars($data['LinkBtn_TextColor'] ?? '#000000ff') ?>;
-            --link-btn-background-color: <?= htmlspecialchars($data['LinkBtn_Color'] ?? '#cacacaff') ?>;
-            --link-btn-background-hover-color: <?= htmlspecialchars($data['LinkHoverBtn_Color'] ?? '#8e8e8eff') ?>;
+            --link-btn-bg: <?= htmlspecialchars($data['LinkBtn_Color'] ?? '#cacacaff') ?>;
+            --link-btn-bg-hover: <?= htmlspecialchars($data['LinkHoverBtn_Color'] ?? '#8e8e8eff') ?>;
 
-            --main-gap: <?= htmlspecialchars($data['Section_Gap'] . "px" ?? '5px') ?>;
+            --section-gap: <?= htmlspecialchars($data['Section_Gap'] ?? '5') ?>px;
+
+            --footer-color: <?= htmlspecialchars($data['Footer_Color'] ?? '#111827') ?>;
+            --footer-bg: <?= htmlspecialchars($data['Footer_BackgroundColor'] ?? '#f3f4f6') ?>;
+            --footer-link: <?= htmlspecialchars($data['Footer_LinkColor'] ?? '#1D4ED8') ?>;
+
+            --footer-end-bg: <?= htmlspecialchars($data['FooterEnd_BackgroundColor'] ?? '#e5e7eb') ?>;
+            --footer-end-color: <?= htmlspecialchars($data['FooterEnd_Color'] ?? '#1f2937') ?>;
+
+            --header-bg: <?= htmlspecialchars($data['Header_BackgroundColor'] ?? '#ffffff') ?>;
+            --header-link: <?= htmlspecialchars($data['Header_LinkColor'] ?? '#000000') ?>;
+
+            --preheader-color: <?= htmlspecialchars($data['PreHeader_Color'] ?? '#1f2937') ?>;
+            --preheader-bg: <?= htmlspecialchars($data['PreHeader_BackgroundColor'] ?? '#e5e7eb') ?>;
         }
 
         * {
-            transition: all each 0.3s;
+            transition: all 0.3s ease;
         }
 
         body {
             background-color: var(--background-color);
-            font-size: var(--p-size);
-            font-weight: var(--p-weight);
         }
 
         #dynamicContent {
-            gap: var(--main-gap) !important;
-        }
-
-        .button {
-            color: var(--link-btn-color);
-            background-color: var(--link-btn-background-color);
-        }
-
-        .button:hover {
-            background-color: var(--link-btn-background-hover-color);
+            gap: var(--section-gap) !important;
         }
 
         h1 {
@@ -138,8 +140,57 @@ $webConfig = getWebConfig();
             font-weight: var(--h2-weight);
         }
 
+        p {
+            font-size: var(--p-size);
+            font-weight: var(--p-weight);
+        }
+
+        a {
+            color: var(--link-color);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .button {
+            color: var(--link-btn-color);
+            background-color: var(--link-btn-bg);
+        }
+
+        .button:hover {
+            background-color: var(--link-btn-bg-hover);
+        }
+
         footer {
-            background-color: var(--footer-color);
+            background-color: var(--footer-bg);
+            color: var(--footer-color);
+        }
+
+        footer a {
+            color: var(--footer-link);
+        }
+
+        .footerEnd {
+            background-color: var(--footer-end-bg);
+        }
+
+        .footerEnd a {
+            color: var(--footer-end-color);
+        }
+
+        header {
+            background-color: var(--header-bg);
+        }
+
+        header a {
+            color: var(--header-link);
+        }
+
+        .preheader {
+            color: var(--preheader-color);
+            background-color: var(--preheader-bg);
         }
 
         .primary-color {
@@ -148,23 +199,6 @@ $webConfig = getWebConfig();
 
         .secondary-color {
             background-color: var(--secondary-color);
-        }
-
-        a {
-            color: var(--link-color);
-            transition: color 0.3s;
-        }
-
-        header a {
-            color: black;
-        }
-
-        header a:hover {
-            color: white;
-        }
-
-        a:hover {
-            color: var(--link-hover-color);
         }
     </style>
 

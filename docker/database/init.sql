@@ -45,7 +45,6 @@ CREATE TABLE IF NOT EXISTS `WebDesign` (
   `Primary_Color` VARCHAR(80) NULL,
   `Secondary_Color` VARCHAR(80) NULL,
   `Background_Color` VARCHAR(80) NULL,
-  `Footer_Color` VARCHAR(80) NULL,
   `Heading1_Size` VARCHAR(80) NULL,
   `Heading2_Size` VARCHAR(80) NULL,
   `Paragraph_Size` VARCHAR(80) NULL,
@@ -58,6 +57,15 @@ CREATE TABLE IF NOT EXISTS `WebDesign` (
   `LinkBtn_Color` VARCHAR(80) NULL,
   `LinkHoverBtn_Color` VARCHAR(80) NULL,
   `Section_Gap` VARCHAR(80) NULL,
+  `Footer_Color` VARCHAR(80) NULL,
+  `Footer_BackgroundColor` VARCHAR(80) NULL,
+  `Footer_LinkColor` VARCHAR(80) NULL,
+  `FooterEnd_Color` VARCHAR(80) NULL,
+  `FooterEnd_BackgroundColor` VARCHAR(80) NULL,
+  `Header_BackgroundColor` VARCHAR(80) NULL,
+  `Header_LinkColor` VARCHAR(80) NULL,
+  `PreHeader_Color` VARCHAR(80) NULL,
+  `PreHeader_BackgroundColor` VARCHAR(80) NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 

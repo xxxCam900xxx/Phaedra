@@ -137,7 +137,6 @@ require_once '../../api/login/IsLoggedIn.php';
                             ["id" => "Primary_Color", "label" => "Primärfarbe", "type" => "color", "target" => ".primary-color", "prop" => "background-color"],
                             ["id" => "Secondary_Color", "label" => "Sekundärfarbe", "type" => "color", "target" => ".secondary-color", "prop" => "background-color"],
                             ["id" => "Background_Color", "label" => "Hintergrundfarbe", "type" => "color", "target" => "body", "prop" => "background-color"],
-                            ["id" => "Footer_Color", "label" => "Footerfarbe", "type" => "color", "target" => "footer", "prop" => "background-color"],
 
                             ["id" => "Heading1_Size", "label" => "H1 Size", "type" => "range", "target" => "h1", "prop" => "fontSize", "min" => 16, "max" => 72, "value" => 36],
                             ["id" => "Heading1_Weight", "label" => "H1 Weight", "type" => "range", "target" => "h1", "prop" => "fontWeight", "min" => 100, "max" => 900, "step" => 100, "value" => 700],
@@ -155,7 +154,20 @@ require_once '../../api/login/IsLoggedIn.php';
                             ["id" => "LinkBtn_Color", "label" => "LinkButton BG-Color", "type" => "color", "target" => ".button", "prop" => "background-color"],
                             ["id" => "LinkHoverBtn_Color", "label" => "LinkButton BG-Hover", "type" => "color", "hoverButton" => true],
 
-                            ["id" => "Section_Gap", "label" => "Sections Gap", "type" => "range", "sectionGap" => true, "min" => 0, "max" => 100, "value" => 5]
+                            ["id" => "Section_Gap", "label" => "Sections Gap", "type" => "range", "sectionGap" => true, "min" => 0, "max" => 100, "value" => 5],
+
+                            ["id" => "Footer_Color", "label" => "Footerfarbe", "type" => "color", "target" => "footer", "prop" => "color"],
+                            ["id" => "Footer_BackgroundColor", "label" => "Footerhintergrundfarbe", "type" => "color", "target" => "footer", "prop" => "background-color"],
+                            ["id" => "Footer_LinkColor", "label" => "Footer Linkfarbe", "type" => "color", "target" => "footer a", "prop" => "color"],
+
+                            ["id" => "FooterEnd_BackgroundColor", "label" => "FooterEndhintergrundfarbe", "type" => "color", "target" => ".footerEnd", "prop" => "background-color"],
+                            ["id" => "FooterEnd_Color", "label" => "FooterEndfarbe", "type" => "color", "target" => ".footerEnd a", "prop" => "color"],
+
+                            ["id" => "Header_BackgroundColor", "label" => "Headerhintergrundfarbe", "type" => "color", "target" => "header", "prop" => "background-color"],
+                            ["id" => "Header_LinkColor", "label" => "Header Linkfarbe", "type" => "color", "target" => "header a", "prop" => "color"],
+
+                            ["id" => "PreHeader_Color", "label" => "PreHeaderfarbe", "type" => "color", "target" => ".preheader", "prop" => "color"],
+                            ["id" => "PreHeader_BackgroundColor", "label" => "PreHeaderhintergrundfarbe", "type" => "color", "target" => ".preheader", "prop" => "background-color"],
                         ];
                         ?>
 

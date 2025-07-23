@@ -6,11 +6,11 @@ $webConfig = getWebConfig();
 $pages = getAllPages();
 ?>
 
-<div class="preheader h-[30px] w-full bg-sky-800 secondary-color flex justify-between pl-[10%] pr-[10%] flex-wrap">
+<div class="preheader h-[30px] w-full flex justify-between pl-[10%] pr-[10%] flex-wrap">
 <span>What's the best thing about a Boolean? Even if you're wrong, you're only off by a bit.</span>
 <span><?= $webConfig->WebContact ?></span>
 </div>
-<header class="h-[60px] w-full flex items-center justify-between gap-5 pl-[10%] pr-[10%] primary-color">
+<header class="h-[60px] w-full flex items-center justify-between gap-5 pl-[10%] pr-[10%]">
     <div class="flex items-center justify-between gap-5">
         <?php if ($webConfig->WebLogoURL != null) {
             $logoURL = "";
@@ -41,7 +41,7 @@ $pages = getAllPages();
             ?>
         </nav>
     </div>
-    <a href="/admin/login" class="secondary-color rounded-md cursor-pointer text-white p-1 pr-2 pl-2 h-fit">
+    <a href="/admin/login" class="rounded-md cursor-pointer text-white p-1 pr-2 pl-2 h-fit">
         <?php if (isset($_SESSION['user_id'])) {
             echo "Admin";
         } else {

@@ -38,6 +38,6 @@ $webConfig = getWebConfig();
 
 </footer>
 
-<div class="secondary-color text-white p-5 pl-[10%] pr-[10%] flex justify-center gap-5">
+<div class="footerEnd p-5 pl-[10%] pr-[10%] flex justify-center gap-5">
     <a class="text-black" href="https://github.com/xxxCam900xxx/Phaedra">Credits Phaedra</a>
 </div>
