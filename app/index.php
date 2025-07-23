@@ -155,6 +155,14 @@ $webConfig = getWebConfig();
             transition: color 0.3s;
         }
 
+        header a {
+            color: black;
+        }
+
+        header a:hover {
+            color: white;
+        }
+
         a:hover {
             color: var(--link-hover-color);
         }
@@ -163,9 +171,6 @@ $webConfig = getWebConfig();
 </head>
 
 <body class="w-full min-h-screen flex flex-col">
-    <div class="preheader h-[30px] w-full bg-sky-800 secondary-color">
-
-    </div>
     <!-- Header -->
     <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/dynamicNavigation.php" ?>
 
