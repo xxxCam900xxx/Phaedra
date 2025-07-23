@@ -130,74 +130,74 @@ $webConfig = getWebConfig();
             gap: var(--section-gap) !important;
         }
 
-        h1 {
+        #livePage h1 {
             font-size: var(--h1-size);
             font-weight: var(--h1-weight);
         }
 
-        h2 {
+        #livePage h2 {
             font-size: var(--h2-size);
             font-weight: var(--h2-weight);
         }
 
-        p {
+        #livePage p {
             font-size: var(--p-size);
             font-weight: var(--p-weight);
         }
 
-        a {
+        #livePage a {
             color: var(--link-color);
             transition: color 0.3s;
         }
 
-        a:hover {
+        #livePage a:hover {
             color: var(--link-hover-color);
         }
 
-        .button {
+        #livePage .button {
             color: var(--link-btn-color);
             background-color: var(--link-btn-bg);
         }
 
-        .button:hover {
+        #livePage .button:hover {
             background-color: var(--link-btn-bg-hover);
         }
 
-        footer {
+        #livePage footer {
             background-color: var(--footer-bg);
             color: var(--footer-color);
         }
 
-        footer a {
+        #livePage footer a {
             color: var(--footer-link);
         }
 
-        .footerEnd {
+        #livePage .footerEnd {
             background-color: var(--footer-end-bg);
         }
 
-        .footerEnd a {
+        #livePage .footerEnd a {
             color: var(--footer-end-color);
         }
 
-        header {
+        #livePage header {
             background-color: var(--header-bg);
         }
 
-        header a {
+        #livePage header a {
             color: var(--header-link);
         }
 
-        .preheader {
+        #livePage .preheader {
             color: var(--preheader-color);
             background-color: var(--preheader-bg);
         }
 
-        .primary-color {
+        #livePage .primary-color {
             background-color: var(--primary-color);
         }
 
-        .secondary-color {
+        #livePage .secondary-color {
             background-color: var(--secondary-color);
         }
     </style>
@@ -205,42 +205,44 @@ $webConfig = getWebConfig();
 </head>
 
 <body class="w-full min-h-screen flex flex-col">
-    <!-- Header -->
-    <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/dynamicNavigation.php" ?>
+    <div id="livePage" class="w-full min-h-screen flex flex-col">
+        <!-- Header -->
+        <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/navigation/dynamicNavigation.php" ?>
 
-    <!-- Dynamic Content -->
-    <main class="flex flex-col flex-1 gap-5 p-[10%] pt-5 pb-5">
-        <!-- Dynamic Layout Creation -->
-        <section class="flex flex-col gap-10" id="dynamicContent">
+        <!-- Dynamic Content -->
+        <main class="flex flex-col flex-1 gap-5 p-[10%] pt-5 pb-5">
+            <!-- Dynamic Layout Creation -->
+            <section class="flex flex-col gap-10" id="dynamicContent">
 
-            <?php foreach ($layouts as $layout): ?>
-                <?php
-                $layoutID = $layout['id'];
-                $type = $layout['type'];
-                $data = $layout['data'];
+                <?php foreach ($layouts as $layout): ?>
+                    <?php
+                    $layoutID = $layout['id'];
+                    $type = $layout['type'];
+                    $data = $layout['data'];
 
-                // Hier includen Sie Ihre Komponenten
-                $file = $_SERVER["DOCUMENT_ROOT"] . '/assets/components/layouts/' . $type . '.php';
+                    // Hier includen Sie Ihre Komponenten
+                    $file = $_SERVER["DOCUMENT_ROOT"] . '/assets/components/layouts/' . $type . '.php';
 
-                if (file_exists($file)) {
-                    include $file;
-                } else {
-                    echo "<div class='text-red-500'>Unbekanntes Layout: " . htmlspecialchars($type) . "</div>";
-                }
-                ?>
-            <?php endforeach; ?>
+                    if (file_exists($file)) {
+                        include $file;
+                    } else {
+                        echo "<div class='text-red-500'>Unbekanntes Layout: " . htmlspecialchars($type) . "</div>";
+                    }
+                    ?>
+                <?php endforeach; ?>
 
-        </section>
+            </section>
 
-        <!-- Editor Section -->
-        <div id="content-container"
-            class="hidden flex h-[100px] p-5 items-center justify-center text-4xl text-gray-400">
-            <i class="fa-solid fa-plus"></i>
-        </div>
-    </main>
+            <!-- Editor Section -->
+            <div id="content-container"
+                class="hidden flex h-[100px] p-5 items-center justify-center text-4xl text-gray-400">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+        </main>
 
-    <!-- Header -->
-    <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/footer/dynamicFooter.php" ?>
+        <!-- Footer -->
+        <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/assets/components/footer/dynamicFooter.php" ?>
+    </div>
 
     <!-- PopUps -->
     <div id="layoutContextMenu">
