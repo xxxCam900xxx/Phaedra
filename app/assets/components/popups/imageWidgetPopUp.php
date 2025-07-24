@@ -57,6 +57,6 @@
     <div class="bg-white rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
         <h2 class="text-2xl mb-4 font-semibold">Bilder auswählen</h2>
         <button id="closeImageSelectorBtn" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
-        <div id="imageList" class="grid grid-cols-4 gap-4"></div>
+        <div id="imageListPopUp" class="grid grid-cols-4 gap-4"></div>
     </div>
 </div>

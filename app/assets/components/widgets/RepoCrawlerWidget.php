@@ -10,23 +10,23 @@ $repos = fetchRepos($forgejoBase, $forgejoUser, $githubUser);
 ?>
 
 <h1 class="text-3xl font-bold mb-6 text-gray-800">Public Repositories</h1>
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
     <?php foreach ($repos as $repo): ?>
-        <div class="bg-white rounded-2xl shadow p-5 hover:shadow-lg transition">
+        <div class="flex flex-col gap-2 bg-white rounded-2xl shadow-lg p-5 hover:shadow-lg transition">
             <a href="<?= htmlspecialchars($repo['url']) ?>"
-                class="text-blue-600 font-semibold text-lg hover:underline block mb-2"
+                class="text-blue-600 font-semibold text-lg hover:underline block"
                 target="_blank" rel="noopener noreferrer">
                 <?= htmlspecialchars($repo['name']) ?>
             </a>
             <?php if (!empty($repo['description'])): ?>
-                <p class="text-gray-700 text-sm mb-3">
+                <span class="text-gray-700 text-sm">
                     <?= htmlspecialchars($repo['description']) ?>
-                </p>
+                </span>
             <?php endif; ?>
             <?php if (!empty($repo['tags'])): ?>
                 <div class="flex flex-wrap gap-2">
                     <?php foreach ($repo['tags'] as $tag): ?>
-                        <span class="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded-full">
+                        <span class="px-2 py-1 text-xs button rounded-full">
                             <?= htmlspecialchars($tag) ?>
                         </span>
                     <?php endforeach; ?>

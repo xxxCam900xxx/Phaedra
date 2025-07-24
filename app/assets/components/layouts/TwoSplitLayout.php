@@ -1,6 +1,6 @@
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . "/api/editor/widgets/getWidget.php"; ?>
 
-<div class="Layout w-full flex gap-5" 
+<div class="Layout w-full flex gap-5 items-center" 
      data-layout-id="<?= htmlspecialchars($layoutID) ?>" 
      data-layout-type="<?= htmlspecialchars($type) ?>">
 

@@ -5,7 +5,6 @@ const logoPreview = document.getElementById('logoPreview');
 const openPopupBtn = document.getElementById('openImageSelectorBtn');
 const popup = document.getElementById('imageSelectorPopup');
 const closePopupBtn = document.getElementById('closeImageSelectorBtn');
-const imageList = document.getElementById('imageList');
 const webLogoURLInput = document.getElementById('widgetImageURL');
 
 function openImageWidgetPopUp(widgetData, isInserted = false) {
@@ -120,7 +119,7 @@ function updateLogoPreview(url) {
 // Popup öffnen
 openPopupBtn.addEventListener('click', () => {
     popup.classList.remove('hidden');
-    loadImages();
+    loadPopUPImages();
 });
 
 // Popup schliessen
@@ -129,7 +128,8 @@ closePopupBtn.addEventListener('click', () => {
 });
 
 // Bilder aus DB laden und anzeigen
-async function loadImages() {
+async function loadPopUPImages() {
+    let imageList = document.getElementById('imageListPopUp');
     imageList.innerHTML = 'Lade Bilder...';
 
     try {
@@ -146,7 +146,7 @@ async function loadImages() {
             const div = document.createElement('div');
             div.className = 'relative group';
 
-            div.innerHTML = `
+            div.innerHTML += `
                     <img src="${img['url']}" alt="Image" class="rounded shadow hover:opacity-80 cursor-pointer w-full h-[200px] object-cover" />
                     <button class="absolute bottom-1 right-1 bg-sky-600 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition" title="Als Logo auswählen">Auswählen</button>
                 `;

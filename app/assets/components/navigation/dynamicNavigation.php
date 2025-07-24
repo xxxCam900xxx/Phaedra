@@ -41,7 +41,7 @@ $pages = getAllPages();
             ?>
         </nav>
     </div>
-    <a href="/admin/login" class="rounded-md cursor-pointer text-white p-1 pr-2 pl-2 h-fit">
+    <a href="/admin/login" class="rounded-md preheader cursor-pointer text-white p-1 pr-2 pl-2 h-fit">
         <?php if (isset($_SESSION['user_id'])) {
             echo "Admin";
         } else {
