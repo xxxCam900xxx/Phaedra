@@ -2,43 +2,44 @@
 In diesem Projekt wird ein einfach anwendbarer aber auch komplexer Site Editor gebaut werden, welche neue Seiten erstellen & bearbeiten kann sowie die Inhalte davon jederzeit Live überarbeiten kann. Es soll dynamisch und Modular sein.
 
 ## Inhaltsverzeichnis
-- [Phaedra Site Editor Konzept](#Phaedra-site-editor-konzept)
+- [Phaedra Site Editor Konzept](#phaedra-site-editor-konzept)
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Ziele](#ziele)
   - [Technologie](#technologie)
   - [Datenbank Struktur](#datenbank-struktur)
+  - [Abläufe](#abläufe)
 
 ## Ziele
 Hier sind alle Anforderungen und Ziele aufgeführt, die das Projekt erfüllen muss.
 
 - [ ] **Allgemein**
-  - [ ] Bei Applikationsstart sollte eine Index Seite automatisch vordefiniert eingestellt sein, um an ihr rumbasteln zu können
-  - [ ] Navigation sollte sich automatisch anpassen, wenn eine neue Seite hinzugefügt wird und Online ist.
+  - [x] Bei Applikationsstart sollte eine Index Seite automatisch vordefiniert eingestellt sein, um an ihr rumbasteln zu können
+  - [x] Navigation sollte sich automatisch anpassen, wenn eine neue Seite hinzugefügt wird und Online ist.
   - [ ] Wenn man in der Applikation auf eine Seite führt welche nicht gibt oder man keine Authorizierung hat, sollte man weitergeleitet werden.
 
 - [ ] **Editor**
-  - [ ] Neue Seiten erstellen können
+  - [x] Neue Seiten erstellen können
   - [ ] Bestehende Seiten kopieren können
-  - [ ] Bestehende Seiten löschen können
-  - [ ] Im Editor Layout Blöcke hinzufügen könne
-  - [ ] Im Editor Widgets hinzufügen können
-  - [ ] Inhalte bearbeiten können
-  - [ ] Automatisch abspeichern
-  - [ ] Live Übertragung
+  - [x] Bestehende Seiten löschen können
+  - [x] Im Editor Layout Blöcke hinzufügen könne
+  - [x] Im Editor Widgets hinzufügen können
+  - [x] Inhalte bearbeiten können
+  - [x] Automatisch abspeichern
+  - [x] Live Übertragung
   - [ ] Offline Seiten / Unsichtbare Seiten
-  - [ ] Pro Seite Header Titel anpassen können, sowie Meta Tags
+  - [x] Pro Seite Header Titel anpassen können, sowie Meta Tags
   - [ ] 404 Seite definieren können
   - [ ] 401 Seite definieren können
 
-- [ ] **Layout**
-  - [ ] Volle Breite
-  - [ ] 3 Spalten
-  - [ ] 2 Spalten
+- [x] **Layout**
+  - [x] Volle Breite
+  - [x] 3 Spalten
+  - [x] 2 Spalten
 
-- [ ] **Widgets**
-  - [ ] HTML Code Block
-  - [ ] Text Block
-  - [ ] Bild Block
+- [x] **Widgets**
+  - [x] HTML Code Block
+  - [x] Text Block
+  - [x] Bild Block
 
 ---
 

@@ -10,6 +10,7 @@ Phaedra ist ein Webseiten Portfolio. Es soll eine Modulare Webseite sein. Es sol
   - [Inhaltsverzeichnis](#inhaltsverzeichnis)
   - [Konzept](#konzept)
   - [Dokumentation / Guide](#dokumentation--guide)
+  - [Demo Preview](#demo-preview)
   - [Technologien](#technologien)
   - [Projekt Kanban](#projekt-kanban)
   - [Lizenz](#lizenz)
@@ -22,6 +23,9 @@ Alle Feature und Konzepte findest du hier:
 ## Dokumentation / Guide
 Wollen Sie wissen wie die ganze Applikation aufgebaut ist? Ich habe ihnen eine Dokumentation / Guide erstellt, wo Sie alles wichitge über die Applikation wissen müssen als Benutzer.
 - [Kicken Sie hier um mehr zu erfahren](/documentation/README.md)
+
+## Demo Preview
+![DemoView of SiteEditor](/concept/media/SiteEditorView.png)
 
 ## Technologien
 
